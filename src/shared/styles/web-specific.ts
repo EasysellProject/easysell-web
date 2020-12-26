@@ -5,4 +5,9 @@ const flexColum: CSSProperties = {
     flexDirection: 'column'
 }
 
-export default { flexColum }
+const flexRow: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'row'
+}
+
+export default { flexColum, flexRow }

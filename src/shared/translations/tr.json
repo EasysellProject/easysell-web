@@ -1,4 +1,10 @@
 {
 	"login": "Giriş Yap",
-	"enter-creds":"Bilgilerinizi Girin."
+	"enter-creds": "Bilgilerinizi Girin.",
+	"e-mail": "E-posta",
+	"password": "Şifre",
+	"forgot-password": "Şifrenizi mi unuttunuz?",
+	"create-new-account": "Yeni hesap oluştur",
+	"multi-channel-retail-platform": "Çok Kanallı\nSatış Platformu",
+	"manage-sales": "Satışlarınızı, siparişlerinizi ve envanterinizi tek bir yerden yönetin"
 }

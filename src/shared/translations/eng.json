@@ -1,4 +1,10 @@
 {
 	"login": "Login",
-	"enter-creds":"Enter Your Credentials."
+	"enter-creds": "Enter Your Credentials.",
+	"e-mail": "E-mail",
+	"password": "Password",
+	"forgot-password": "Forgot Password?",
+	"create-new-account": "Create new account",
+	"multi-channel-retail-platform": "Multi Channel\n Retail Platform",
+	"manage-sales":"Manage your sales, orders, and inventory from a single place"
 }

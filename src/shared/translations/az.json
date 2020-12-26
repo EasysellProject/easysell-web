@@ -1,5 +1,10 @@
 {
 	"login": "Daxil Ol",
-	"enter-creds":"Məlumatlarınızı Daxil Edin."
+	"enter-creds": "Məlumatlarınızı Daxil Edin.",
+	"e-mail": "E-poçt",
+	"password": "Şifrə",
+	"forgot-password": "Şifrəni unutmusunuz?",
+	"create-new-account": "Yeni hesap yarat",
+	"multi-channel-retail-platform": "Çox Kanallı\nSatış Platforması",
+	"manage-sales": "Satışlarınızı, sifarişlərinizi və inventarınızı tək bir yerdən idarə edin"
 }
-
