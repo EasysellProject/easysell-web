@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
+import Register from './pages/register';
 import Utils from './shared/utils';
 
 const { Firebase } = Utils;
@@ -20,9 +21,10 @@ function App(props: AppProps) {
               <img src='./assets/images/logo_white.png' />
             </div>
           ) : (
-              <div>
+              <Switch>
                 <Route exact path='/' component={Login} />
-              </div>
+                <Route exact path='/register' component={Register} />
+              </Switch>
             )
 
         }

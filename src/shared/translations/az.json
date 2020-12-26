@@ -4,7 +4,9 @@
 	"e-mail": "E-poçt",
 	"password": "Şifrə",
 	"forgot-password": "Şifrəni unutmusunuz?",
+	"confirm-password": "Şifrəni təsdiqlə",
 	"create-new-account": "Yeni hesap yarat",
 	"multi-channel-retail-platform": "Çox Kanallı\nSatış Platforması",
-	"manage-sales": "Satışlarınızı, sifarişlərinizi və inventarınızı tək bir yerdən idarə edin"
+	"manage-sales": "Satışlarınızı, sifarişlərinizi və inventarınızı tək bir yerdən idarə edin",
+	"register": "Qeydiyyatı tamamla"
 }

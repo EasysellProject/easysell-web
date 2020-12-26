@@ -4,7 +4,9 @@
 	"e-mail": "E-mail",
 	"password": "Password",
 	"forgot-password": "Forgot Password?",
+	"confirm-password": "Confirm password",
 	"create-new-account": "Create new account",
 	"multi-channel-retail-platform": "Multi Channel\n Retail Platform",
-	"manage-sales":"Manage your sales, orders, and inventory from a single place"
+	"manage-sales": "Manage your sales, orders, and inventory from a single place",
+	"register": "Register"
 }

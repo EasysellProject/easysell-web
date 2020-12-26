@@ -6,6 +6,8 @@ export default {
         borderWidth: 1,
         borderRadius: 8,
         paddingLeft: 8,
+        paddingTop: 6,
+        paddingBottom: 6,
         borderStyle: 'solid',
         minWidth: 290,
         maxWidth: 480

@@ -13,7 +13,7 @@ import Input from "../../shared/components/input";
 import Button from "../../shared/components/button";
 import SimpleText from "../../shared/components/text/simple-text";
 
-function Login(): JSX.Element {
+function Register(): JSX.Element {
     //state
     const [windowDimensions, setWindowDimensions] = useState(
         Helper.getWindowDimensions()
@@ -21,6 +21,7 @@ function Login(): JSX.Element {
     // input values
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
 
     function handleResize() {
         setWindowDimensions(Helper.getWindowDimensions());
@@ -38,16 +39,12 @@ function Login(): JSX.Element {
         return windowDimensions.width < 1024;
     }
 
-    function onForgotPassPress(): void {
-        // TODO implement
-    }
-
-    function onLoginPress(): void {
+    function onRegisterPress(): void {
         // TODO implement
         console.log('hello')
     }
 
-    function onNewAccountPressed(): void {
+    function onLoginPress(): void {
         // TODO implement
         console.log('hello')
     }
@@ -71,28 +68,27 @@ function Login(): JSX.Element {
                     onChangeText={setPass}
                     additionalStyles={styles.inputContainer}
                 />
-                <div
-                    style={styles.forgotPassButton}
-                >
-                    <Button
-                        onPress={onForgotPassPress}
-                    >
-                        <SimpleText additionalStyle={styles.forgotPassText} textID='forgot-password' />
-                    </Button>
-                </div>
+                <Input
+                    value={confirmPass}
+                    placeholder="confirm-password"
+                    showLabel
+                    label="confirm-password"
+                    onChangeText={setConfirmPass}
+                    additionalStyles={styles.inputContainer}
+                />
                 <Button
-                    onPress={onLoginPress}
-                    buttonStyle={{ ...styles.loginButton, ...WEB_STYLES.flexRow }}
+                    onPress={onRegisterPress}
+                    buttonStyle={{ ...styles.registerButton, ...WEB_STYLES.flexRow }}
                 >
-                    <SimpleText additionalStyle={styles.loginText} textID='login' />
-                    <AiOutlineArrowRight style={styles.loginIcon} size={16} color={APP_COLORS.gray} />
+                    <SimpleText additionalStyle={styles.registerText} textID='register' />
+                    <AiOutlineArrowRight style={styles.registerIcon} size={16} color={APP_COLORS.gray} />
                 </Button>
                 <div style={styles.newAccountButtonContainer}>
                     <Button
-                        onPress={onNewAccountPressed}
+                        onPress={onLoginPress}
                         buttonStyle={styles.newAccountButton}
                     >
-                        <SimpleText additionalStyle={styles.newAccountText} textID='create-new-account' />
+                        <SimpleText additionalStyle={styles.newAccountText} textID='login' />
                     </Button>
                 </div>
             </div>
@@ -117,12 +113,12 @@ function Login(): JSX.Element {
                 <div
                     style={{
                         ...WEB_STYLES.flexColum,
-                        ...styles.loginContentMobile,
+                        ...styles.registerContentMobile,
                     }}
                 >
                     <div
                         style={{
-                            ...styles.loginContent,
+                            ...styles.registerContent,
                         }}
                     >
                         <img
@@ -150,7 +146,7 @@ function Login(): JSX.Element {
                     >
                         <div
                             style={{
-                                ...styles.loginContent,
+                                ...styles.registerContent,
                             }}
                         >
                             <img
@@ -160,7 +156,7 @@ function Login(): JSX.Element {
                                     width: 200,
                                 }}
                             />
-                            <HeaderText textID="login" additionalStyle={styles.textStyle} />
+                            <HeaderText textID="register" additionalStyle={styles.textStyle} />
                             <HeaderText
                                 textID="enter-creds"
                                 additionalStyle={{ fontSize: 24, ...styles.textStyle }}
@@ -178,14 +174,14 @@ function Login(): JSX.Element {
                                     flex: 1,
                                 }}>
                                     <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
-                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales'/>
+                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
                                 </div>
                             )
                         }
-                                </div>
-                            )}
                     </div>
-                );
+                )}
+        </div>
+    );
 }
 
-export default Login;
+export default Register;
