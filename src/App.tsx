@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Landing from './pages/landing';
 import Login from './pages/login';
 import Register from './pages/register';
 import Utils from './shared/utils';
@@ -22,7 +23,8 @@ function App(props: AppProps) {
             </div>
           ) : (
               <Switch>
-                <Route exact path='/' component={Login} />
+                <Route exact path='/' component={Landing} />
+                <Route exact path='/login' component={Login} />
                 <Route exact path='/register' component={Register} />
               </Switch>
             )
