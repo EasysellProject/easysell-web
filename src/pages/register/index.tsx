@@ -27,8 +27,8 @@ function Register(): JSX.Element {
         Helper.getWindowDimensions()
     );
     // input values
-    const [name, setName] = useState("Javid");
-    const [surname, setSurname] = useState("Haji-zada");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
@@ -116,8 +116,12 @@ function Register(): JSX.Element {
                         setRegisterError('invalid-password')
                         break
                     }
-                    default: {
+                    case Error_CODES.FIREBASE_ERROR_CODES.GENERAL_ERRORS.INTERNAL_ERROR: {
                         setRegisterError('internal-error')
+                        break
+                    }
+                    default: {
+                        setRegisterError(err.message)
                     }
                 }
                 console.log('error on front ', err)

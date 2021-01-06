@@ -17,6 +17,9 @@
 	"email-already-in-use": "Daxil etdiyiniz e-poçt istifadə edilir.",
 	"internal-error": "Server xətası!",
 	"invalid-argument": "Daxil etdiyiniz məlumatların doğruluğunu yoxlayın!",
-	"invalid-email": "E-poçt etibarsızdır.",
-	"invalid-password": "Şifrəniz ən az 6 hərfli olmalıdır."
+	"invalid-email": "E-poçt formatı düzgün deyil.",
+	"invalid-password": "Şifrəniz ən az 6 hərfli olmalıdır.",
+	"incorrect-password":"Daxil etdiyiniz şifrə yanlışdır.",
+	"too-many-requests":"Çox saylı istək atdığınız üçün sessiyanız donduruldu. Biraz sonra yenidən cəhd edin.",
+	"user-not-found":"Bu e-poçta bağlı istifadəçi yoxdur."
 }

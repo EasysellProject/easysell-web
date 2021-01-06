@@ -18,5 +18,8 @@
 	"internal-error": "Server hatası!",
 	"invalid-argument": "Geçersiz bilgi girdiniz.",
 	"invalid-email": "Geçersiz e-posta!",
-	"invalid-password": "Şifrenizin en az 6 karakter uzunluğunda olması gereklidir."
+	"invalid-password": "Şifrenizin en az 6 karakter uzunluğunda olması gereklidir.",
+	"incorrect-password":"Kullanıcı şifreniz hatalı.",
+	"too-many-requests":"Çok sayıda istek nedeniyle oturumunuz devre dışı bırakıldı. Lütfen daha sonra tekrar deneyiniz.",
+	"user-not-found":"Kullanıcı bulunamadı."
 }

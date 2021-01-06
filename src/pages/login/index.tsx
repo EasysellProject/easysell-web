@@ -6,13 +6,16 @@ import logo from "../../assets/images/logo_white.png";
 import background from "../../assets/images/login_background.png";
 
 import styles from "./styles";
-import { APP_COLORS, WEB_STYLES } from "../../shared/styles";
+import { APP_COLORS, APP_STYLES, WEB_STYLES } from "../../shared/styles";
 import { Helper } from "../../shared/libs/helper";
 import HeaderText from "../../shared/components/text/header-text";
 import Input from "../../shared/components/input";
 
 import Button from "../../shared/components/button";
 import SimpleText from "../../shared/components/text/simple-text";
+import AuthService from "../../shared/services/auth-service";
+import Error_CODES from "../../shared/libs/error-codes";
+import UserService from "../../shared/services/user-service";
 
 function Login(): JSX.Element {
 
@@ -26,6 +29,8 @@ function Login(): JSX.Element {
     const [pass, setPass] = useState("easysellPass1");
     const [emailError, setEmaiError] = useState(false);
     const [passError, setPassError] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [loginError, setLoginError] = useState('')
 
     function handleResize() {
         setWindowDimensions(Helper.getWindowDimensions());
@@ -48,8 +53,41 @@ function Login(): JSX.Element {
     }
 
     function onLoginPress(): void {
-        // TODO implement
-        console.log('hello')
+        setLoading(true)
+        AuthService.signIn(email, pass)
+            .then(user => {
+                setLoading(false)
+                UserService.currentUser = user
+                //TODO go to main page
+            })
+            .catch(err => {
+                setLoading(false)
+                switch (err.code) {
+                    case Error_CODES.FIREBASE_ERROR_CODES.LOGIN_ERRORS.INCORRECT_PASSWORD: {
+                        setLoginError('incorrect-password')
+                        break
+                    }
+                    case Error_CODES.FIREBASE_ERROR_CODES.LOGIN_ERRORS.INVALID_EMAIL: {
+                        setLoginError('invalid-email')
+                        break
+                    }
+                    case Error_CODES.FIREBASE_ERROR_CODES.GENERAL_ERRORS.TOO_MANY_REQUEST: {
+                        setLoginError('too-many-requests')
+                        break
+                    }
+                    case Error_CODES.FIREBASE_ERROR_CODES.LOGIN_ERRORS.USER_NOT_FOUND: {
+                        setLoginError('user-not-found')
+                        break
+                    }
+                    case Error_CODES.FIREBASE_ERROR_CODES.GENERAL_ERRORS.INTERNAL_ERROR: {
+                        setLoginError('internal-error')
+                        break
+                    }
+                    default: {
+                        setLoginError(err.message)
+                    }
+                }
+            })
     }
 
     function onNewAccountPressed(): void {
@@ -67,6 +105,7 @@ function Login(): JSX.Element {
                     onChangeText={(email) => {
                         setEmaiError(false)
                         setEmail(email)
+                        setLoginError('')
                     }}
                     additionalStyles={styles.inputContainer}
                 />
@@ -78,6 +117,7 @@ function Login(): JSX.Element {
                     onChangeText={(pass) => {
                         setPassError(false)
                         setPass(pass)
+                        setLoginError('')
                     }}
                     additionalStyles={styles.inputContainer}
                 />
@@ -93,10 +133,16 @@ function Login(): JSX.Element {
                 <Button
                     onPress={onLoginPress}
                     buttonStyle={{ ...styles.loginButton, ...WEB_STYLES.flexRow }}
+                    loading={loading}
                 >
                     <SimpleText additionalStyle={styles.loginText} textID='login' />
                     <AiOutlineArrowRight style={styles.loginIcon} size={16} color={APP_COLORS.gray} />
                 </Button>
+                {
+                    loginError && (
+                        <SimpleText textID={loginError} additionalStyle={APP_STYLES.errorText} />
+                    )
+                }
                 <div style={styles.newAccountButtonContainer}>
                     <Button
                         onPress={onNewAccountPressed}
