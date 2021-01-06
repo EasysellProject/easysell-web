@@ -10,4 +10,8 @@ const flexRow: CSSProperties = {
     flexDirection: 'row'
 }
 
-export default { flexColum, flexRow }
+const flexWrap: CSSProperties = {
+    flexWrap: 'wrap'
+}
+
+export default { flexColum, flexRow, flexWrap }

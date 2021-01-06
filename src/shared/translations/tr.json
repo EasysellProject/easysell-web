@@ -1,6 +1,8 @@
 {
 	"login": "Giriş Yap",
 	"enter-creds": "Bilgilerinizi Girin.",
+	"name":"İsim",
+	"surname":"Soyisim",
 	"e-mail": "E-posta",
 	"password": "Şifre",
 	"forgot-password": "Şifrenizi mi unuttunuz?",
@@ -8,5 +10,13 @@
 	"create-new-account": "Yeni hesap oluştur",
 	"multi-channel-retail-platform": "Çok Kanallı\nSatış Platformu",
 	"manage-sales": "Satışlarınızı, siparişlerinizi ve envanterinizi tek bir yerden yönetin",
-	"register": "Kayıt ol"
+	"register": "Kayıt ol",
+	"error-empty-field": "Bu alan boş bırakılamaz!",
+	"unequal-pass": "Şifrenizi kontrol edin!",
+	"invalid-email-format": "Geçersiz e-posta formatı!",
+	"email-already-in-use": "Bu e-posta zaten kullanılıyor.",
+	"internal-error": "Server hatası!",
+	"invalid-argument": "Geçersiz bilgi girdiniz.",
+	"invalid-email": "Geçersiz e-posta!",
+	"invalid-password": "Şifrenizin en az 6 karakter uzunluğunda olması gereklidir."
 }

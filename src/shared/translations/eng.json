@@ -1,6 +1,8 @@
 {
 	"login": "Login",
 	"enter-creds": "Enter Your Credentials.",
+	"name": "Name",
+	"surname": "Surname",
 	"e-mail": "E-mail",
 	"password": "Password",
 	"forgot-password": "Forgot Password?",
@@ -8,5 +10,13 @@
 	"create-new-account": "Create new account",
 	"multi-channel-retail-platform": "Multi Channel\n Retail Platform",
 	"manage-sales": "Manage your sales, orders, and inventory from a single place",
-	"register": "Register"
+	"register": "Register",
+	"error-empty-field": "This field cannot be blank!",
+	"unequal-pass": "Unequal passwords!",
+	"invalid-email-format": "Invalid email format!",
+	"email-already-in-use": "Email already in use.",
+	"internal-error": "Internal server error!",
+	"invalid-argument": "Invalid argument!",
+	"invalid-email": "Invalid e-mail entered!",
+	"invalid-password": "Your password should contain at least 6 characters."
 }

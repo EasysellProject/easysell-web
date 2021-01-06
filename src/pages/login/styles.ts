@@ -58,7 +58,7 @@ export default {
         justifyContent: 'center'
     },
     newAccountButton: {
-        marginTop: 6,
+        marginTop: 12,
         backgroundColor: APP_COLORS.ligthBlue,
         justifyContent: 'center',
         alignItems: 'center',

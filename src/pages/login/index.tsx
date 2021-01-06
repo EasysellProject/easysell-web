@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { useHistory } from "react-router-dom";
 
 import logo from "../../assets/images/logo_white.png";
 import background from "../../assets/images/login_background.png";
@@ -14,13 +15,17 @@ import Button from "../../shared/components/button";
 import SimpleText from "../../shared/components/text/simple-text";
 
 function Login(): JSX.Element {
+
+    const navigation = useHistory()
     //state
     const [windowDimensions, setWindowDimensions] = useState(
         Helper.getWindowDimensions()
     );
     // input values
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const [email, setEmail] = useState("cavid.hacizade.99@gmail.com");
+    const [pass, setPass] = useState("easysellPass1");
+    const [emailError, setEmaiError] = useState(false);
+    const [passError, setPassError] = useState(false)
 
     function handleResize() {
         setWindowDimensions(Helper.getWindowDimensions());
@@ -48,8 +53,7 @@ function Login(): JSX.Element {
     }
 
     function onNewAccountPressed(): void {
-        // TODO implement
-        console.log('hello')
+        navigation.push('/register')
     }
 
     function renderInputs(): JSX.Element {
@@ -60,7 +64,10 @@ function Login(): JSX.Element {
                     placeholder="e-mail"
                     showLabel
                     label="e-mail"
-                    onChangeText={setEmail}
+                    onChangeText={(email) => {
+                        setEmaiError(false)
+                        setEmail(email)
+                    }}
                     additionalStyles={styles.inputContainer}
                 />
                 <Input
@@ -68,7 +75,10 @@ function Login(): JSX.Element {
                     placeholder="password"
                     showLabel
                     label="password"
-                    onChangeText={setPass}
+                    onChangeText={(pass) => {
+                        setPassError(false)
+                        setPass(pass)
+                    }}
                     additionalStyles={styles.inputContainer}
                 />
                 <div
@@ -109,6 +119,7 @@ function Login(): JSX.Element {
                             position: "absolute",
                             width: windowDimensions.width,
                             height: windowDimensions.height,
+                            zIndex: -1
                         }}
                     />
                 </div>
@@ -178,14 +189,14 @@ function Login(): JSX.Element {
                                     flex: 1,
                                 }}>
                                     <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
-                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales'/>
+                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
                                 </div>
                             )
                         }
-                                </div>
-                            )}
                     </div>
-                );
+                )}
+        </div>
+    );
 }
 
 export default Login;

@@ -10,6 +10,7 @@ export default {
     inputs: {
         display: 'inline-block',
         marginTop: 6,
+        maxWidth: 290,
     },
     registerContent: {
         display: 'inline-block',
@@ -51,18 +52,19 @@ export default {
     registerIcon: {
         marginLeft: 4
     },
-    newAccountButtonContainer: {
+    loginButtonContainer: {
         width: '100%',
         marginTop: 4,
         display: 'flex',
         justifyContent: 'center'
     },
-    newAccountButton: {
-        marginTop: 6,
+    loginButton: {
+        marginTop: 12,
         backgroundColor: APP_COLORS.ligthBlue,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
+        minWidth: 150
     },
     newAccountText: {
         color: 'white'
@@ -75,5 +77,5 @@ export default {
     manageText: {
         fontSize: 18,
         maxWidth: '50%',
-    }
+    },
 }

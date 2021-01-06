@@ -1,6 +1,8 @@
 {
 	"login": "Daxil Ol",
 	"enter-creds": "Məlumatlarınızı Daxil Edin.",
+	"name":"Ad",
+	"surname":"Soyad",
 	"e-mail": "E-poçt",
 	"password": "Şifrə",
 	"forgot-password": "Şifrəni unutmusunuz?",
@@ -8,5 +10,13 @@
 	"create-new-account": "Yeni hesap yarat",
 	"multi-channel-retail-platform": "Çox Kanallı\nSatış Platforması",
 	"manage-sales": "Satışlarınızı, sifarişlərinizi və inventarınızı tək bir yerdən idarə edin",
-	"register": "Qeydiyyatı tamamla"
+	"register": "Qeydiyyatı tamamla",
+	"error-empty-field": "Boş qala bilməz!",
+	"unequal-pass": "Şifrələr eyni deyil!",
+	"invalid-email-format": "E-poçt formatı yanlışdır!",
+	"email-already-in-use": "Daxil etdiyiniz e-poçt istifadə edilir.",
+	"internal-error": "Server xətası!",
+	"invalid-argument": "Daxil etdiyiniz məlumatların doğruluğunu yoxlayın!",
+	"invalid-email": "E-poçt etibarsızdır.",
+	"invalid-password": "Şifrəniz ən az 6 hərfli olmalıdır."
 }

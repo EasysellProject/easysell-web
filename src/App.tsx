@@ -12,6 +12,7 @@ interface AppProps {
   supportedLanguages: any
 }
 
+
 function App(props: AppProps) {
   return (
     <div>
@@ -30,15 +31,6 @@ function App(props: AppProps) {
             )
 
         }
-        {/* <Route exact path='/' render={props => <Main {...props} />} />
-          <Route path='/dashboard' component={Dashboard} />
-          <Route path='/user' component={User} />
-          <Route path='/privacy' component={Privacy} />
-          <Route path='/terms' component={Terms} />
-          <Route path='/faq' component={FrequentlyAskedQuestions} />
-          <Route path='/edit' component={TranscriptionResult} />
-          <Route path='/feedback/:fileInfo' component={Evaluate} />
-          <Route exact path='/feedback' component={Evaluate} /> */}
       </BrowserRouter>
     </div>
   );

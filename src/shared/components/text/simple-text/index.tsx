@@ -6,14 +6,17 @@ interface SimpleTextProps {
     textID: string;
     capitalized?: boolean
     additionalStyle?: CSSProperties
+    required?: boolean
 }
 
 function SimpleText(props: SimpleTextProps): JSX.Element {
     const intl = useIntl()
-    const { textID, capitalized, additionalStyle } = props
+    const { textID, capitalized, additionalStyle, required } = props
     let formattedText = intl.formatMessage({ id: textID });
     if (capitalized)
         formattedText = formattedText.toUpperCase()
+    if (required)
+        formattedText += '*'
     return (
         <div style={{ ...styles.text, ...additionalStyle }}>
             {formattedText}

@@ -4,7 +4,7 @@ import tr from '../translations/tr.json';
 import az from '../translations/az.json';
 import LanguageCodes from './language-codes';
 
-type LangCode = "en-US" | "tr-TR" | "az-Latn-AZ"
+export type LangCode = "en-US" | "tr-TR" | "az-Latn-AZ"
 
 const messages: Record<LangCode, Record<string, string>> = {
     "tr-TR": tr,
