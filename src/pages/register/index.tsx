@@ -3,7 +3,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
 import ReactFlagsSelect from 'react-flags-select';
 import { useHistory } from "react-router-dom";
 
-import logo from "../../assets/images/logo_white.png";
+import logo from "../../assets/images/logo.png";
 import background from "../../assets/images/login_background.png";
 
 import styles from "./styles";

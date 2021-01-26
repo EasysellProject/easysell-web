@@ -21,5 +21,10 @@
 	"invalid-password": "Şifrəniz ən az 6 hərfli olmalıdır.",
 	"incorrect-password":"Daxil etdiyiniz şifrə yanlışdır.",
 	"too-many-requests":"Çox saylı istək atdığınız üçün sessiyanız donduruldu. Biraz sonra yenidən cəhd edin.",
-	"user-not-found":"Bu e-poçta bağlı istifadəçi yoxdur."
+	"user-not-found":"Bu e-poçta bağlı istifadəçi yoxdur.",
+	"listings":"Siyahılar",
+	"orders":"Sifarişlər",
+	"integration":"İnteqrasiyalar",
+	"profile":"Profil",
+	"about":"Haqqımızda"
 }

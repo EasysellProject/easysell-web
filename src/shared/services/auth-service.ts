@@ -28,6 +28,7 @@ class AuthService {
     async signIn(email: string, password: string) {
         try {
             let res = await firebase.auth().signInWithEmailAndPassword(email, password)
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             return this.getUserData().then(user => {
                 return user
             })
