@@ -3,6 +3,8 @@ export default {
     height: "400",
     width: "400",
     borderStyle: "solid",
+    borderWidth: "2",
+    borderColor: "black",
     margin: "5",
     padding: "5",
   },
