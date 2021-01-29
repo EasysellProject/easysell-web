@@ -26,5 +26,16 @@
 	"orders":"Sifarişlər",
 	"integration":"İnteqrasiyalar",
 	"profile":"Profil",
-	"about":"Haqqımızda"
+	"about":"Haqqımızda",
+	"search":"Axtar",
+	"search-key":"Axtarış açarı",
+	"Type-in-to-search":"Axtarış üçün yazın",
+	"Select-an-option:":"Bir seçim seçin:",
+	"Create-new":"Yeni Yarat",
+	"MarketPlace":"bazar yeri",
+	"Trendyol":"Trendyol",
+	"N11":"N11",
+	"Amazon":"Amazon",
+	"Hepsiburada":"Hepsiburada",
+	"Total":"Toplam:"
 }

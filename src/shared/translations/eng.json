@@ -26,5 +26,16 @@
 	"orders":"Orders",
 	"integration":"Integrations",
 	"profile":"Profile",
-	"about":"About"
+	"about":"About",
+	"search":"Search",
+	"search-key":"Search key",
+	"Type-in-to-search":"Type in to search",
+	"Select-an-option:":"Select an option:",
+	"Create-new":"Create New",
+	"MarketPlace":"marketplace",
+	"Trendyol":"Trendyol",
+	"N11":"N11",
+	"Amazon":"Amazon",
+	"Hepsiburada":"Hepsiburada",
+	"Total":"Total:"
 }
