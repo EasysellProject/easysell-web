@@ -1,4 +1,5 @@
 import React from 'react'
+import DashboardLayout from '../../shared/components/dashboard-layout'
 import Sidebar from '../../shared/components/sidebar'
 
 interface ListingProps {
@@ -8,9 +9,8 @@ interface ListingProps {
 function Listing(props: ListingProps): JSX.Element {
 
     return (
-        <div>
-            <Sidebar item='Listing' />
-        </div>
+        <DashboardLayout route='Listing'>
+        </DashboardLayout>
     )
 }
 
