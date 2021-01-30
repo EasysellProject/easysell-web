@@ -22,9 +22,9 @@ function ListingCard(props: ListingCardProps): JSX.Element {
             <SimpleText textID="prop4 Data Json Text" additionalStyle={styles.text} />
             <SimpleText textID="prop5 Data Json Text" additionalStyle={styles.text} />
             <div style={styles.buttonContainer}>
-                <Button onPress={() => console.log('1')}>Button Text1</Button>
-                <Button onPress={() => console.log('1')}>Button Text2</Button>
-                <Button onPress={() => console.log('1')}>Button Text3</Button>
+                <Button buttonStyle={styles.button} onPress={() => console.log('1')}>Button Text1</Button>
+                <Button buttonStyle={styles.button} onPress={() => console.log('1')}>Button Text2</Button>
+                <Button buttonStyle={styles.button} onPress={() => console.log('1')}>Button Text3</Button>
 
             </div>
         </div>

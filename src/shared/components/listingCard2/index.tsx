@@ -15,14 +15,18 @@ function ListingCard2(props: ListingCardProps): JSX.Element {
 
     return (
         <div style={styles.card}>
-            <img src={props.image} style={styles.image} />
-            <SimpleText textID="prop1 Data Json Text" additionalStyle={styles.text} />
-            <SimpleText textID="prop2 Data Json Text" additionalStyle={styles.text} />
-            <SimpleText textID="prop3 Data Json Text" additionalStyle={styles.text} />
-            <SimpleText textID="prop4 Data Json Text" additionalStyle={styles.text} />
-            <SimpleText textID="prop5 Data Json Text" additionalStyle={styles.text} />
+            <div style={styles.indexContainer}>
+                <SimpleText textID="1" additionalStyle={styles.text} />
 
-            <Button buttonStyle={styles.button} onPress={() => console.log('1')}>Button Text1</Button>
+            </div>
+            <img src={props.image} style={styles.image} />
+            <SimpleText textID="prop1 Data Text" additionalStyle={styles.text} />
+            <SimpleText textID="prop2 Data Text" additionalStyle={styles.text} />
+            <SimpleText textID="prop3 Data Text" additionalStyle={styles.text} />
+            <SimpleText textID="prop4 Data Text" additionalStyle={styles.text} />
+            <SimpleText textID="prop5 Data Text" additionalStyle={styles.text} />
+
+            <Button buttonStyle={styles.button} onPress={() => console.log('1')}>•••</Button>
 
         </div>
 

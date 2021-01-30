@@ -7,8 +7,10 @@ export default {
     borderColor: "black",
     margin: "5",
     padding: "5",
+    borderRadius: 12,
   },
   image: {
+    maxHeight: "33%",
     width: "100%",
   },
   text: {
@@ -19,5 +21,10 @@ export default {
     paddingTop: "20",
     display: "flex",
     justifyContent: "space-around",
+  },
+  button: {
+    height: "100%",
+    borderStyle: "solid",
+    borderWidth: "2",
   },
 };
