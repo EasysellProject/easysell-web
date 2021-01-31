@@ -21,5 +21,10 @@
 	"invalid-password": "Şifrenizin en az 6 karakter uzunluğunda olması gereklidir.",
 	"incorrect-password":"Kullanıcı şifreniz hatalı.",
 	"too-many-requests":"Çok sayıda istek nedeniyle oturumunuz devre dışı bırakıldı. Lütfen daha sonra tekrar deneyiniz.",
-	"user-not-found":"Kullanıcı bulunamadı."
+	"user-not-found":"Kullanıcı bulunamadı.",
+	"listings":"Listelemeler",
+	"orders":"Siparişler",
+	"integration":"Entegrasyonlar",
+	"profile":"Profil",
+	"about":"Hakkımızda"
 }

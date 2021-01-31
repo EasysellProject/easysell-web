@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { useHistory } from "react-router-dom";
 
-import logo from "../../assets/images/logo_white.png";
+import logo from "../../assets/images/logo.png";
 import background from "../../assets/images/login_background.png";
 
 import styles from "./styles";
@@ -21,9 +21,7 @@ function Login(): JSX.Element {
 
     const navigation = useHistory()
     //state
-    const [windowDimensions, setWindowDimensions] = useState(
-        Helper.getWindowDimensions()
-    );
+    const [windowDimensions, setWindowDimensions] = useState(Helper.getWindowDimensions());
     // input values
     const [email, setEmail] = useState("cavid.hacizade.99@gmail.com");
     const [pass, setPass] = useState("easysellPass1");
@@ -59,6 +57,7 @@ function Login(): JSX.Element {
                 setLoading(false)
                 UserService.currentUser = user
                 //TODO go to main page
+                navigation.push('/listings')
             })
             .catch(err => {
                 setLoading(false)

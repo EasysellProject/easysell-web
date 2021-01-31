@@ -21,5 +21,10 @@
 	"invalid-password": "Your password should contain at least 6 characters.",
 	"incorrect-password":"Incorrect password.",
 	"too-many-requests":"Your session has been frozen due to a large number of requests. Please try again later.",
-	"user-not-found":"User not found."
+	"user-not-found":"User not found.",
+	"listings":"Listings",
+	"orders":"Orders",
+	"integration":"Integrations",
+	"profile":"Profile",
+	"about":"About"
 }
