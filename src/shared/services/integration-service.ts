@@ -1,4 +1,4 @@
-import { Integration } from "../models/Integration";
+import { Integration } from "../models/integration";
 
 class IntegrationService {
 

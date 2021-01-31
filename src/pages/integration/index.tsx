@@ -96,21 +96,9 @@ function Integration(): JSX.Element {
             </div>
     )
     }
-    function renderInputs1(): JSX.Element {
-        return(
-        <div>
-            <Sidebar item='Integration' />
-        </div>
-        )
-    }
-
-    //return( renderInputs())
 
     return (
         <div style = {{...WEB_STYLES.flexRow}}>
-            {!isMobile() && (
-                renderInputs1()
-            )}
             {isMobile() ? (
                 <div
                     style={{
