@@ -11,8 +11,8 @@ export default {
     },
     row: {
         alignItems: 'center',
-        width:'90%', 
-        marginRight:'-10%',
+        width: '90%',
+        marginRight: '-10%',
         borderTopLeftRadius: 12,
         borderBottomLeftRadius: 12,
         marginTop: 18,
@@ -23,6 +23,7 @@ export default {
     rowTitle: {
         fontSize: 24,
         marginLeft: 12,
+        paddingRight: 8,
         color: 'white',
     },
     content: {
