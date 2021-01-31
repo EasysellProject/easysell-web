@@ -1,4 +1,4 @@
-import { User } from '../models/User'
+import { User } from '../models/user'
 import firebase from '../utils/firebase'
 import { LangCode } from '../utils/localization'
 import UserService from './user-service'

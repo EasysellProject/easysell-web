@@ -21,9 +21,7 @@ function Login(): JSX.Element {
 
     const navigation = useHistory()
     //state
-    const [windowDimensions, setWindowDimensions] = useState(
-        Helper.getWindowDimensions()
-    );
+    const [windowDimensions, setWindowDimensions] = useState(Helper.getWindowDimensions());
     // input values
     const [email, setEmail] = useState("cavid.hacizade.99@gmail.com");
     const [pass, setPass] = useState("easysellPass1");
