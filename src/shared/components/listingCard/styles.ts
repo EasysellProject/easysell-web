@@ -18,7 +18,7 @@ export default {
     color: "black",
   },
   buttonContainer: {
-    paddingTop: "20",
+    paddingTop: 20,
     display: "flex",
     justifyContent: "space-around",
   },
