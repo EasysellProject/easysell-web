@@ -88,7 +88,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
                     {
                         ((isMobile() && expanded) || !isMobile()) && (
 
-                            <div ref={sidebar} style={{ ...WEB_STYLES.flexColum, paddingTop: 32, alignItems: 'center', width: '100%', height: '100%', backgroundColor: APP_COLORS.textGreen }}>
+                            <div ref={sidebar} style={{ ...WEB_STYLES.flexColum, paddingTop: 32, alignItems: 'center', width: '100%', height: '100%', backgroundColor: APP_COLORS.sidebarGreen }}>
                                 <img src={logo} width={175} height={150} />
                                 <Link to='/listings' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Listing' ? 'white' : 'transparent' }}>
                                     <CgList
