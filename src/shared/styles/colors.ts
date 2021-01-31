@@ -5,5 +5,6 @@ export default {
     ligthBlue: '#0395F1',
     lightGreen: '#91ECC6',
     textGreen: '#75BD9F',
-    errorRed:'#ff0000'
+    errorRed:'#ff0000',
+    lightTurqoise: '#e2faf0',
 }
