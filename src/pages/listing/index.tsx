@@ -1,10 +1,12 @@
-import React from 'react'
-import DashboardLayout from '../../shared/components/dashboard-layout'
+import React from 'react';
+import ListingHeader from './listingHeader';
+import styles from './styles'
+import { APP_COLORS, APP_STYLES, WEB_STYLES } from "../../shared/styles";
+import DashboardLayout from '../../shared/components/dashboard-layout';
 import ListingCard from '../../shared/components/listing-card'
 import Sidebar from '../../shared/components/sidebar'
 import logo from '../../assets/images/logo.png'
 import { Listing } from '../../shared/models/listing'
-
 
 interface ListingProps {
 
@@ -31,7 +33,8 @@ function ListingPage(props: ListingProps): JSX.Element {
 
     return (
         <DashboardLayout route='Listing'>
-            <ListingCard index={1} listing={listing} />
+            <ListingHeader />
+            {/* <ListingCard index={1} listing={listing} /> */}
             {/* <ListingCard2 data={null} image={logo} /> */}
         </DashboardLayout>
     )
