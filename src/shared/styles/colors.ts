@@ -6,7 +6,7 @@ export default {
     ligthBlue: '#0395F1',
     lightGreen: '#91ECC6',
     textGreen: '#75BD9F',
-    lightTurqoise: '#E2FAF0',
+    lightTurquoise: '#E2FAF0',
     sidebarGreen: '#82B4A0',
     darkGreen: '#396452',
     errorRed: '#ff0000'
