@@ -1,6 +1,6 @@
 import IntegrationService from "../services/integration-service"
 import { LangCode } from "../utils/localization"
-import { Integration } from "./Integration"
+import { Integration } from "./integration"
 
 export class User {
     _id: string
