@@ -33,7 +33,6 @@ function ListingPage(props: ListingProps): JSX.Element {
 
     return (
         <DashboardLayout route='Listing'>
-            <Sidebar item='Listing' />
             <ListingHeader />
             {/* <ListingCard index={1} listing={listing} /> */}
             {/* <ListingCard2 data={null} image={logo} /> */}

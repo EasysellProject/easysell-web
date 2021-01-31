@@ -14,7 +14,7 @@ export default {
         borderTopLeftRadius:8, 
         borderBottomLeftRadius:8, 
         border:"none", 
-        backgroundColor:APP_COLORS.buttonColor, 
+        backgroundColor:APP_COLORS.grayButton, 
         outline:"none"
     },
     input:{

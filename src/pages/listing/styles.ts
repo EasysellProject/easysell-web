@@ -27,12 +27,12 @@ export default{
         ...WEB_STYLES.flexRow,
     },
     search_button_style:{
-        backgroundColor:APP_COLORS.buttonColor,
+        backgroundColor:APP_COLORS.grayButton,
         height:"65%",
         marginTop:8.5
     },
     create_new_button_style:{
-        backgroundColor:APP_COLORS.buttonColor,
+        backgroundColor:APP_COLORS.grayButton,
         marginTop:10,
         height:35,
         width:100,
