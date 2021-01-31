@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
 import SimpleText from "../text/simple-text"
+import { APP_COLORS } from '../../styles';
 
 interface DropDownData{
     value: string,
@@ -27,7 +28,7 @@ function DropDown(props:DropDownProps):JSX.Element{
     const { data, value, label, onChange, DropDownStyle, className, InputLabel_id, Select_id, Select_LabelId } = props;
     return(
         <FormControl variant="filled" className={className} style={DropDownStyle}>
-            <InputLabel id={InputLabel_id}><SimpleText textID={label} additionalStyle={{color:"black", fontSize:12}}/></InputLabel>
+            <InputLabel id={InputLabel_id}><SimpleText textID={label} additionalStyle={{color:APP_COLORS.gray, fontSize:12}}/></InputLabel>
             <Select
             style={{}}
             labelId={Select_LabelId}

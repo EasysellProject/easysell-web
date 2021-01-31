@@ -1,13 +1,14 @@
+import { wrap } from "underscore";
 import { APP_COLORS, APP_STYLES, WEB_STYLES } from "../../shared/styles";
 
 export default{
     headerText:{
         fontFamily:"Times New Roman",
-        color: "black",  
+        color: APP_COLORS.gray,  
         fontSize:36,
     },
     listing_count_text:{
-        color:"black",
+        color: APP_COLORS.gray,
         fontSize:11
     },
     listing:{
@@ -20,31 +21,39 @@ export default{
         justifyContent:"space-around",
         height:"15%",
         width: "85%",
+        ...WEB_STYLES.flexWrap
     },
     search_area:{
         ...WEB_STYLES.flexRow,
     },
     search_button_style:{
-        backgroundColor:APP_COLORS.textGreen,
+        backgroundColor:APP_COLORS.buttonColor,
         height:"65%",
         marginTop:8.5
     },
     create_new_button_style:{
-        backgroundColor:APP_COLORS.textGreen,
-        height:"60%",
-        marginTop:10
+        backgroundColor:APP_COLORS.buttonColor,
+        marginTop:10,
+        height:35,
+        width:100,
     },
     create_new_button_inner_style:{
         ...WEB_STYLES.flexRow,
     },
     create_new_button_inner_button_style:{
-        color:"black",
+        color:APP_COLORS.gray,
         fontFamily:"Times New Roman",
         fontSize:12,
+        marginLeft:4
     },
     filter_text:{
         fontFamily:"Arial",
         color:"black",
         fontSize:14
+    },
+    drop_down_style:{
+        width:150, 
+        height:50,
+        backgroundColor:"white"
     }
 }

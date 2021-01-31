@@ -5,9 +5,10 @@ import Input from "../../shared/components/input";
 import Button from "../../shared/components/button";
 import DropDown from "../../shared/components/dropDown";
 import SimpleText from "../../shared/components/text/simple-text";
+import Search from "../../shared/components/search"
 import { GoSearch } from 'react-icons/go'
 import { RiAddCircleLine} from 'react-icons/ri'
-import { WEB_STYLES } from '../../shared/styles';
+import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
 
 
 interface ListingHeaderProps {
@@ -47,7 +48,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     <SimpleText
                     textID={"Total"}
                     additionalStyle={styles.listing_count_text}/>
-                    <div style={{fontSize:11, color:"black"}}>
+                    <div style={{fontSize:11, color:APP_COLORS.gray}}>
                         {listingCount}
                     </div>
                 </div>
@@ -70,22 +71,18 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     filterMarketPlace(marketPlace)
                     }
                 }
-                label={"MarketPlace"}
-                DropDownStyle={{width:"10%"}}
+                label={"Filter-Marketplace"}
+                DropDownStyle={styles.drop_down_style}
             />
-            <div style={styles.search_area}>
-                <Input
-                value={searchText}
-                placeholder="Type-in-to-search"
-                onChangeText={(val)=>{
-                    setSearchText(val);
-                }}/>
-                <Button
-                onPress={onSearchPress}
-                buttonStyle={styles.search_button_style}>
-                    <GoSearch size={20}/>
-                </Button>
-            </div>
+            <Search
+            componentStyle={{marginTop:8}}
+            value={searchText}
+            placeholder="Type-in-to-search"
+            onChangeText={(val)=>{
+                setSearchText(val);}
+            }
+            onPress={onSearchPress}
+            />
         </div>
     )
 }
