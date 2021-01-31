@@ -20,7 +20,7 @@ export default {
     integrationContents: {
         display: "flex",
         flexDirection: "column",
-        background: APP_COLORS.lightTurqoise,
+        background: APP_COLORS.lightTurquoise,
         height: '650px',
     }as React.CSSProperties,
 
@@ -28,7 +28,7 @@ export default {
         alignItems: 'center',
         width: '100%',
         height: '650px',
-        background: APP_COLORS.lightTurqoise,
+        background: APP_COLORS.lightTurquoise,
     },
     saveButton: {
         marginTop: 12,
