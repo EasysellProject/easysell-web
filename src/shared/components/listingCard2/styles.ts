@@ -1,11 +1,11 @@
 export default {
   card: {
-    height: "100",
+    height: 100,
     width: "100%",
     borderStyle: "solid",
-    borderWidth: "1",
+    borderWidth: 1,
     borderColor: "black",
-    margin: "20",
+    margin: 20,
     // padding: "5",
     display: "flex",
     justifyContent: "space-between",
@@ -31,7 +31,7 @@ export default {
   },
   button: {
     height: "100%",
-    margin: "5",
-    padding: "5",
+    margin: 5,
+    padding: 5,
   },
 };

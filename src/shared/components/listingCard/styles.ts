@@ -1,12 +1,12 @@
 export default {
   card: {
-    height: "400",
-    width: "400",
+    height: 400,
+    width: 400,
     borderStyle: "solid",
-    borderWidth: "2",
+    borderWidth: 2,
     borderColor: "black",
-    margin: "5",
-    padding: "5",
+    margin: 5,
+    padding: 5,
     borderRadius: 12,
   },
   image: {
@@ -25,6 +25,6 @@ export default {
   button: {
     height: "100%",
     borderStyle: "solid",
-    borderWidth: "2",
+    borderWidth: 2,
   },
 };
