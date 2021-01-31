@@ -65,3 +65,8 @@ buck-out/
 
 #eslint
 .eslintcache
+
+#debug log
+debug.log
+
+package-lock.json
