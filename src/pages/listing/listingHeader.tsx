@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from './styles'
 import Input from "../../shared/components/input";
 import Button from "../../shared/components/button";
-import DropDown from "../../shared/components/dropdown-new";
+import DropDown from "../../shared/components/dropdown";
 import SimpleText from "../../shared/components/text/simple-text";
 import Search from "../../shared/components/search"
 import { GoSearch } from 'react-icons/go'
