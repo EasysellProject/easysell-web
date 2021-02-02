@@ -4,23 +4,23 @@ export default {
         backgroundColor:"white", 
         ...WEB_STYLES.flexRow, 
         height:35, 
-        borderTopLeftRadius:8, 
-        borderBottomLeftRadius:8, 
-        borderTopRightRadius:8, 
-        borderBottomRightRadius:8 
+        borderTopLeftRadius:10, 
+        borderBottomLeftRadius:10, 
+        borderTopRightRadius:10, 
+        borderBottomRightRadius:10 
     },
     button:{
         width:30,
-        borderTopLeftRadius:8, 
-        borderBottomLeftRadius:8, 
+        borderTopLeftRadius:10, 
+        borderBottomLeftRadius:10, 
         border:"none", 
         backgroundColor:APP_COLORS.grayButton, 
         outline:"none"
     },
     input:{
         minWidth:220, 
-        borderTopRightRadius:8, 
-        borderBottomRightRadius:8, 
+        borderTopRightRadius:10, 
+        borderBottomRightRadius:10, 
         border:"none", 
         outline:"none"
     }

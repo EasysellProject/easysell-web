@@ -2,8 +2,9 @@ import { User } from '../models/user'
 import firebase from '../utils/firebase'
 import { LangCode } from '../utils/localization'
 import UserService from './user-service'
-class AuthService {
 
+
+class AuthService {
     async createUser(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
         try {
             let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -34,6 +35,15 @@ class AuthService {
             })
         } catch (err) {
             console.log('login err ', err)
+            throw err
+        }
+    }
+    async Logout(){
+        try 
+        {
+            let res = await firebase.auth().signOut();
+            console.log("logout successfull");
+        } catch (err) {
             throw err
         }
     }
