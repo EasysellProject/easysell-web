@@ -1,15 +1,12 @@
-import { Integration } from "../models/integration";
+import { Integration } from "../models/Integration";
 
 class IntegrationService {
+  constructor() {}
 
-    constructor() {
-        
-    }
-
-    getIntegrations(): Integration[] {
-        // implement here
-        return []
-    }
+  getIntegrations(): Integration[] {
+    // implement here
+    return [];
+  }
 }
 
 export default new IntegrationService();

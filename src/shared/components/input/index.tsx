@@ -14,6 +14,7 @@ interface InputProps {
     required?: boolean
     label?: string
     additionalStyles?: CSSProperties
+    inputStyles?: CSSProperties
     onChangeText: (text: string) => void;
     showError?: boolean
     errorText?: string
@@ -22,7 +23,7 @@ interface InputProps {
 
 function Input(props: InputProps): JSX.Element {
     const intl = useIntl()
-    const { value, placeholder, additionalStyles, required, showLabel, type, label, onChangeText, showError, errorText } = props
+    const { value, placeholder, additionalStyles, inputStyles, required, showLabel, type, label, onChangeText, showError, errorText } = props
     let formattedPlaceholder = intl.formatMessage({ id: placeholder })
     return (
         <div style={additionalStyles}>
@@ -37,7 +38,7 @@ function Input(props: InputProps): JSX.Element {
                 )
             }
             {
-                <input type={type || 'text'} value={value} style={styles.input} placeholder={formattedPlaceholder} onChange={(e) => onChangeText(e.target.value)}></input>
+                <input type={type || 'text'} value={value} style={{ ...styles.input, ...inputStyles }} placeholder={formattedPlaceholder} onChange={(e) => onChangeText(e.target.value)}></input>
             }
             {
                 showError && errorText && (

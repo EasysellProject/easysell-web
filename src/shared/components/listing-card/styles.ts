@@ -42,6 +42,6 @@ export default {
     margin: "5",
     padding: "5",
     fontSize: 24,
-    color: APP_COLORS.darkGreen
+    color: APP_COLORS.darkGreen,
   },
 };
