@@ -1,7 +1,10 @@
 export default {
+    BUTTONS: {
+        grayButton: '#E6E9E9',
+        green: '#ABDFC9'
+    },
     lightGray: '#C0C0C0',
     gray: '#5A5C5B',
-    grayButton: '#E6E9E9',
     borderGray: 'gray',
     ligthBlue: '#0395F1',
     lightGreen: '#91ECC6',

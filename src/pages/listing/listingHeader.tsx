@@ -19,10 +19,10 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
 
     const [searchText, setSearchText] = useState('');
     const [marketPlace, setMarketPlace] = useState('');
-    const data = [{ value: "Trendyol", text: "Trendyol", key: "1" },
+    const data = [{ value: "trendyol", text: "trendyol", key: "1" },
     { value: "N11", text: "N11", key: "2" },
-    { value: "Hepsiburada", text: "Hepsiburada", key: "3" },
-    { value: "Amazon", text: "Amazon", key: "4" }
+    { value: "hepsiburada", text: "hepsiburada", key: "3" },
+    { value: "amazon", text: "amazon", key: "4" }
     ]
     const [listingCount, setListingCount] = useState(0);
 
@@ -39,28 +39,29 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
     }
     return (
         <div style={styles.header}>
-            <div style={{ ...WEB_STYLES.flexRow }}>
+            <div style={{ ...WEB_STYLES.flexRow, alignItems: 'baseline' }}>
                 <SimpleText
                     additionalStyle={styles.headerText}
                     textID={"listings"}
                 />
-                <div style={{ marginTop: 25, marginLeft: 10, ...WEB_STYLES.flexRow }}>
+                <div style={{ marginLeft: 10, ...WEB_STYLES.flexRow }}>
                     <SimpleText
-                        textID={"Total"}
+                        textID={"total"}
                         additionalStyle={styles.listing_count_text} />
-                    <div style={{ fontSize: 11, color: APP_COLORS.gray }}>
-                        {listingCount}
-                    </div>
+                    <SimpleText
+                        textID={'' + listingCount}
+                        additionalStyle={styles.listing_count_text}
+                    />
                 </div>
             </div>
             <Button
                 onPress={createNewListing}
                 buttonStyle={styles.create_new_button_style}>
                 <div style={styles.create_new_button_inner_style}>
-                    <RiAddCircleLine size={20} />
-                    {<SimpleText
-                        textID="Create-new"
-                        additionalStyle={styles.create_new_button_inner_button_style} />}
+                    <RiAddCircleLine color={APP_COLORS.gray} size={20} />
+                    <SimpleText
+                        textID="create-new"
+                        additionalStyle={styles.createNewText} />
                 </div>
             </Button>
             <DropDown
@@ -69,19 +70,18 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                 onChange={(e) => {
                     setMarketPlace(e.target.value)
                     filterMarketPlace(marketPlace)
-                }
-                }
-                label={"Filter-Marketplace"}
+                }}
+                label={"filter-marketplace"}
                 DropDownStyle={styles.drop_down_style}
             />
             <Search
-                componentStyle={{ marginTop: 8 }}
+                containerStyle={{ marginTop: 8 }}
+                buttonStyle={styles.searchButton}
                 value={searchText}
-                placeholder="Type-in-to-search"
+                placeholder="type-in-to-search"
                 onChangeText={(val) => {
                     setSearchText(val);
-                }
-                }
+                }}
                 onPress={onSearchPress}
             />
         </div>

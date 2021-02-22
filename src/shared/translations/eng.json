@@ -29,13 +29,13 @@
 	"about":"About",
 	"search":"Search",
 	"search-key":"Search key",
-	"Type-in-to-search":"Type in to search",
-	"Select-an-option:":"Select an option:",
-	"Create-new":"Create New",
-	"Trendyol":"Trendyol",
+	"type-in-to-search":"Type in to search",
+	"select-an-option:":"Select an option:",
+	"create-new":"Create New",
+	"trendyol":"Trendyol",
 	"N11":"N11",
-	"Amazon":"Amazon",
-	"Hepsiburada":"Hepsiburada",
-	"Total":"Total:",
-	"Filter-Marketplace":"Filter marketplace"
+	"amazon":"Amazon",
+	"hepsiburada":"Hepsiburada",
+	"total":"Total:",
+	"filter-marketplace":"Filter marketplace"
 }

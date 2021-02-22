@@ -14,7 +14,7 @@ function Integration(): JSX.Element {
         Helper.getWindowDimensions()
     );
     const [trendyol, setText] = useState("");
-    const [hepsiBurada, setText2] = useState("");
+    const [hepsiburada, setText2] = useState("");
 
     function onSavePress(): void {
         console.log("save")
@@ -42,7 +42,7 @@ function Integration(): JSX.Element {
                 <Container>
                     <div style={styles.inputs}>
                         <label style={styles.name}>
-                            Trendyol
+                            trendyol
                     </label>
                         <Input
                             value={trendyol}
@@ -64,16 +64,16 @@ function Integration(): JSX.Element {
                             }}
                         />
                         <label style={styles.name}>
-                            HepsiBurada
+                            hepsiburada
                     </label>
                         <Input
-                            value={hepsiBurada}
+                            value={hepsiburada}
                             placeholder="API key..."
                             showLabel
                             required
-                            onChangeText={(hepsiBurada: string) => {
-                                console.log(hepsiBurada)
-                                setText2(hepsiBurada)
+                            onChangeText={(hepsiburada: string) => {
+                                console.log(hepsiburada)
+                                setText2(hepsiburada)
                             }}
                             additionalStyles={styles.inputContainer}
                         />

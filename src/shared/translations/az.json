@@ -29,13 +29,13 @@
 	"about":"Haqqımızda",
 	"search":"Axtar",
 	"search-key":"Axtarış açarı",
-	"Type-in-to-search":"Axtarış üçün yazın",
-	"Select-an-option:":"Bir seçim seçin:",
-	"Create-new":"Yeni Yarat",
-	"Trendyol":"Trendyol",
+	"type-in-to-search":"Axtarış üçün yazın",
+	"select-an-option:":"Bir seçim seçin:",
+	"create-new":"Yeni Yarat",
+	"trendyol":"Trendyol",
 	"N11":"N11",
-	"Amazon":"Amazon",
-	"Hepsiburada":"Hepsiburada",
-	"Total":"Toplam:",
-	"Filter-Marketplace":"Bazar yeri seç"
+	"amazon":"Amazon",
+	"hepsiburada":"Hepsiburada",
+	"total":"Toplam:",
+	"filter-marketplace":"Bazar yeri seç"
 }

@@ -20,7 +20,7 @@ export default {
     borderRadius: 10,
     height: "100%",
     width: "100",
-    backgroundColor: APP_COLORS.grayButton,
+    backgroundColor: APP_COLORS.BUTTONS.grayButton,
   },
   image: {
     marginLeft: 10,
