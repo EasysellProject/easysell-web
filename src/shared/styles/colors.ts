@@ -12,5 +12,5 @@ export default {
     lightTurquoise: '#E2FAF0',
     sidebarGreen: '#82B4A0',
     darkGreen: '#396452',
-    errorRed: '#ff0000'
+    errorRed: '#ff0000',
 }

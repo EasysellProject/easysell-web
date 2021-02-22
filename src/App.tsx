@@ -5,6 +5,7 @@ import Listing from './pages/listing';
 import Login from './pages/login';
 import Register from './pages/register';
 import Integration from './pages/integration';
+import Profile from './pages/profile';
 import Utils from './shared/utils';
 
 const { Firebase } = Utils;
@@ -25,6 +26,7 @@ function App(props: AppProps) {
           <Route path='/listings' component={Listing} />
           <Route path='/register' component={Register} />
           <Route path='/integrations' component={Integration} />
+          <Route path='/profile' component={Profile} />
         </Switch>
       </BrowserRouter>
     </div>
