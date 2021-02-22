@@ -4,7 +4,7 @@ import { LangCode } from '../utils/localization'
 import UserService from './user-service'
 class AuthService {
 
-    async createUser(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
+    async register(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
         try {
             let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
             console.log('res ', res)
@@ -30,6 +30,7 @@ class AuthService {
             let res = await firebase.auth().signInWithEmailAndPassword(email, password)
             firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             return this.getUserData().then(user => {
+                UserService.currentUser = user
                 return user
             })
         } catch (err) {

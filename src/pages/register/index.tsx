@@ -91,7 +91,7 @@ function Register(): JSX.Element {
             return
         }
         setRegisterLoading(true)
-        AuthService.createUser(email, pass, name, surname, currentLang)
+        AuthService.register(email, pass, name, surname, currentLang)
             .then((res) => {
                 console.log('register successfull do smt', res)
                 //TODO

@@ -55,7 +55,6 @@ function Login(): JSX.Element {
         AuthService.signIn(email, pass)
             .then(user => {
                 setLoading(false)
-                UserService.currentUser = user
                 //TODO go to main page
                 navigation.push('/listings')
             })
