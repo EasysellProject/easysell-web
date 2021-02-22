@@ -19,7 +19,6 @@ function Profile(props: ProfileProps): JSX.Element {
         setWindowDimensions(Helper.getWindowDimensions());
     }
 
-
     useEffect(() => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
@@ -89,10 +88,10 @@ function Profile(props: ProfileProps): JSX.Element {
                         <Body />
 
                     </div>
-                </div>)}
-
+                </div>
+                )
+            }
         </div>
-
     )
 }
 
