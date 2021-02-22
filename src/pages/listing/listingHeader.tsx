@@ -39,7 +39,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
     }
     return (
         <div style={styles.header}>
-            <div style={{ ...WEB_STYLES.flexRow, alignItems: 'baseline' }}>
+            <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline' }}>
                 <SimpleText
                     additionalStyle={styles.headerText}
                     textID={"listings"}
@@ -54,37 +54,39 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     />
                 </div>
             </div>
-            <Button
-                onPress={createNewListing}
-                buttonStyle={styles.create_new_button_style}>
-                <div style={styles.create_new_button_inner_style}>
-                    <RiAddCircleLine color={APP_COLORS.gray} size={20} />
-                    <SimpleText
-                        textID="create-new"
-                        additionalStyle={styles.createNewText} />
-                </div>
-            </Button>
-            <DropDown
-                data={data}
-                value={marketPlace}
-                onChange={(e) => {
-                    setMarketPlace(e.target.value)
-                    filterMarketPlace(marketPlace)
-                }}
-                label={"filter-marketplace"}
-                DropDownStyle={styles.drop_down_style}
-            />
-            <Search
-                containerStyle={{ marginTop: 8 }}
-                buttonStyle={styles.searchButton}
-                value={searchText}
-                placeholder="type-in-to-search"
-                onChangeText={(val) => {
-                    setSearchText(val);
-                }}
-                onPress={onSearchPress}
-            />
-        </div>
+            <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline', justifyContent: 'flex-end' }}>
+                <Button
+                    onPress={createNewListing}
+                    buttonStyle={styles.create_new_button_style}>
+                    <div style={styles.create_new_button_inner_style}>
+                        <RiAddCircleLine color={APP_COLORS.gray} size={20} />
+                        <SimpleText
+                            textID="create-new"
+                            additionalStyle={styles.createNewText} />
+                    </div>
+                </Button>
+                <DropDown
+                    data={data}
+                    value={marketPlace}
+                    onChange={(e) => {
+                        setMarketPlace(e.target.value)
+                        filterMarketPlace(marketPlace)
+                    }}
+                    label={"filter-marketplace"}
+                    DropDownStyle={styles.drop_down_style}
+                />
+                <Search
+                    containerStyle={{ marginTop: 8 }}
+                    buttonStyle={styles.searchButton}
+                    value={searchText}
+                    placeholder="type-in-to-search"
+                    onChangeText={(val) => {
+                        setSearchText(val);
+                    }}
+                    onPress={onSearchPress}
+                />
+            </div>
+        </div >
     )
 }
 

@@ -19,7 +19,7 @@ export default {
         padding: 20,
         backgroundColor: APP_COLORS.lightTurquoise,
         ...WEB_STYLES.flexRow,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         height: "15%",
         flex: 1,
         ...WEB_STYLES.flexWrap
@@ -31,10 +31,11 @@ export default {
         backgroundColor: APP_COLORS.BUTTONS.green,
         borderTopRightRadius: 12,
         borderBottomRightRadius: 12,
+        marginLeft: 8,
     } as React.CSSProperties,
     create_new_button_style: {
         backgroundColor: APP_COLORS.BUTTONS.green,
-        marginTop: 10,
+        marginLeft: 8,
         height: 35,
         width: 100,
     } as React.CSSProperties,
@@ -55,6 +56,7 @@ export default {
     drop_down_style: {
         width: 150,
         height: 50,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        marginLeft: 8,
     } as React.CSSProperties
 }

@@ -111,6 +111,7 @@ function Login(): JSX.Element {
                     value={pass}
                     placeholder="password"
                     showLabel
+                    type='password'
                     label="password"
                     onChangeText={(pass) => {
                         setPassError(false)
