@@ -20,7 +20,7 @@ export default {
     boxShadow: "0px 1px 0px 0px gray",
     borderRadius: 12,
     background: "white",
-    width: "80%",
+    width: "50%",
     height: "auto",
     top: "50%",
     left: "50%",

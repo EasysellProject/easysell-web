@@ -23,7 +23,12 @@ function ListingModal(props: ListingModalProps): JSX.Element {
             <div style={styles.modalCard}>
 
                 <div style={{ width: '100%', padding: 20 }}>
-                    <h1 style={{ display: 'flex', justifyContent: 'center' }}>{header}</h1>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+
+                        <h1 style={{ display: 'flex', justifyContent: 'center', width: "100%" }}>{header}</h1>
+
+                        {children}
+                    </div>
                     <div>
 
                         <Input
@@ -119,7 +124,6 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                     </div>
                 </div>
 
-                {children}
             </div>
         </div >
     )
