@@ -5,6 +5,7 @@ class IntegrationService {
   password: string;
   authenticationType: string;
   id_token: string;
+  merchant_id: string;
   constructor() {}
 
   authenticateHepsiurada(): string {
@@ -153,6 +154,554 @@ class IntegrationService {
   }
 
 
+
+  sitCreateOrderHepsiburada(
+    orderData:any, //order data https://developers.hepsiburada.com/en/siparis-entegrasyonu/test-icin-siparis-olusturma
+  ): boolean {
+    fetch(
+      `https://oms-stub-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id,
+      {
+        method: "POST",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        },
+        body:JSON.stringify(orderData)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return true;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+  payedOrdersHepsiburada(): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+  
+  listCargoCompanyForOrderHepsiburada(orderId: string): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/`+this.merchant_id+`/orderlineid/`+orderId,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password
+        },
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  
+  changeCargoCompanyHepsiburada(orderId: string,changeCargo: string): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/`+this.merchant_id+`/orderlineid/`+orderId+`/cargocompany`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: this.username+":"+this.password
+        },
+        body:JSON.stringify(changeCargo)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return true;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+  
+
+  
+  packedListCargoCompanyForOrderHepsiburada(packageNumber: string): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/changablecargocompanies`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password
+        },
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  
+  packetChangeCargoCompanyHepsiburada(packageNumber: string,changeCargo: string): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/changecargocompany`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: this.username+":"+this.password
+        },
+        body:JSON.stringify(changeCargo)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return true;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  getListOfPackagableWithLineItemsHepsiburada(
+    lineitemid:string, 
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+this.merchant_id+`/packageablewith/lineitemid/`+lineitemid,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+  packageCreateHepsiburada(
+    packageData:any, 
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id,
+      {
+        method: "POST",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        },
+        body:JSON.stringify(packageData)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+  packageUnpackHepsiburada(
+    packageNumber:string, 
+  ): boolean {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/unpack`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return true;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+  listUnpackedHepsiburada(
+    limit:string,
+    offset:string,
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/status/unpacked?limit=`+limit+`&offset=`+offset,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+  getMerchantPackagesHepsiburada(
+    limit:string,
+    offset:string,
+    timeSpan:string,
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`?timespan=`+timeSpan+`&limit=`+limit+`&offset=`+offset,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+  getPackagesCargoInfoHepsiburada(
+    packageNumber:string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+
+  getListOfOrderDetailsHepsiburada(
+    ordernumber :string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id+`/ordernumber/`+ordernumber,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+
+
+  
+  getCampaignInfoListHepsiburada(
+    ordernumber :string
+  ): any {
+    fetch(
+      `https://oms-external.hepsiburada.com/orders/merchantid/`+this.merchant_id+`/ordernumber/`+ordernumber+`/campaigns`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  sendInvoiceLinkHepsiburada(
+    packageNumber :string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/invoice`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  sameLabelHepsiburada(
+    packageNumber :string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/labels`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  getMerchantClaimsHepsiburada(
+    limit :string,
+    offset:string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/claims/merchantid/`+this.merchant_id+`?offset=`+offset+`&limit=`+limit,
+      {
+        method: "GET",
+        headers: {
+          Authorization: this.username+":"+this.password,
+          Accept: "application/json",
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  
+  sendCancelInfoHepsiburada(
+    lineitemid:string
+  ): any {
+    fetch(
+      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+this.merchant_id+`/id/`+lineitemid+`/cancelbymerchant`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: this.username+":"+this.password,
+        }
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("User data not coming");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return false;
+      });
+      return false;
+  }
+
+  
+  
   getIntegrations(): Integration[] {
     // implement here
     return [];
