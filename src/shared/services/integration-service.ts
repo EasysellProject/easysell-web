@@ -8,7 +8,9 @@ class IntegrationService {
   merchant_id: string;
   constructor() {}
 
-  authenticateHepsiurada(username: string, password:string, authenticationType:string): string {
+  authenticateHepsiurada(username: string, password:string, authenticationType:string): string
+  //https://developers.hepsiburada.com/en/katalog-entegrasyonu/authentication
+  {
     var token = "undefined";
     fetch("https://mpop-sit.hepsiburada.com/api/authenticate", {
       method: "POST",
@@ -33,7 +35,6 @@ class IntegrationService {
       .catch((err) => {
         console.log(err.message);
       });
-    this.id_token = token;
     return token;
   }
   getAllCategoryInformationHepsiburada(id_token: string): 
@@ -103,7 +104,7 @@ class IntegrationService {
   ): any //there can be a seperate data object for this
   //https://developers.hepsiburada.com/en/katalog-entegrasyonu/oezellik-degerlerini-alma
   {
-    var categoryAttributeData;
+    var categoryAttributeData = null;
     fetch(
       `https://mpop-sit.hepsiburada.com/product/api/categories/${category_id}/attribute/${attribute_id}`,
       {
@@ -125,6 +126,7 @@ class IntegrationService {
       })
       .catch((err) => {
         console.log(err.message);
+        return null;
       });
 
     return categoryAttributeData;
@@ -132,9 +134,11 @@ class IntegrationService {
 
   postProductInfoHepsiburada(
     id_token: string,
-    productData:any, //there should be a seperate object for product data.
+    productData:any,
+    //there should be a seperate object for product data.
     //https://developers.hepsiburada.com/en/katalog-entegrasyonu/ueruen-bilgisi-goenderme
   ): boolean {
+    var result = false;
     fetch(
       `https://mpop-sit.hepsiburada.com/product/api/products/import	`,
       {
@@ -153,13 +157,14 @@ class IntegrationService {
         return res.json();
       })
       .then((data) => {
+        result = true;
         return true;
       })
       .catch((err) => {
         console.log(err.message);
         return false;
       });
-      return false;
+      return result;
   }
   getProductConditionHepsiburada(tracking_id: string, page: number, size: number, id_token: string):
   any //there can be a seperate data object for this
@@ -222,7 +227,7 @@ class IntegrationService {
       });
       return trackIDHistory;
   }
-  getProductStatusHepsiburada(id_token:string):any
+  getProductStatusHepsiburada(id_token:string, requestBody:any):any
   //there can be a seperate data object for this
   //https://developers.hepsiburada.com/en/katalog-entegrasyonu/urun-statu-bilgisi-cekme
   {
@@ -230,11 +235,12 @@ class IntegrationService {
     fetch(
       `https://mpop-sit.hepsiburada.com/product/api/products/check-product-status?version=1`,
       {
-        method: "GET",
+        method: "POST",
         headers: {
           Authorization: "Bearer" + id_token,//Bearer Token
           Accept: "application/json",
-        }
+        },
+        body:JSON.stringify(requestBody)
       }
     )
       .then((res) => {
@@ -256,7 +262,7 @@ class IntegrationService {
   getMerchantListingDataHepsiburada(merchant_id:string, username:string, password:string):XMLDocument
   //https://developers.hepsiburada.com/en/listeleme-entegrasyonu/merchant-listing-bilgilerini-cekme
   {
-    var merchantData:XMLDocument;
+    var merchantData;
     fetch(
       `https://listing-external-sit.hepsiburada.com/listings/merchantid/${merchant_id}`,
       {
@@ -284,7 +290,7 @@ class IntegrationService {
       });
       return merchantData;
   }
-  updateMerchantListingDataHepsiburada(merchant_id:string, username:string, password:string, requestBody: string //string form of XML
+  updateMerchantListingDataHepsiburada(merchant_id:string, username:string, password:string, requestBody: any //XML
     ):XMLDocument
   //https://developers.hepsiburada.com/en/listeleme-entegrasyonu/listing-bilgilerini-guncelleme
   {
@@ -423,7 +429,7 @@ class IntegrationService {
       });
       return response;
   }
-  getListOfListings(merchant_id:string, hbsku:string, username:string, password:string, activate:boolean):XMLDocument
+  getListOfListings(merchant_id:string, hbsku:string, username:string, password:string):XMLDocument
   //https://developers.hepsiburada.com/en/listeleme-entegrasyonu/buybox
   {
     var responData = null;
@@ -453,11 +459,37 @@ class IntegrationService {
       });
       return responData;
   }
-  claimAwaitingActionHepsiburada()
+  claimAwaitingActionHepsiburada(merchant_api_baseUrl:string, requestBody:any, username:string, password:string)
   //https://developers.hepsiburada.com/en/talep%20entegrasyonu/aksiyon-bekleyen-talep-bildirimi
-  //documentation is not complete
   {
-    
+    var responData = null;
+    fetch(
+      `https://${merchant_api_baseUrl}/claims/awaitingaction`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `${username}:${password}`,
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(requestBody)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Error while getting list of all listing data: Response is not OK");
+        }
+        return res.text();
+      })
+      .then((data) => {
+        return (new window.DOMParser()).parseFromString(data, "text/xml")
+      }).then((data)=>{
+        responData = data
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return null;
+      });
+      return responData;
   }
   acceptRequestHepsiburada(number:string, username:string, password:string):XMLDocument
   //https://developers.hepsiburada.com/en/talep%20entegrasyonu/talep-kabul-etme
@@ -469,7 +501,7 @@ class IntegrationService {
         method: "POST",
         headers: {
           Authorization: `${username}:${password}`,
-          "Content-type":"application/json"
+          "Content-Type":"application/json"
         }
       }
     )
@@ -501,7 +533,7 @@ class IntegrationService {
         method: "POST",
         headers: {
           Authorization: `${username}:${password}`,
-          "Content-type":"application/json"
+          "Content-Type":"application/json"
         },
         body:requestBody
       }
@@ -523,7 +555,37 @@ class IntegrationService {
       });
       return responData;
   }
-  claimPackageHepsiburada(){}
+  claimPackageHepsiburada(merchant_api_baseUrl:string, requestBody:any, username:string, password:string)
+  //https://developers.hepsiburada.com/en/talep%20entegrasyonu/aksiyon-bekleyen-talep-bildirimi
+  {
+    var responData = null;
+    fetch(
+      `https://${merchant_api_baseUrl}/claims/packages`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `${username}:${password}`,
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(requestBody)
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Error while getting list of all listing data: Response is not OK");
+        }
+        return res.text();
+      })
+      .then((data) => {
+        responData = data
+        return data;//(new window.DOMParser()).parseFromString(data, "text/xml")
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return null;
+      });
+      return responData;
+  }
   //https://developers.hepsiburada.com/en/talep%20entegrasyonu/talep-kabul-red-sonucu-olusan-paket-bildirimi
   //document is not complete
 
@@ -537,6 +599,7 @@ class IntegrationService {
         method: "GET",
         headers: {
           Authorization: `${username}:${password}`,
+          "Content-Type":"application/json"
         },
       }
     )
@@ -555,24 +618,26 @@ class IntegrationService {
       });
       return responData;
   }
-
   sitCreateOrderHepsiburada(
-    orderData:any, //order data https://developers.hepsiburada.com/en/siparis-entegrasyonu/test-icin-siparis-olusturma
+    orderData:any,
+    merchant_id:string,
+    username:string,
+    password:string //order data https://developers.hepsiburada.com/en/siparis-entegrasyonu/test-icin-siparis-olusturma
   ): boolean {
     fetch(
-      `https://oms-stub-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id,
+      `https://oms-stub-external-sit.hepsiburada.com/orders/merchantid/${merchant_id}`,
       {
         method: "POST",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json", //this is actually "Content-type"
+          Authorization: username+":"+password,
+          "Content-Type": "application/json", //this is actually "Content-type"
         },
         body:JSON.stringify(orderData)
       }
     )
       .then((res) => {
         if (!res.ok) {
-          throw Error("User data not coming");
+          throw Error("Error while creating test order: Response is not Ok!");
         }
         return res.json();
       })
@@ -586,16 +651,20 @@ class IntegrationService {
       return false;
   }
 
-
-
-  payedOrdersHepsiburada(): any {
+  payedOrdersHepsiburada(
+    merchant_id:string,
+    username:string,
+    password:string
+  ): any
+  //https://developers.hepsiburada.com/en/siparis-entegrasyonu/odemesi-alinmis-siparisleri-listeleme
+  {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id,
+      `https://oms-external-sit.hepsiburada.com/orders/merchantid/${merchant_id}`,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         },
       }
     )
@@ -617,13 +686,16 @@ class IntegrationService {
 
 
   
-  listCargoCompanyForOrderHepsiburada(orderId: string): any {
+  listCargoCompanyForOrderHepsiburada(orderId: string, 
+    merchant_id:string,
+    username:string,
+    password:string): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/`+this.merchant_id+`/orderlineid/`+orderId,
+      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/${merchant_id}/orderlineid/${orderId}`,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password
+          Authorization: username+":"+password
         },
       }
     )
@@ -645,13 +717,16 @@ class IntegrationService {
 
   
   
-  changeCargoCompanyHepsiburada(orderId: string,changeCargo: string): any {
+  changeCargoCompanyHepsiburada(orderId: string,changeCargo: string,
+    merchant_id:string,
+    username:string,
+    password:string): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/`+this.merchant_id+`/orderlineid/`+orderId+`/cargocompany`,
+      `https://oms-external-sit.hepsiburada.com/delivery/changeablecargocompanies/merchantid/${merchant_id}/orderlineid/${orderId}/cargocompany`,
       {
         method: "PUT",
         headers: {
-          Authorization: this.username+":"+this.password
+          Authorization: username+":"+password
         },
         body:JSON.stringify(changeCargo)
       }
@@ -671,18 +746,16 @@ class IntegrationService {
       });
       return false;
   }
-
-
-  
-
-  
-  packedListCargoCompanyForOrderHepsiburada(packageNumber: string): any {
+  packedListCargoCompanyForOrderHepsiburada(packageNumber: string,
+    merchant_id:string,
+    username:string,
+    password:string): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/changablecargocompanies`,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber+`/changablecargocompanies`,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password
+          Authorization: username+":"+password
         },
       }
     )
@@ -704,13 +777,16 @@ class IntegrationService {
 
   
   
-  packetChangeCargoCompanyHepsiburada(packageNumber: string,changeCargo: string): any {
+  packetChangeCargoCompanyHepsiburada(packageNumber: string,changeCargo: string,
+    merchant_id:string,
+    username:string,
+    password:string): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/changecargocompany`,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber+`/changecargocompany`,
       {
         method: "PUT",
         headers: {
-          Authorization: this.username+":"+this.password
+          Authorization: username+":"+password
         },
         body:JSON.stringify(changeCargo)
       }
@@ -734,14 +810,17 @@ class IntegrationService {
   
   getListOfPackagableWithLineItemsHepsiburada(
     lineitemid:string, 
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+this.merchant_id+`/packageablewith/lineitemid/`+lineitemid,
+      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+merchant_id+`/packageablewith/lineitemid/`+lineitemid,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -764,15 +843,18 @@ class IntegrationService {
 
 
   packageCreateHepsiburada(
-    packageData:any, 
+    packageData:any,
+    merchant_id:string,
+    username:string,
+    password:string 
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id,
       {
         method: "POST",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         },
         body:JSON.stringify(packageData)
       }
@@ -797,14 +879,16 @@ class IntegrationService {
 
   packageUnpackHepsiburada(
     packageNumber:string, 
+    merchant_id:string,
+    username:string,
+    password:string
   ): boolean {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/unpack`,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber+`/unpack`,
       {
         method: "POST",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
         }
       }
     )
@@ -828,14 +912,16 @@ class IntegrationService {
   listUnpackedHepsiburada(
     limit:string,
     offset:string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/status/unpacked?limit=`+limit+`&offset=`+offset,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/status/unpacked?limit=`+limit+`&offset=`+offset,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
         }
       }
     )
@@ -861,14 +947,17 @@ class IntegrationService {
     limit:string,
     offset:string,
     timeSpan:string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`?timespan=`+timeSpan+`&limit=`+limit+`&offset=`+offset,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`?timespan=`+timeSpan+`&limit=`+limit+`&offset=`+offset,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -890,15 +979,18 @@ class IntegrationService {
 
 
   getPackagesCargoInfoHepsiburada(
-    packageNumber:string
+    packageNumber:string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -922,15 +1014,18 @@ class IntegrationService {
 
 
   getListOfOrderDetailsHepsiburada(
-    ordernumber :string
+    ordernumber :string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/orders/merchantid/`+this.merchant_id+`/ordernumber/`+ordernumber,
+      `https://oms-external-sit.hepsiburada.com/orders/merchantid/`+merchant_id+`/ordernumber/`+ordernumber,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -954,15 +1049,18 @@ class IntegrationService {
 
   
   getCampaignInfoListHepsiburada(
-    ordernumber :string
+    ordernumber :string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external.hepsiburada.com/orders/merchantid/`+this.merchant_id+`/ordernumber/`+ordernumber+`/campaigns`,
+      `https://oms-external.hepsiburada.com/orders/merchantid/`+merchant_id+`/ordernumber/`+ordernumber+`/campaigns`,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -983,15 +1081,18 @@ class IntegrationService {
   }
 
   sendInvoiceLinkHepsiburada(
-    packageNumber :string
+    packageNumber :string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/invoice`,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber+`/invoice`,
       {
         method: "PUT",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -1012,15 +1113,17 @@ class IntegrationService {
   }
 
   sameLabelHepsiburada(
-    packageNumber :string
+    packageNumber :string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+this.merchant_id+`/packagenumber/`+packageNumber+`/labels`,
+      `https://oms-external-sit.hepsiburada.com/packages/merchantid/`+merchant_id+`/packagenumber/`+packageNumber+`/labels`,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
         }
       }
     )
@@ -1043,15 +1146,18 @@ class IntegrationService {
   
   getMerchantClaimsHepsiburada(
     limit :string,
-    offset:string
+    offset:string,
+    merchant_id:string,
+    username:string,
+    password:string
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/claims/merchantid/`+this.merchant_id+`?offset=`+offset+`&limit=`+limit,
+      `https://oms-external-sit.hepsiburada.com/claims/merchantid/`+merchant_id+`?offset=`+offset+`&limit=`+limit,
       {
         method: "GET",
         headers: {
-          Authorization: this.username+":"+this.password,
-          Accept: "application/json",
+          Authorization: username+":"+password,
+          "Content-Type": "application/json",
         }
       }
     )
@@ -1074,15 +1180,20 @@ class IntegrationService {
   
   
   sendCancelInfoHepsiburada(
-    lineitemid:string
+    lineitemid:string,
+    merchant_id:string,
+    username:string,
+    password:string,
+    requestBody:any
   ): any {
     fetch(
-      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+this.merchant_id+`/id/`+lineitemid+`/cancelbymerchant`,
+      `https://oms-external-sit.hepsiburada.com/lineitems/merchantid/`+merchant_id+`/id/`+lineitemid+`/cancelbymerchant`,
       {
         method: "POST",
         headers: {
-          Authorization: this.username+":"+this.password,
-        }
+          Authorization: username+":"+password,
+        },
+        body:requestBody
       }
     )
       .then((res) => {
