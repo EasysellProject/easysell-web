@@ -52,6 +52,38 @@ import UpdateProductBasicResponse from "n11-client"
 import DetailedOrderData from "n11-client"
 import OrderSearchData from "n11-client"
 
+import UpdateDiscountValueByProductIdRequest from "n11-client";
+import GetProductStockByProductIdRequest from "n11-client";
+import StockAttribute from "n11-client";
+import StockAttributeList from "n11-client";
+import StockItemForUpdateStockWithAttributes from "n11-client";
+import StockItemForUpdateStockWithAttributesList from "n11-client";
+import ProductWithIdAndStockAttributesForUpdate from "n11-client";
+import DeleteAndUpdateStockByStockAttributesRequest from "n11-client";
+import OrderListRequest from "n11-client";
+import OrderListResponse from "n11-client";
+import ProductStatus from "n11-client";
+import RequestPagingData from "n11-client";
+import DateRange from "n11-client";
+import ProductSearch from "n11-client";
+import SearchProductsRequest from "n11-client";
+import SearchProductsResponse from "n11-client";
+import GetProductListRequest from "n11-client";
+import GetProductListResponse from "n11-client";
+import GetShipmentCompaniesRequest from "n11-client";
+import ShipmentCompanyServicePortService from "n11-client";
+import GetShipmentCompaniesResponse from "n11-client";
+import ShipmentCompanyServicePort from "n11-client";
+import GetProductBySellerCodeResponse from "n11-client";
+import UpdateDiscountValueByProductIdResponse from "n11-client";
+import GetProductStockByProductIdResponse from "n11-client";
+import DeleteAndUpdateStockByStockAttributesResponse from "n11-client";
+import ShipmentCompanyApiModel from "n11-client";
+import ShipmentCompanyData from "n11-client";
+import ProductSku from "n11-client";
+import OrderData from "n11-client";
+import StockItemList from "n11-client";
+
 class N11Integration {
      
     strAppKey: string;
@@ -359,7 +391,299 @@ class N11Integration {
         return response.getResult();
     }
     
+
+    //ismayilova
+    getShipmentCompanies(): any{
+        let request = new GetShipmentCompaniesRequest();
+        let portService = new ShipmentCompanyServicePortService()
+        let port = new ShipmentCompanyServicePort();
+        portService.getShipmentCompanyServicePortSoap11();
+        let response = new GetShipmentCompaniesResponse()
+        try {
+            response = port.getShipmentCompanies(request);
+            return response;
+            /*
+            let shipmentCompanyList: Array <ShipmentCompanyApiModel>;
+            shipmentCompanyList = response.getShipmentCompanies().getShipmentCompany();
+            
+            let sampleCompany = new ShipmentCompanyData();
+            for ( sampleCompany in shipmentCompanyList )
+            {
+                console.log(sampleCompany.getId() + " " + sampleCompany.getName() + " " + sampleCompany.getShortName());
+                 }*/
+          } catch (error) {
+            console.error(error);
+            
+          }
+        
+        
+    }
     
+    
+    getProductList(currentPageValue: number,
+        pageSizeValue: number) : any{
+
+        let requestPagingData = new RequestPagingData();
+        requestPagingData.setCurrentPage(currentPageValue);
+        requestPagingData.setPageSize(pageSizeValue);
+
+        let getProductListRequest = new GetProductListRequest();
+        getProductListRequest.setAuth(this.authentication);
+        getProductListRequest.setPagingData(requestPagingData);
+
+        let portService = new ProductServicePortService();
+        let port = new ProductServicePort();
+        port = portService.getProductServicePortSoap11();
+        let response = new GetProductBySellerCodeResponse();
+        
+        try {
+            response = port.getProductList(getProductListRequest);
+            /*let productList: Array<ProductBasic>;
+            productList = response.getProducts().getProduct();
+            let sampleProduct = new ProductBasic();
+            for ( sampleProduct in productList ) {
+                console.log("Title of product is : " + sampleProduct.getTitle());
+            }*/
+            return response;
+          } catch (error) {
+            console.error(error);
+            // expected output: ReferenceError: nonExistentFunction is not defined
+            // Note - error messages will vary depending on browser
+          }
+
+    }
+
+    searchProduct(strStartDate: string,
+        strEndDate: string,
+        strProductName: string,
+        currentPageValue: number,
+        pageSizeValue: number,
+        ): any{
+
+        let productStatus = ProductStatus.ACTIVE;
+
+        let requestPagingData = new RequestPagingData();
+        requestPagingData.setCurrentPage(currentPageValue);
+        requestPagingData.setPageSize(pageSizeValue);
+
+        let dateRange = new DateRange();
+        dateRange.setStartDate(strStartDate);
+        dateRange.setEndDate(strEndDate);
+
+        let productSearch = new ProductSearch();
+        productSearch.setName(strProductName);
+        productSearch.setApprovalStatus(productStatus);
+        productSearch.setSaleDate(dateRange);
+
+        let searchProductsRequest = new SearchProductsRequest();
+        searchProductsRequest.setPagingData(requestPagingData);
+        searchProductsRequest.setAuth(this.authentication);
+        searchProductsRequest.setProductSearch(productSearch);
+
+        let port = new ProductServicePort();
+        port = new ProductServicePortService().getProductServicePortSoap11();
+        let searchProductsResponse = new SearchProductsResponse();
+        
+
+        try {
+            searchProductsResponse = port.searchProducts(searchProductsRequest);
+            /*
+            let productList: Array<ProductBasic>;
+            productList = searchProductsResponse.getProducts().getProduct();
+
+            console.log("Founded product(s):");
+            let sampleProduct = new ProductBasic();
+            for (sampleProduct in productList
+                    ) {
+                console.log(sampleProduct.getId() + " " + sampleProduct.getTitle());
+            }*/
+            return searchProductsResponse;
+          } catch (error) {
+            console.error(error);
+            // expected output: ReferenceError: nonExistentFunction is not defined
+            // Note - error messages will vary depending on browser
+          }
+
+    }
+    updateDiscountValueByProductId(
+	    strDiscStartDate: string,
+	    strDiscEndDate: string,
+	    discountType: bigint,
+        discountValue: number,
+        productID: bigint
+	  ): any {
+
+        let sellerProductDiscount = new SellerProductDiscount();
+        sellerProductDiscount.setDiscountStartDate(strDiscStartDate);
+        sellerProductDiscount.setDiscountEndDate(strDiscEndDate);
+        sellerProductDiscount.setDiscountType(discountType);
+        sellerProductDiscount.setDiscountValue(discountValue);
+
+        let updateDiscountValueByProductIdRequest = new UpdateDiscountValueByProductIdRequest();
+        updateDiscountValueByProductIdRequest.setProductId(productID);
+        updateDiscountValueByProductIdRequest.setProductDiscount(sellerProductDiscount);
+        updateDiscountValueByProductIdRequest.setAuth(this.authentication);
+
+        let portService = new ProductServicePortService()
+        let port = new ProductServicePort();
+        port = portService.getProductServicePortSoap11();
+        let response = new UpdateDiscountValueByProductIdResponse();
+
+        try {
+            response = port.updateDiscountValueByProductId(updateDiscountValueByProductIdRequest);
+            //let discountProduct = new ProductBasic();
+            //discountProduct = response.getProduct();
+            return response;
+          } catch (error) {
+            console.error(error);
+          }
+      }
+
+      getProductStockByProductId (
+	    productIdValue: bigint,
+	  ): any {
+
+        let request = new GetProductStockByProductIdRequest();
+        request.setAuth(this.authentication);
+        request.setProductId(productIdValue);
+
+        let port = new ProductStockServicePort;
+        port = new ProductStockServicePortService().getProductStockServicePortSoap11();
+        let response = new GetProductStockByProductIdResponse();
+
+        try {
+            response = port.getProductStockByProductId(request);
+            /*
+            let stockList: Array<ProductSku>;
+            stockList = response.getStockItems().getStockItem();
+            let sampleStock = new ProductSku();
+            for (sampleStock in stockList) {
+                //System.out.println(response.getResult().getStatus().getValue() + " Quantity:" + sampleStock.getQuantity());
+            }*/
+            return response;
+          } catch (error) {
+            console.error(error);
+          }
+      }
+
+      listOrder
+      (
+	    productIdValue: bigint,
+        strStartDate: string,
+        strEndDate: string,
+        strOrderStatus: string,
+        strRecipient: string,
+        strBuyerName: string,
+        strOrderNumber: string,
+        strProductSellerCode: string,
+        currentPageValue: number,
+        pageSizeValue: number,
+
+	  ): any 
+    {
+        let orderSearchPeriod = new OrderSearchPeriod();
+        orderSearchPeriod.setStartDate(strStartDate);
+        orderSearchPeriod.setEndDate(strEndDate);
+
+        let orderDataListRequest = new OrderDataListRequest();
+        orderDataListRequest.setProductSellerCode(strProductSellerCode);
+        orderDataListRequest.setRecipient(strRecipient);
+        orderDataListRequest.setPeriod(orderSearchPeriod);
+        orderDataListRequest.setBuyerName(strBuyerName);
+        orderDataListRequest.setProductId(productIdValue);
+        orderDataListRequest.setOrderNumber(strOrderNumber);
+        orderDataListRequest.setStatus(strOrderStatus);
+
+        let pagingData = new RequestPagingData();
+        pagingData.setCurrentPage(currentPageValue);
+        pagingData.setPageSize(pageSizeValue);
+
+        let request = new OrderListRequest();
+        request.setAuth(this.authentication);
+        request.setPagingData(pagingData);
+        request.setSearchData(orderDataListRequest);
+
+        let port = new OrderServicePort();
+        port = new OrderServicePortService().getOrderServicePortSoap11();
+        let response = new OrderListResponse();
+        
+
+        try {
+            response = port.orderList(request);
+            /*
+            let orderList = Array< OrderData>();
+            orderList = response.getOrderList().getOrder(); 
+            let sampleOrder = new OrderData();
+            for ( sampleOrder in orderList
+                 ) {
+                //System.out.println("Order ID: " + sampleOrder.getId());
+            }*/
+            return response;
+          } catch (error) {
+            console.error(error);
+          }
+
+    }
+
+
+      deleteAndUpdateStockByStockAttributes (
+	    productIdValue: bigint,
+        strStoAttributeName: string,
+        strStoAttributeValue: string,
+        versionValue: bigint,
+        quantityValue: number
+	  ): any{
+        //consider attribute names: #TODO;
+
+
+        let attribute = new StockAttribute();
+        attribute.setName(strStoAttributeName);
+        attribute.setValue(strStoAttributeValue);
+
+        let attributeList = new StockAttributeList();
+        attributeList.getAttribute().add(attribute);
+
+        let item = new StockItemForUpdateStockWithAttributes();
+        item.setAttributes(attributeList);
+        item.setQuantity(quantityValue);
+        item.setVersion(versionValue);
+
+        let stockItemForUpdateStockWithAttributesList = new StockItemForUpdateStockWithAttributesList();
+        let stockList = stockItemForUpdateStockWithAttributesList.getStockItem();
+        stockList.add(item);
+        stockItemForUpdateStockWithAttributesList.getStockItem().add(stockList.get(0));
+
+
+        let productWithIdAndStockAttributesForUpdate = new ProductWithIdAndStockAttributesForUpdate();
+        productWithIdAndStockAttributesForUpdate.setId(productIdValue);
+        productWithIdAndStockAttributesForUpdate.setStockItems(stockItemForUpdateStockWithAttributesList);
+
+
+        let request = new DeleteAndUpdateStockByStockAttributesRequest();
+        request.setAuth(this.authentication);
+        request.setProduct(productWithIdAndStockAttributesForUpdate);
+
+        let port = new ProductStockServicePort();
+        port = new ProductStockServicePortService().getProductStockServicePortSoap11();
+        let response = new DeleteAndUpdateStockByStockAttributesResponse();
+        
+
+        try {
+            response = port.deleteAndUpdateStockByStockAttributes(request);
+            /*
+            let stockItemList = Array<StockItemList>();
+            stockItemList = response.getStockItems();
+            let sampleStockItemList = new StockItemList();
+            for ( sampleStockItemList in stockItemList
+                 ) {
+                sampleStockItemList.getStockItem();
+            }*/
+            return response;
+          } catch (error) {
+            console.error(error);
+          }
+
+    }
     
 
     getIntegrations(): Integration[] {
