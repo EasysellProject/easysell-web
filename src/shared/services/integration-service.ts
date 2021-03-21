@@ -6,6 +6,8 @@ class IntegrationService {
         
     }
 
+    //we can start our Trendyol integration from here
+    
     getIntegrations(): Integration[] {
         // implement here
         return []
