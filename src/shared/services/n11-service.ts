@@ -50,7 +50,7 @@ import OrderDetailResponse from "n11-client"
 import SaveProductResponse from "n11-client"
 import UpdateProductBasicResponse from "n11-client"
 import DetailedOrderData from "n11-client"
-import OrderSearchData from "n11-client"
+import OrderSearchData from "n11-client";
 
 import UpdateDiscountValueByProductIdRequest from "n11-client";
 import GetProductStockByProductIdRequest from "n11-client";
@@ -92,9 +92,7 @@ class N11Integration {
 
     constructor() 
     {
-        this.authentication = new Authentication();
-        this.authentication.setAppKey(this.strAppKey);
-        this.authentication.setAppSecret(this.strAppSecret);
+        
     }
 
     getProductInfoWithProductID(productIdValue: bigint): any
@@ -265,12 +263,11 @@ class N11Integration {
         orderDetail = orderDetailResponse.getOrderDetail();
         console.log("Order number: " + orderDetail.getOrderNumber());
 
-        let orderItemList: OrderSearchData[] = [];
+        let orderItemList: Array<OrderSearchData>;
         orderItemList = orderDetail.getItemList().getItem();
         let sampleItem = new OrderSearchData();
         for (sampleItem in orderItemList ) 
         {
-
             console.log("Order item ID: " + sampleItem.getId());
         }
         return orderDetailResponse.getResult();
@@ -688,7 +685,9 @@ class N11Integration {
 
     getIntegrations(): Integration[] {
         // implement here
-
+        this.authentication = new Authentication();
+        this.authentication.setAppKey(this.strAppKey);
+        this.authentication.setAppSecret(this.strAppSecret);
         return []
     }
 }
