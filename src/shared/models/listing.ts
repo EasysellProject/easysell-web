@@ -1,4 +1,4 @@
-import { MarketPlace } from "./Integration";
+import { MarketPlace } from "./integration";
 import { CargoCompany, Product } from "./product";
 
 export class Listing extends Product {

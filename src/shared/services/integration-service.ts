@@ -1,7 +1,7 @@
-import { Integration } from "../models/Integration";
+import { Integration } from "../models/integration";
 
 class IntegrationService {
-  constructor() {}
+  constructor() { }
 
   getIntegrations(): Integration[] {
     // implement here

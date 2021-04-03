@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import { User } from "../models/user";
 import firebase from "../utils/firebase";
 
 class UserService {

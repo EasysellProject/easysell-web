@@ -1,4 +1,4 @@
-import { MarketPlace } from "./Integration";
+import { MarketPlace } from "./integration";
 
 export class Product {
   _id: string;
