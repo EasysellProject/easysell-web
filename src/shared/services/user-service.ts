@@ -1,13 +1,10 @@
-import { User } from "../models/user";
-import firebase from '../utils/firebase'
+import { User } from "../models/User";
+import firebase from "../utils/firebase";
 
 class UserService {
+  currentUser: User = null;
 
-    currentUser: User = null;
-
-    constructor(){
-        
-    }
+  constructor() {}
 }
 
 export default new UserService();
