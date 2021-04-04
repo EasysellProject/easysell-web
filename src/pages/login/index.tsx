@@ -56,7 +56,7 @@ function Login(): JSX.Element {
             .then(user => {
                 setLoading(false)
                 //TODO go to main page
-                navigation.push('/listings')
+                navigation.replace('/listings')
             })
             .catch(err => {
                 setLoading(false)

@@ -31,6 +31,9 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                 <SimpleText textID={listing.title} additionalStyle={styles.text} />
             </TableCell>
             <TableCell align='center' style={{ borderColor: APP_COLORS.textGreen }}>
+                <SimpleText textID={listing.desc} additionalStyle={styles.text} />
+            </TableCell>
+            <TableCell align='center' style={{ borderColor: APP_COLORS.textGreen }}>
                 <SimpleText textID={'' + listing.price} additionalStyle={styles.text} />
             </TableCell>
             <TableCell align='center' style={{ borderColor: APP_COLORS.textGreen }}>
