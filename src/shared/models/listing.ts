@@ -7,6 +7,7 @@ export class Listing extends Product {
   cargoCompanies: CargoCompany[];
   marketPlace: MarketPlace[];
   createdAt: Date;
+  currency: "TL" | "$"
 
   constructor(details?: any) {
     super(details);
@@ -14,7 +15,7 @@ export class Listing extends Product {
     this.stock = details.stock;
     this.cargoCompanies = details.cargoCompanies;
     this.marketPlace = details.marketPlace;
-    console.log("created at ", new Date(details.createdAt));
+    this.currency = details.currency;
     this.createdAt = new Date(details.createdAt);
   }
 }

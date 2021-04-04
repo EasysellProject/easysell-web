@@ -12,7 +12,7 @@ interface SimpleTextProps {
 function SimpleText(props: SimpleTextProps): JSX.Element {
     const intl = useIntl()
     const { textID, capitalized, additionalStyle, required } = props
-    let formattedText = intl.formatMessage({ id: textID });
+    let formattedText = intl.formatMessage({ id: textID || 'Dummy' });
     if (capitalized)
         formattedText = formattedText.toUpperCase()
     if (required)

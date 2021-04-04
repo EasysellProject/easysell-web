@@ -19,7 +19,7 @@ const DRAWER_WIDTH = 256
 function Sidebar(props: SidebarProps): JSX.Element {
     const { item } = props
     const [windowDimensions, setWindowDimensions] = useState<{ width: number, height: number }>(Helper.getWindowDimensions());
-    const [expanded, setExpanded] = useState<boolean>(true);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     const sidebar = useRef(null)
 

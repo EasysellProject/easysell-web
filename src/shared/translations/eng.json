@@ -38,11 +38,14 @@
 	"hepsiburada": "Hepsiburada",
 	"total": "Total:",
 	"filter-marketplace": "Filter marketplace",
+	"product-info": "Product Information",
+	"created-at": "Created At",
 	"price": "Price",
 	"description": "Description",
 	"currency": "Currency",
 	"quantity": "Quantity",
 	"marketplace": "Marketplace",
 	"title": "Title",
-	"test": "TEST"
+	"test": "TEST",
+	"actions":"Actions"
 }

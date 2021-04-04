@@ -1,8 +1,6 @@
-import React, { Children, JSXElementConstructor, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { useState } from 'react';
-import { Helper } from '../../libs/helper'
 import Button from '../button'
-import SimpleText from '../text/simple-text'
 import styles from './styles'
 import { Listing } from '../../models/listing'
 import Input from '../input';

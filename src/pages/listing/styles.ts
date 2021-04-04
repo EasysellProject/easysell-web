@@ -21,7 +21,7 @@ export default {
         ...WEB_STYLES.flexRow,
         justifyContent: "space-between",
         height: "15%",
-        flex: 1,
+        width: '100%',
         ...WEB_STYLES.flexWrap
     } as React.CSSProperties,
     search_area: {

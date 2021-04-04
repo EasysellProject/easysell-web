@@ -37,5 +37,7 @@
 	"amazon": "Amazon",
 	"hepsiburada": "Hepsiburada",
 	"total": "Toplam:",
-	"filter-marketplace": "Pazar yeri filtrele"
+	"filter-marketplace": "Pazar yeri filtrele",
+	"product-info":"Ürün bilgisi",
+	"actions":"İşlemler"
 }
