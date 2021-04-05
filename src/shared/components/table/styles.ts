@@ -7,11 +7,13 @@ export default {
         width: '100%',
         alignSelf: 'flex-start',
         flexDirection: 'row',
+        paddingRight: 6
     } as CSSProperties,
     headerText: {
         flex: 1,
         textAlign: 'center',
         color: APP_COLORS.textGreen,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 16
     } as CSSProperties,
 }

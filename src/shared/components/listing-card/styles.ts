@@ -13,6 +13,7 @@ export default {
     alignItems: "center",
     borderRadius: 12,
     marginBottom: 12,
+    paddingRight: 6
   } as CSSProperties,
   indexContainer: {
     display: "flex",
@@ -45,7 +46,6 @@ export default {
     color: APP_COLORS.borderGray,
   } as CSSProperties,
   indexText: {
-    height: '100%',
     color: APP_COLORS.borderGray,
     fontSize: 18,
   },
