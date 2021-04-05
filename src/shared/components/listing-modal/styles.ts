@@ -1,19 +1,21 @@
+import { CSSProperties } from "react";
 import { APP_COLORS } from "../../styles";
 
 export default {
   backGrnd: {
-    position: "fixed" as "fixed",
+    position: "fixed",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
     background: "rgba(0, 0, 0, 0.6)",
-  },
+    zIndex: 1,
+  } as CSSProperties,
   modalCard: {
     padding: 24,
     display: "flex",
     justifyContent: "flex-end",
-    position: "fixed" as "fixed",
+    position: "fixed",
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: APP_COLORS.textGreen,
@@ -25,7 +27,8 @@ export default {
     top: "50%",
     left: "50%",
     transform: "translate(-50%,-50%)",
-  },
+    zIndex: 2
+  } as CSSProperties,
   button: {
     width: "100%",
     justifyContent: "center",

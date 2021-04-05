@@ -97,11 +97,12 @@ function EnhancedTableHead(props: TableHeaderProps) {
 }
 
 interface TableProps {
-    data: Listing[]
+    data: Listing[],
+    onEditListing: (listing: Listing) => void
 }
 
 export default function EnhancedTable(props: TableProps) {
-    const { data } = props;
+    const { data, onEditListing } = props;
     const [order, setOrder] = useState<"asc" | "desc">('asc');
     const [orderBy, setOrderBy] = useState('index');
     const [page, setPage] = useState(0);
@@ -162,7 +163,7 @@ export default function EnhancedTable(props: TableProps) {
                     stableSort(data, getComparator(order, orderBy))
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((listing, index) => (
-                            <ListingCard tooltipVisible={tooltipOpened && listing._id == tooltipOpened._id} listing={listing} index={listing.index} onMorePressed={(listing) => {
+                            <ListingCard editListing={() => onEditListing(listing)} tooltipVisible={tooltipOpened && listing._id == tooltipOpened._id} listing={listing} index={listing.index} onMorePressed={(listing) => {
                                 if (tooltipOpened && listing._id == tooltipOpened._id)
                                     setTooltipOpened(null);
                                 else

@@ -1,9 +1,10 @@
-import React, { CSSProperties, ReactNode } from 'react'
+import React, { CSSProperties, ReactNode, useState } from 'react'
 import MUIButton from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import styles from './styles'
+import { APP_COLORS } from '../../styles';
 
 interface ButtonProps {
     buttonStyle?: CSSProperties,
@@ -14,16 +15,24 @@ interface ButtonProps {
 
 function Button(props: ButtonProps): JSX.Element {
     const { buttonStyle, onPress, children, loading } = props
-
+    const [hovered, setHovered] = useState<boolean>(false);
 
     return (
-        <MUIButton style={{ ...styles.container, ...buttonStyle, textTransform: 'none' }} onClick={onPress}>
+        <MUIButton
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+                ...styles.container,
+                ...buttonStyle,
+                textTransform: 'none',
+                backgroundColor: hovered ? APP_COLORS.HOVER.gray : (buttonStyle.backgroundColor || 'white')
+            }} onClick={onPress}>
             {
                 loading ? (
                     <CircularProgress size={16} />
                 ) : (
-                        children
-                    )
+                    children
+                )
             }
         </MUIButton >
     )

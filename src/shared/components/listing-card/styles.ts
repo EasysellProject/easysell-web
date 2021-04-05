@@ -65,13 +65,14 @@ export default {
     boxShadow: '0px 2px 4px 0px gray',
     display: 'flex',
     flexDirection: 'column',
-    paddingLeft: 12,
-    paddingRight: 12,
+
     paddingTop: 20,
     paddingBottom: 12
   } as CSSProperties,
   tooltipButton: {
     display: 'flex',
+    paddingLeft: 12,
+    paddingRight: 12,
     flex: 1,
     marginBottom: 12,
     flexDirection: 'row',
