@@ -21,6 +21,7 @@
     "react-flags-select": "^1.1.13",
     "react-icons": "^4.1.0",
     "react-intl": "^5.10.9",
+    "react-lines-ellipsis": "^0.14.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "rxjs": "^6.6.3",

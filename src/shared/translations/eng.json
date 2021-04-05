@@ -47,5 +47,8 @@
 	"marketplace": "Marketplace",
 	"title": "Title",
 	"test": "TEST",
-	"actions":"Actions"
+	"actions":"Actions",
+	"edit-listing":"Edit Listing",
+	"copy-listing":"Duplicate",
+	"delete-listing":"Remove Listing"
 }

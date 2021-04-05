@@ -39,5 +39,8 @@
 	"total":"Toplam:",
 	"filter-marketplace":"Bazar yeri seç",
 	"product-info":"Məlumat",
-	"actions":"Əməliyyatlar"
+	"actions":"Əməliyyatlar",
+	"edit-listing":"Düzəliş Et",
+	"copy-listing":"Kopyala",
+	"delete-listing":"Sil"
 }

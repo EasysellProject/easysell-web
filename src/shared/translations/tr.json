@@ -38,6 +38,9 @@
 	"hepsiburada": "Hepsiburada",
 	"total": "Toplam:",
 	"filter-marketplace": "Pazar yeri filtrele",
-	"product-info":"Ürün bilgisi",
-	"actions":"İşlemler"
+	"product-info": "Ürün bilgisi",
+	"actions": "İşlemler",
+	"edit-listing": "Listelemeyi Düzenle",
+	"copy-listing": "Listelemeyi Kopyala",
+	"remove-listing": "Listelemeyi Kaldır"
 }
