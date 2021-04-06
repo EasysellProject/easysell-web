@@ -40,7 +40,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
     }
     function Signout(){
         AuthService.Logout().then(()=>{
-            console.log("logged out");
+            localStorage.removeItem("userID");
             history.push("/")
         }).catch(err=>{
             console.log(err.toString());

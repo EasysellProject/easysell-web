@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Landing from './pages/landing';
 import Listing from './pages/listing';
 import Login from './pages/login';
@@ -20,11 +20,11 @@ function App(props: AppProps) {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={Landing} />
-          <Route path='/login' component={Login} />
-          <Route path='/listings' component={Listing} />
-          <Route path='/register' component={Register} />
-          <Route path='/integrations' component={Integration} />
+          <Route exact path='/' render={()=>(localStorage.getItem("userID")?(<Redirect to ="/listings"/>):(<Landing/>))} />
+          <Route path='/login' render={()=>(localStorage.getItem("userID")?(<Redirect to ="/listings"/>):(<Login/>))}/>
+          <Route path='/listings' render={()=>(localStorage.getItem("userID")? (<Listing/>): (<Redirect to ="/login"/>))}/>
+          <Route path='/register' render={()=>(localStorage.getItem("userID")?(<Redirect to ="/listings"/>):(<Register/>))}/>
+          <Route path='/integrations' render={()=>(localStorage.getItem("userID")? (<Integration/>): (<Redirect to ="/login"/>))}/>
         </Switch>
       </BrowserRouter>
     </div>
