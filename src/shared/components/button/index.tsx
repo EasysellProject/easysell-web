@@ -25,7 +25,7 @@ function Button(props: ButtonProps): JSX.Element {
                 ...styles.container,
                 ...buttonStyle,
                 textTransform: 'none',
-                backgroundColor: hovered ? APP_COLORS.HOVER.gray : (buttonStyle.backgroundColor || 'white')
+                backgroundColor: hovered ? APP_COLORS.HOVER.gray : (buttonStyle?.backgroundColor || 'white')
             }} onClick={onPress}>
             {
                 loading ? (

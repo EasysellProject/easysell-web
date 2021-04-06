@@ -1,40 +1,46 @@
 import React from 'react'
 import { useState } from "react";
-import styles from './styles'
-import Input from "../../shared/components/input";
+import { RiAddCircleLine } from 'react-icons/ri'
+
+import { MarketPlace } from '../../shared/models/integration';
+import SimpleText from "../../shared/components/text/simple-text";
 import Button from "../../shared/components/button";
 import DropDown from "../../shared/components/dropdown";
-import SimpleText from "../../shared/components/text/simple-text";
 import Search from "../../shared/components/search"
-import { GoSearch } from 'react-icons/go'
-import { RiAddCircleLine } from 'react-icons/ri'
 import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
+import styles from './styles'
+import { useIntl } from 'react-intl';
 
 
 interface ListingHeaderProps {
-
+    onSearchChanged: (text: string) => void;
+    onFilter: (market: string) => void;
+    listingCount: number
 }
 
 function ListingHeader(props: ListingHeaderProps): JSX.Element {
+    const { onSearchChanged, onFilter, listingCount } = props;
+    const intl = useIntl();
 
     const [searchText, setSearchText] = useState('');
     const [marketPlace, setMarketPlace] = useState('');
-    const data = [{ value: "trendyol", text: "trendyol", key: "1" },
+    const data = [{ value: "Trendyol", text: "Trendyol", key: "1" },
     { value: "N11", text: "N11", key: "2" },
-    { value: "hepsiburada", text: "hepsiburada", key: "3" },
-    { value: "amazon", text: "amazon", key: "4" }
+    { value: "Hepsiburada", text: "Hepsiburada", key: "3" },
+    { value: "Amazon", text: "Amazon", key: "4" }
     ]
-    const [listingCount, setListingCount] = useState(0);
 
-    const filterMarketPlace = (market_place: string) => {
-
+    function filterMarketPlace(marketPlace: string): void {
+        onFilter(marketPlace)
+        setMarketPlace(marketPlace)
     }
 
-    const onSearchPress = () => {
+    function onSearchPress(): void {
         console.log("search button pressed")
         console.log(searchText);
+        onSearchChanged(searchText);
     }
-    const createNewListing = () => {
+    function createNewListing(): void {
         console.log("create new button pressed")
     }
     return (
@@ -69,10 +75,9 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     data={data}
                     value={marketPlace}
                     onChange={(e) => {
-                        setMarketPlace(e.target.value)
-                        filterMarketPlace(marketPlace)
+                        filterMarketPlace(e.target.value)
                     }}
-                    label={"filter-marketplace"}
+                    label={intl.formatMessage({ id: 'filter-marketplace' })}
                     DropDownStyle={styles.drop_down_style}
                 />
                 <Search

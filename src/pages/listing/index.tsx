@@ -4,6 +4,7 @@ import DashboardLayout from '../../shared/components/dashboard-layout';
 import { Listing } from '../../shared/models/listing'
 import Table from '../../shared/components/table';
 import ListingModal from '../../shared/components/listing-modal';
+import { MarketPlace } from '../../shared/models/integration';
 
 interface ListingProps {
 
@@ -30,6 +31,7 @@ function ListingPage(props: ListingProps): JSX.Element {
 
     const [listings, setListings] = useState<Listing[]>([]);
     const [tableData, setTableData] = useState<any[]>([]);
+    const [filteredData, setFilteredData] = useState<any[]>([]);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [selectedListing, setSelectedListing] = useState<Listing>();
     const [createModalVisible, setCreateModalVisible] = useState(false);
@@ -114,6 +116,7 @@ function ListingPage(props: ListingProps): JSX.Element {
             data.push(details);
         }
         setTableData(data);
+        setFilteredData(data);
         return listings;
     }
 
@@ -128,12 +131,32 @@ function ListingPage(props: ListingProps): JSX.Element {
         setSelectedListing(listing)
     }
 
+    function onSearchListing(text: string): void {
+        let filteredListings = tableData;
+        if (text) {
+            filteredListings = tableData.filter(listing =>
+                listing.title.toLowerCase().includes(text) ||
+                listing.desc?.toLowerCase().includes(text) ||
+                listing.currency.toLowerCase().includes(text) ||
+                listing.marketPlace.filter(market => market.toLowerCase().includes(text)).length > 0
+            )
+        }
+        setFilteredData(filteredListings);
+    }
+
+    function onFilterListing(market: string): void {
+        let filteredListings = tableData;
+        if (market)
+            filteredListings = filteredListings.filter(listing => listing.marketPlace.findIndex(marketPlace => marketPlace == market) > -1);
+        setFilteredData(filteredListings);
+    }
+
     return (
         <DashboardLayout route='Listing'>
             <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-                <ListingHeader />
+                <ListingHeader listingCount={listings.length} onSearchChanged={onSearchListing} onFilter={onFilterListing} />
                 <div style={{ marginLeft: 24, marginRight: 24, marginTop: 40, flex: 1, display: 'flex', paddingBottom: 12 }}>
-                    <Table data={tableData} onEditListing={editListing} />
+                    <Table data={filteredData} onEditListing={editListing} />
                 </div>
             </div>
             {
