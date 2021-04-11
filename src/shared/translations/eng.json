@@ -50,5 +50,7 @@
 	"actions":"Actions",
 	"edit-listing":"Edit Listing",
 	"copy-listing":"Duplicate",
-	"delete-listing":"Remove Listing"
+	"delete-listing":"Remove Listing",
+	"choose-file":"Choose File",
+	"finalize":"Finalize"
 }

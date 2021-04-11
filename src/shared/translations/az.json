@@ -42,5 +42,7 @@
 	"actions":"Əməliyyatlar",
 	"edit-listing":"Düzəliş Et",
 	"copy-listing":"Kopyala",
-	"delete-listing":"Sil"
+	"delete-listing":"Sil",
+	"choose-file":"Choose File------------------------------------------------------",
+	"finalize":"Finalize------------------------------------------------------------"
 }
