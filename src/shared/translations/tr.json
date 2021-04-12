@@ -42,5 +42,6 @@
 	"actions": "İşlemler",
 	"edit-listing": "Listelemeyi Düzenle",
 	"copy-listing": "Listelemeyi Kopyala",
-	"remove-listing": "Listelemeyi Kaldır"
+	"remove-listing": "Listelemeyi Kaldır",
+	"logout": "Çıkış yap"
 }

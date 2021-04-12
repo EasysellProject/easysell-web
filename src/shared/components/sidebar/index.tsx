@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import logo from "../../../assets/images/logo_wordless.png";
 import { CgList } from 'react-icons/cg'
 import { AiOutlineShoppingCart, AiOutlineAppstoreAdd, AiOutlineUser, AiOutlineInfoCircle } from 'react-icons/ai'
-
+import { useHistory } from "react-router-dom";
 import { APP_COLORS, WEB_STYLES } from '../../styles';
 import styles from './styles'
 import SimpleText from '../text/simple-text';
 import { Link } from 'react-router-dom';
 import { Helper } from '../../libs/helper';
+import AuthService from "../../services/auth-service";
+import MUIButton from '@material-ui/core/Button'
 
 export type SidebarItem = 'Listing' | 'Order' | 'Profile' | 'Integration' | 'About'
 
@@ -17,6 +19,7 @@ interface SidebarProps {
 
 const DRAWER_WIDTH = 256
 function Sidebar(props: SidebarProps): JSX.Element {
+    const history = useHistory();
     const { item } = props
     const [windowDimensions, setWindowDimensions] = useState<{ width: number, height: number }>(Helper.getWindowDimensions());
     const [expanded, setExpanded] = useState<boolean>(false);
@@ -34,6 +37,14 @@ function Sidebar(props: SidebarProps): JSX.Element {
 
     function handleResize() {
         setWindowDimensions(Helper.getWindowDimensions());
+    }
+    function Signout() {
+        AuthService.logout().then(() => {
+            localStorage.removeItem("userID");
+            history.push("/")
+        }).catch(err => {
+            console.log(err.toString());
+        })
     }
 
     function renderMenuIcon(): JSX.Element {
@@ -140,6 +151,15 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'Order' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link>
+                                <MUIButton
+                                    style={styles.logoutButton}
+                                    onClick={Signout}
+                                >
+                                    <SimpleText
+                                        textID={"Logout"}
+                                        additionalStyle={styles.logoutButtonText}
+                                    />
+                                </MUIButton>
                             </div>
                         )
                     }

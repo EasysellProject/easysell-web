@@ -32,5 +32,14 @@ export default {
     mainBlock: {
         backgroundColor: '#F7F8FC',
         padding: 30
+    },
+    logoutButton:{
+        marginTop:30,
+        backgroundColor:APP_COLORS.grayButton,
+    },
+    logoutButtonText:{
+        color: APP_COLORS.gray,
+        fontFamily: "Times New Roman", 
+        fontSize: 14
     }
 }

@@ -55,6 +55,8 @@ function Login(): JSX.Element {
         AuthService.signIn(email, pass)
             .then(user => {
                 setLoading(false)
+                UserService.currentUser = user
+                localStorage.setItem("userID", user._id)
                 //TODO go to main page
                 navigation.replace('/listings')
             })
@@ -197,49 +199,49 @@ function Login(): JSX.Element {
                     </div>
                 </div>
             ) : (
+                <div
+                    style={{
+                        ...WEB_STYLES.flexRow,
+                        paddingTop: !isMobile() ? 160 : 40,
+                        paddingLeft: isMobile() ? 0 : 40,
+                    }}
+                >
                     <div
                         style={{
-                            ...WEB_STYLES.flexRow,
-                            paddingTop: !isMobile() ? 160 : 40,
-                            paddingLeft: isMobile() ? 0 : 40,
+                            ...styles.loginContent,
                         }}
                     >
-                        <div
+                        <img
+                            src={logo}
+                            alt="logo"
                             style={{
-                                ...styles.loginContent,
+                                width: 200,
                             }}
-                        >
-                            <img
-                                src={logo}
-                                alt="logo"
-                                style={{
-                                    width: 200,
-                                }}
-                            />
-                            <HeaderText textID="login" additionalStyle={styles.textStyle} />
-                            <HeaderText
-                                textID="enter-creds"
-                                additionalStyle={{ fontSize: 24, ...styles.textStyle }}
-                            />
-                            {renderInputs()}
-                        </div>
-                        {
-                            !isTablet() && (
-                                <div style={{
-                                    ...WEB_STYLES.flexColum,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    paddingLeft: -20,
-                                    marginTop: 150,
-                                    flex: 1,
-                                }}>
-                                    <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
-                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
-                                </div>
-                            )
-                        }
+                        />
+                        <HeaderText textID="login" additionalStyle={styles.textStyle} />
+                        <HeaderText
+                            textID="enter-creds"
+                            additionalStyle={{ fontSize: 24, ...styles.textStyle }}
+                        />
+                        {renderInputs()}
                     </div>
-                )}
+                    {
+                        !isTablet() && (
+                            <div style={{
+                                ...WEB_STYLES.flexColum,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                paddingLeft: -20,
+                                marginTop: 150,
+                                flex: 1,
+                            }}>
+                                <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
+                                <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
+                            </div>
+                        )
+                    }
+                </div>
+            )}
         </div>
     );
 }

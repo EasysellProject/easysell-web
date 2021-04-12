@@ -1,10 +1,11 @@
-import { User } from "../models/user";
-import firebase from "../utils/firebase";
-import { LangCode } from "../utils/localization";
-import UserService from "./user-service";
-class AuthService {
+import { User } from '../models/user'
+import firebase from '../utils/firebase'
+import { LangCode } from '../utils/localization'
+import UserService from './user-service'
 
-  async register(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
+
+class AuthService {
+  async createUser(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
     try {
       let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
       console.log('res ', res)
@@ -24,36 +25,13 @@ class AuthService {
       throw err
     }
   }
-  async createUser(
-    email: string,
-    password: string,
-    firstname: string,
-    lastname: string,
-    lang: LangCode
-  ) {
+
+  async logout() {
     try {
-      let res = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      console.log("res ", res);
-      //TODO save user to firestore
-      let currentUser = {
-        firstname,
-        lastname,
-        lang,
-        email,
-        _id: res.user?.uid,
-      };
-      await firebase
-        .firestore()
-        .collection("users")
-        .doc(currentUser._id)
-        .set({ firstname, lastname, lang, email, _id: res.user?.uid });
-      UserService.currentUser = new User(currentUser);
-      return { result: "success" };
+      let res = await firebase.auth().signOut();
+      console.log("logout successfull");
     } catch (err) {
-      console.log("err ", err);
-      throw err;
+      throw err
     }
   }
 

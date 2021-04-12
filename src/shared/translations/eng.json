@@ -50,5 +50,8 @@
 	"actions":"Actions",
 	"edit-listing":"Edit Listing",
 	"copy-listing":"Duplicate",
-	"delete-listing":"Remove Listing"
+	"delete-listing":"Remove Listing",
+	"Type-in-to-search":"Type in to search",
+	"Select-an-option:":"Select an option:",
+	"logout":"Logout"
 }
