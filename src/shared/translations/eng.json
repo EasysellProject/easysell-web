@@ -51,7 +51,7 @@
 	"edit-listing":"Edit Listing",
 	"copy-listing":"Duplicate",
 	"delete-listing":"Remove Listing",
-	"Type-in-to-search":"Type in to search",
-	"Select-an-option:":"Select an option:",
-	"logout":"Logout"
+	"logout":"Logout",
+	"choose-file":"Choose File",
+	"finalize":"Finalize"
 }

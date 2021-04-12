@@ -5,6 +5,7 @@ import styles from './styles'
 import { Listing } from '../../models/listing'
 import Input from '../input';
 import { Dialog, Modal } from '@material-ui/core';
+import SimpleText from '../text/simple-text';
 interface ListingModalProps {
     listing: Listing;
     header: string,
@@ -18,14 +19,14 @@ function ListingModal(props: ListingModalProps): JSX.Element {
     return (
         <Dialog open onClose={closeModal}>
             <div style={styles.modalCard}>
-                <div style={{ width: '100%', padding: 20 }}>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <h1 style={{ display: 'flex', justifyContent: 'center', width: "100%" }}>{header}</h1>
+                <div style={styles.topContainer}>
+                    <div style={styles.headerContainer}>
+                        <SimpleText textID={'' + header} additionalStyle={styles.headerText}></SimpleText>
                         {children}
                     </div>
                     <Input
-                        additionalStyles={{ width: '100%', margin: '10' }}
-                        inputStyles={{ maxWidth: '100%', width: '100%' }}
+                        additionalStyles={styles.titleDescInputAdditional}
+                        inputStyles={styles.titleDescInput}
                         value={listingData.title}
                         placeholder="title"
                         showLabel
@@ -35,8 +36,8 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             setListing({ ...listingData, ...change })
                         }} />
                     <Input
-                        additionalStyles={{ width: '100%', margin: '10' }}
-                        inputStyles={{ maxWidth: '100%', width: '100%' }}
+                        additionalStyles={styles.titleDescInputAdditional}
+                        inputStyles={styles.titleDescInput}
                         value={listingData.desc}
                         placeholder="description"
                         showLabel
@@ -45,10 +46,10 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             let change = { desc: test }
                             setListing({ ...listingData, ...change })
                         }} />
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div style={styles.priceCurrQuantity}>
                         <Input
-                            additionalStyles={{ width: '40%', margin: '10' }}
-                            inputStyles={{ minWidth: '0', maxWidth: '100%', width: '100%' }}
+                            additionalStyles={styles.priceInputAdditional}
+                            inputStyles={styles.priceInput}
                             value={'' + listingData.price}
                             placeholder="price"
                             showLabel
@@ -58,8 +59,8 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                                 setListing({ ...listingData, ...change })
                             }} />
                         <Input
-                            additionalStyles={{ width: '10%', margin: '10' }}
-                            inputStyles={{ minWidth: '0', maxWidth: '100%', width: '100%' }}
+                            additionalStyles={styles.currencyInputAdditional}
+                            inputStyles={styles.currencyInput}
                             value={"TL"}
                             placeholder="currency"
                             showLabel
@@ -68,8 +69,8 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                                 console.log("2");
                             }} />
                         <Input
-                            additionalStyles={{ width: '40%', margin: '10' }}
-                            inputStyles={{ minWidth: '0', maxWidth: '100%', width: '100%' }}
+                            additionalStyles={styles.quantityInputAdditional}
+                            inputStyles={styles.quantityInput}
                             value={"" + listingData.stock}
                             placeholder="quantity"
                             showLabel
@@ -80,8 +81,8 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             }} />
                     </div>
                     <Input
-                        additionalStyles={{ margin: '10' }}
-                        inputStyles={{ maxWidth: '100%', width: '50%' }}
+                        additionalStyles={styles.marketplaceInputAdditional}
+                        inputStyles={styles.marketplaceInput}
                         value={'' + listingData.marketPlace[0]}
                         placeholder="marketplace"
                         showLabel
@@ -94,18 +95,18 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                                 change[0] = 'Hepsiburada'
                             setListing({ ...listingData, ...change })
                         }} />
-                    <div style={{ padding: 40, display: "flex", justifyContent: "space-between" }} >
+                    <div style={styles.choosefileButton} >
                         <img src={listing.img} style={styles.image} />
                         <Button buttonStyle={styles.chooseFileButton} onPress={() => console.log(listingData)}>
-                            <h6>Choose File</h6>
+                            <SimpleText textID="choose-file"></SimpleText>
                         </Button>
                     </div>
-                    <div style={{ padding: 20 }}>
+                    <div style={styles.finalizeButton}>
                         <Button buttonStyle={styles.button} onPress={() => {
                             console.log(listingData)
                         }
                         }>
-                            <h4>Finalize</h4>
+                            <SimpleText textID="finalize"></SimpleText>
                         </Button>
                     </div>
                 </div>

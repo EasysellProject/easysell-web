@@ -43,5 +43,7 @@
 	"edit-listing": "Listelemeyi Düzenle",
 	"copy-listing": "Listelemeyi Kopyala",
 	"remove-listing": "Listelemeyi Kaldır",
-	"logout": "Çıkış yap"
+	"logout": "Çıkış yap",
+	"choose-file":"Dosya Seç",
+	"finalize":"Tamamlandı"
 }

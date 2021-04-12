@@ -2,6 +2,33 @@ import { CSSProperties } from "react";
 import { APP_COLORS } from "../../styles";
 
 export default {
+  topContainer:{ width: '100%', padding: 20 },
+
+  titleDescInputAdditional:{ width: '100%', margin: '10', maxWidth:"100%"  },
+  titleDescInput:{ width: '100%', margin: '10' , maxWidth:"100%" },
+
+  priceCurrQuantity:{ display: "flex", flexDirection: 'row' } as CSSProperties,
+
+  priceInputAdditional:{ width: '40%', margin: '10', maxWidth:"100%"  },
+  priceInput:{ minWidth: '0', maxWidth: '100%', width: '100%' },
+
+
+  currencyInputAdditional:{ width: '10%', margin: '10' },
+  currencyInput:{ minWidth: '0', maxWidth: '100%', width: '100%' },
+
+  quantityInputAdditional:{ width: '40%', margin: '10' },
+  quantityInput:{ minWidth: '0', maxWidth: '100%', width: '100%' },
+
+  marketplaceInputAdditional:{ margin: '10' },
+  marketplaceInput:{ maxWidth: '100%', width: '50%' },
+
+  choosefileButton:{ padding: 40, display: "flex", justifyContent: "space-between" } as CSSProperties,
+
+  finalizeButton:{ padding: 20 },
+
+  headerContainer:{ display: "flex", flexDirection: "row", justifyContent: "space-between" }as CSSProperties,
+  headerText:{ display: 'flex', justifyContent: 'center', width: "100%", fontSize:30} as CSSProperties,
+
   backGrnd: {
     position: "fixed",
     top: 0,
