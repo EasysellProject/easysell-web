@@ -1,9 +1,10 @@
-import { User } from "../models/user";
-import { Listing } from "../models/listing"
-import firebase from "../utils/firebase";
-import { LangCode } from "../utils/localization";
-import UserService from "./user-service";
-import { RiLandscapeFill, RiLayout5Fill } from "react-icons/ri";
+import { User } from '../models/user'
+import firebase from '../utils/firebase'
+import { LangCode } from '../utils/localization'
+import UserService from './user-service'
+import {Listing} from '../models/listing'
+
+
 class AuthService {
   async register(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
     try {
@@ -26,6 +27,16 @@ class AuthService {
       throw err
     }
   }
+
+  async logout() {
+    try {
+      let res = await firebase.auth().signOut();
+      console.log("logout successfull");
+    } catch (err) {
+      throw err
+    }
+  }
+
   async signIn(email: string, password: string) {
     try {
       let res = await firebase.auth().signInWithEmailAndPassword(email, password)
