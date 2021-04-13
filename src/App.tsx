@@ -15,7 +15,7 @@ interface AppProps {
   supportedLanguages: any
 }
 
-
+//comment
 function App(props: AppProps) {
   return (
     <div>
