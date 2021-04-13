@@ -1,6 +1,7 @@
 import IntegrationService from "../services/integration-service";
 import { LangCode } from "../utils/localization";
 import { Integration } from "./integration";
+import { Listing } from "./listing"
 
 export class User {
   _id: string;
@@ -9,6 +10,7 @@ export class User {
   email: string;
   lang: LangCode;
   integrations: Integration[];
+  listings: Listing[] = [];
 
   constructor(details?: any) {
     this._id = details._id;
@@ -17,6 +19,7 @@ export class User {
     this.email = details.email;
     this.lang = details.lang;
     this.integrations = IntegrationService.getIntegrations();
+    this.listings = details.listings.map(listing => new Listing(listing));
   }
 
   get name(): string {
