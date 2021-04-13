@@ -35,7 +35,7 @@ export default {
     },
     logoutButton:{
         marginTop:30,
-        backgroundColor:APP_COLORS.grayButton,
+        backgroundColor:APP_COLORS.BUTTONS.grayButton,
     },
     logoutButtonText:{
         color: APP_COLORS.gray,

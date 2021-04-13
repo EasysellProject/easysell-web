@@ -5,7 +5,7 @@ import UserService from './user-service'
 
 
 class AuthService {
-  async createUser(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
+  async register(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
     try {
       let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
       console.log('res ', res)
