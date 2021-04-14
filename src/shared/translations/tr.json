@@ -39,11 +39,21 @@
 	"total": "Toplam:",
 	"filter-marketplace": "Pazar yeri filtrele",
 	"product-info": "Ürün bilgisi",
+	"created-at": "Oluşturuldu",
+	"price": "Fiyat",
+	"description": "Açıklama",
+	"currency": "Para Birimi",
+	"quantity": "Miktar",
+	"marketplace": "Satış Yeri",
+	"title": "Başlık",
+	"products": "Ürünlerim",
 	"actions": "İşlemler",
 	"edit-listing": "Listelemeyi Düzenle",
 	"copy-listing": "Listelemeyi Kopyala",
 	"remove-listing": "Listelemeyi Kaldır",
 	"logout": "Çıkış yap",
-	"choose-file":"Dosya Seç",
-	"finalize":"Tamamlandı"
+	"choose-file": "Dosya Seç",
+	"finalize": "Tamamlandı",
+	"dashboard": "Gösterge Paneli",
+	"new-product": "Yeni Ürün"
 }

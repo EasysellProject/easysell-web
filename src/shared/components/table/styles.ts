@@ -13,6 +13,7 @@ export default {
         flex: 1,
         textAlign: 'center',
         color: APP_COLORS.textGreen,
+        // backgroundColor: 'red',
         fontWeight: 'bold',
         fontSize: 16
     } as CSSProperties,

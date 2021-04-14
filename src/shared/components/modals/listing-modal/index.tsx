@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 import { useState } from 'react';
-import Button from '../button'
+import Button from '../../button';
 import styles from './styles'
-import { Listing } from '../../models/listing'
-import Input from '../input';
-import { Dialog, Modal } from '@material-ui/core';
-import SimpleText from '../text/simple-text';
+import { Listing } from '../../../models/listing'
+import Input from '../../input';
+import { Dialog } from '@material-ui/core';
+import SimpleText from '../../text/simple-text';
 interface ListingModalProps {
     listing: Listing;
     header: string,

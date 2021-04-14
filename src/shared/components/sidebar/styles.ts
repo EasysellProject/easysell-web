@@ -1,13 +1,13 @@
+import { CSSProperties } from "react";
 import { APP_COLORS } from "../../styles";
 
 export default {
     container: {
-        height: '100%',
-        width: '15%',
-        minWidth: 200,
+        paddingTop: 32,
         alignItems: 'center',
-        paddingTop: '2.5%',
-        backgroundColor: APP_COLORS.textGreen
+        width: '100%',
+        height: '100%',
+        backgroundColor: APP_COLORS.sidebarGreen
     },
     row: {
         alignItems: 'center',
@@ -33,13 +33,19 @@ export default {
         backgroundColor: '#F7F8FC',
         padding: 30
     },
-    logoutButton:{
-        marginTop:30,
-        backgroundColor:APP_COLORS.BUTTONS.grayButton,
-    },
-    logoutButtonText:{
+    logoutButton: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        paddingTop: 16,
+        paddingBottom: 16,
+        fontWeight: 'bold',
+        backgroundColor: APP_COLORS.BUTTONS.green,
+        textTransform: 'none'
+    } as CSSProperties,
+    logoutButtonText: {
         color: APP_COLORS.gray,
-        fontFamily: "Times New Roman", 
-        fontSize: 14
+        fontFamily: "Times New Roman",
+        fontSize: 18
     }
 }

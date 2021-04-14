@@ -5,8 +5,10 @@ import Listing from './pages/listing';
 import Login from './pages/login';
 import Register from './pages/register';
 import Integration from './pages/integration';
-import Profile from './pages/profile';
 import Utils from './shared/utils';
+import ProductsPage from './pages/products';
+import Dashboard from './pages/dashboard';
+import { Helper } from './shared/libs/helper';
 
 const { Firebase } = Utils;
 
@@ -18,18 +20,18 @@ interface AppProps {
 
 function App(props: AppProps) {
   return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route path='/profile' component={Profile} />
-          <Route exact path='/' render={() => (localStorage.getItem("userID") ? (<Redirect to="/listings" />) : (<Landing />))} />
-          <Route path='/login' render={() => (localStorage.getItem("userID") ? (<Redirect to="/listings" />) : (<Login />))} />
-          <Route path='/listings' render={() => (localStorage.getItem("userID") ? (<Listing />) : (<Redirect to="/login" />))} />
-          <Route path='/register' render={() => (localStorage.getItem("userID") ? (<Redirect to="/listings" />) : (<Register />))} />
-          <Route path='/integrations' render={() => (localStorage.getItem("userID") ? (<Integration />) : (<Redirect to="/login" />))} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Landing />))} />
+        {/* <Route path='/profile' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Profile />))} /> */}
+        <Route path='/products' render={() => (Helper.getUserID() ? (<ProductsPage />) : (<Redirect to="/login" />))} />
+        <Route path='/dashboard' render={() => (Helper.getUserID() ? (<Dashboard />) : (<Redirect to="/login" />))} />
+        <Route path='/login' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Login />))} />
+        <Route path='/listings' render={() => (Helper.getUserID() ? (<Listing />) : (<Redirect to="/login" />))} />
+        <Route path='/register' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Register />))} />
+        <Route path='/integrations' render={() => (Helper.getUserID() ? (<Integration />) : (<Redirect to="/login" />))} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

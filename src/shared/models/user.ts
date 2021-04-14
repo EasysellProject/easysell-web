@@ -19,7 +19,7 @@ export class User {
     this.email = details.email;
     this.lang = details.lang;
     this.integrations = IntegrationService.getIntegrations();
-    this.listings = details.listings.map(listing => new Listing(listing));
+    this.listings = details.listings?.map(listing => new Listing(listing));
   }
 
   get name(): string {

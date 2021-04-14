@@ -56,7 +56,6 @@ function Login(): JSX.Element {
             .then(user => {
                 setLoading(false)
                 UserService.currentUser = user
-                localStorage.setItem("userID", user._id)
                 //TODO go to main page
                 navigation.replace('/listings')
             })

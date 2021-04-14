@@ -1,23 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
-import logo from "../../../assets/images/logo_wordless.png";
+import { useHistory, Link } from "react-router-dom";
 import { CgList } from 'react-icons/cg'
-import { AiOutlineShoppingCart, AiOutlineAppstoreAdd, AiOutlineUser, AiOutlineInfoCircle } from 'react-icons/ai'
-import { useHistory } from "react-router-dom";
-import { APP_COLORS, WEB_STYLES } from '../../styles';
-import styles from './styles'
-import SimpleText from '../text/simple-text';
-import { Link } from 'react-router-dom';
-import { Helper } from '../../libs/helper';
-import AuthService from "../../services/auth-service";
+import { TiNews } from 'react-icons/ti';
+import { RiDashboardLine } from 'react-icons/ri';
 import MUIButton from '@material-ui/core/Button'
+import { AiOutlineShoppingCart, AiOutlineAppstoreAdd, AiOutlineUser, AiOutlineInfoCircle } from 'react-icons/ai'
+import logo from "../../../assets/images/logo_wordless.png";
+import { Helper } from '../../libs/helper';
+import { APP_COLORS, WEB_STYLES } from '../../styles';
+import AuthService from "../../services/auth-service";
+import SimpleText from '../text/simple-text';
+import styles from './styles'
 
-export type SidebarItem = 'Listing' | 'Order' | 'Profile' | 'Integration' | 'About'
+export type SidebarItem = 'Listing' | 'Order' | 'Profile' | 'Integration' | 'About' | 'Product' | 'Dashboard'
 
 interface SidebarProps {
     item: SidebarItem;
 }
 
-const DRAWER_WIDTH = 256
+// const DRAWER_WIDTH = 256
+const DRAWER_ICON_SIZE = 32;
 function Sidebar(props: SidebarProps): JSX.Element {
     const history = useHistory();
     const { item } = props
@@ -38,9 +40,8 @@ function Sidebar(props: SidebarProps): JSX.Element {
     function handleResize() {
         setWindowDimensions(Helper.getWindowDimensions());
     }
-    function Signout() {
+    function logout() {
         AuthService.logout().then(() => {
-            localStorage.removeItem("userID");
             history.push("/")
         }).catch(err => {
             console.log(err.toString());
@@ -99,11 +100,31 @@ function Sidebar(props: SidebarProps): JSX.Element {
                     {
                         ((isMobile() && expanded) || !isMobile()) && (
 
-                            <div ref={sidebar} style={{ ...WEB_STYLES.flexColum, paddingTop: 32, alignItems: 'center', width: '100%', height: '100%', backgroundColor: APP_COLORS.sidebarGreen }}>
+                            <div ref={sidebar} style={{ ...WEB_STYLES.flexColum, ...styles.container }}>
                                 <img src={logo} width={175} height={150} />
+                                <Link to='/dashboard' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Dashboard' ? 'white' : 'transparent' }}>
+                                    <RiDashboardLine
+                                        size={DRAWER_ICON_SIZE}
+                                        color={item == 'Dashboard' ? APP_COLORS.borderGray : 'white'}
+                                    />
+                                    <SimpleText
+                                        textID='dashboard'
+                                        additionalStyle={{ ...styles.rowTitle, color: item == 'Dashboard' ? APP_COLORS.borderGray : 'white' }}
+                                    />
+                                </Link>
+                                <Link to='/products' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Product' ? 'white' : 'transparent' }}>
+                                    <TiNews
+                                        size={DRAWER_ICON_SIZE}
+                                        color={item == 'Product' ? APP_COLORS.borderGray : 'white'}
+                                    />
+                                    <SimpleText
+                                        textID='products'
+                                        additionalStyle={{ ...styles.rowTitle, color: item == 'Product' ? APP_COLORS.borderGray : 'white' }}
+                                    />
+                                </Link>
                                 <Link to='/listings' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Listing' ? 'white' : 'transparent' }}>
                                     <CgList
-                                        size={36}
+                                        size={DRAWER_ICON_SIZE}
                                         color={item == 'Listing' ? APP_COLORS.borderGray : 'white'}
                                     />
                                     <SimpleText
@@ -113,7 +134,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                 </Link>
                                 <Link to='/orders' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Order' ? 'white' : 'transparent' }}>
                                     <AiOutlineShoppingCart
-                                        size={36}
+                                        size={DRAWER_ICON_SIZE}
                                         color={item == 'Order' ? APP_COLORS.borderGray : 'white'}
                                     />
                                     <SimpleText
@@ -131,19 +152,19 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'Integration' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link>
-                                <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Profile' ? 'white' : 'transparent' }}>
+                                {/* <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Profile' ? 'white' : 'transparent' }}>
                                     <AiOutlineUser
-                                        size={36}
+                                        size={DRAWER_ICON_SIZE}
                                         color={item == 'Profile' ? APP_COLORS.borderGray : 'white'}
                                     />
                                     <SimpleText
                                         textID='profile'
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'Profile' ? APP_COLORS.borderGray : 'white' }}
                                     />
-                                </Link>
+                                </Link> */}
                                 <Link to='/about' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'About' ? 'white' : 'transparent' }}>
                                     <AiOutlineInfoCircle
-                                        size={36}
+                                        size={DRAWER_ICON_SIZE}
                                         color={item == 'About' ? APP_COLORS.borderGray : 'white'}
                                     />
                                     <SimpleText
@@ -153,10 +174,11 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                 </Link>
                                 <MUIButton
                                     style={styles.logoutButton}
-                                    onClick={Signout}
+                                    onClick={logout}
+                                    autoCapitalize={"none"}
                                 >
                                     <SimpleText
-                                        textID={"Logout"}
+                                        textID={"logout"}
                                         additionalStyle={styles.logoutButtonText}
                                     />
                                 </MUIButton>
@@ -166,59 +188,6 @@ function Sidebar(props: SidebarProps): JSX.Element {
                 </div>
             </div>
         </div>
-        // <div style={{ ...styles.container, ...WEB_STYLES.flexColum }}>
-        //     <img src={logo} width='75%' height={150} />
-        //     <Link to='/listings' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Listing' ? 'white' : 'transparent' }}>
-        //         <CgList
-        //             size={36}
-        //             color={item == 'Listing' ? APP_COLORS.borderGray : 'white'}
-        //         />
-        //         <SimpleText
-        //             textID='listings'
-        //             additionalStyle={{ ...styles.rowTitle, color: item == 'Listing' ? APP_COLORS.borderGray : 'white' }}
-        //         />
-        //     </Link>
-        //     <Link to='/orders' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Order' ? 'white' : 'transparent' }}>
-        //         <AiOutlineShoppingCart
-        //             size={36}
-        //             color={item == 'Order' ? APP_COLORS.borderGray : 'white'}
-        //         />
-        //         <SimpleText
-        //             textID='orders'
-        //             additionalStyle={{ ...styles.rowTitle, color: item == 'Order' ? APP_COLORS.borderGray : 'white' }}
-        //         />
-        //     </Link>
-        //     <Link to='/integrations' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Integration' ? 'white' : 'transparent' }}>
-        //         <AiOutlineAppstoreAdd
-        //             size={36}
-        //             color={item == 'Integration' ? APP_COLORS.borderGray : 'white'}
-        //         />
-        //         <SimpleText
-        //             textID='integration'
-        //             additionalStyle={{ ...styles.rowTitle, color: item == 'Integration' ? APP_COLORS.borderGray : 'white' }}
-        //         />
-        //     </Link>
-        //     <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Profile' ? 'white' : 'transparent' }}>
-        //         <AiOutlineUser
-        //             size={36}
-        //             color={item == 'Profile' ? APP_COLORS.borderGray : 'white'}
-        //         />
-        //         <SimpleText
-        //             textID='profile'
-        //             additionalStyle={{ ...styles.rowTitle, color: item == 'Profile' ? APP_COLORS.borderGray : 'white' }}
-        //         />
-        //     </Link>
-        //     <Link to='/about' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'About' ? 'white' : 'transparent' }}>
-        //         <AiOutlineInfoCircle
-        //             size={36}
-        //             color={item == 'About' ? APP_COLORS.borderGray : 'white'}
-        //         />
-        //         <SimpleText
-        //             textID='about'
-        //             additionalStyle={{ ...styles.rowTitle, color: item == 'Order' ? APP_COLORS.borderGray : 'white' }}
-        //         />
-        //     </Link>
-        // </div>
     )
 }
 

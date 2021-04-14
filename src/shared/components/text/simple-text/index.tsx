@@ -12,11 +12,12 @@ interface SimpleTextProps {
     additionalStyle?: CSSProperties
     required?: boolean
     ellipsis?: boolean
+    maxLine?: number
 }
 
 function SimpleText(props: SimpleTextProps): JSX.Element {
     const intl = useIntl()
-    const { textID, capitalized, additionalStyle, required, ellipsis } = props
+    const { textID, capitalized, additionalStyle, required, ellipsis, maxLine } = props
     let formattedText = intl.formatMessage({ id: textID || 'Dummy' });
     if (capitalized)
         formattedText = formattedText.toUpperCase()
@@ -33,7 +34,7 @@ function SimpleText(props: SimpleTextProps): JSX.Element {
                     <ResponsiveEllipsis
                         text={formattedText}
                         basedOn="letters"
-                        maxLine={1}
+                        maxLine={maxLine || 1}
                         style={{ "overflow-wrap": "break-word", "white-space": "pre-wrap", "flex": 1 }}
                     />
                 )

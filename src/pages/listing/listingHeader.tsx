@@ -36,7 +36,6 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
     }
 
     function onSearchPress(): void {
-        console.log("search button pressed")
         console.log(searchText);
         onSearchChanged(searchText);
     }
@@ -91,7 +90,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     onPress={onSearchPress}
                 />
             </div>
-        </div >
+        </div>
     )
 }
 

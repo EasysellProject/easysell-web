@@ -1,44 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import { useIntl } from 'react-intl';
 
 import SimpleText from '../text/simple-text';
 import { Listing } from '../../models/listing';
 import ListingCard from '../listing-card';
 import { WEB_STYLES } from '../../styles';
 import styles from './styles'
+import { Product } from '../../models/product';
 
 interface TableHeaderProps {
     onRequestSort: (event, property) => void,
     order: 'asc' | 'desc',
     orderBy: string,
+    headCells: HeadCell[]
 }
 
-type HeadCell = {
+export type HeadCell = {
     id: string,
     numeric: boolean,
     label: string
 }
 
 function EnhancedTableHead(props: TableHeaderProps) {
-    const intl = useIntl();
-    const { order, orderBy, onRequestSort } = props;
+    const { order, orderBy, onRequestSort, headCells } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
-
-    const headCells: HeadCell[] = [
-        { id: 'index', numeric: true, label: '' },
-        { id: 'title', numeric: false, label: intl.formatMessage({ id: 'product-info' }) },
-        { id: 'desc', numeric: false, label: intl.formatMessage({ id: 'description' }) },
-        { id: 'price', numeric: true, label: intl.formatMessage({ id: 'price' }) },
-        { id: 'currency', numeric: false, label: intl.formatMessage({ id: 'currency' }) },
-        { id: 'stock', numeric: true, label: intl.formatMessage({ id: 'quantity' }) },
-        { id: 'marketPlace', numeric: false, label: intl.formatMessage({ id: 'marketplace' }) },
-        { id: 'createdAt', numeric: true, label: intl.formatMessage({ id: 'created-at' }) },
-        { id: 'actions', numeric: false, label: intl.formatMessage({ id: 'actions' }) },
-    ];
 
     return (
         <div style={styles.headerContainer}>
@@ -80,7 +68,7 @@ function EnhancedTableHead(props: TableHeaderProps) {
                                 >
                                     {
                                         index != 0 && (
-                                            <SimpleText ellipsis additionalStyle={styles.headerText} textID={headCell.label} />
+                                            <SimpleText maxLine={2} ellipsis additionalStyle={styles.headerText} textID={headCell.label} />
                                         )
                                     }
                                 </TableSortLabel>
@@ -97,18 +85,38 @@ function EnhancedTableHead(props: TableHeaderProps) {
 }
 
 interface TableProps {
+    headCells: HeadCell[],
+    renderItem: (row: any) => JSX.Element
+}
+
+interface ListingTableProps extends TableProps {
     data: Listing[],
     onEditListing: (listing: Listing) => void
 }
 
-export default function EnhancedTable(props: TableProps) {
-    const { data, onEditListing } = props;
+interface ProductTableProps extends TableProps {
+    data: Product[],
+}
+
+export default function EnhancedTable(props: ListingTableProps | ProductTableProps) {
+    const { data, headCells, renderItem } = props;
+
+    const [indexedData, setIndexedData] = useState<any[]>([]);
     const [order, setOrder] = useState<"asc" | "desc">('asc');
     const [orderBy, setOrderBy] = useState('index');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
     const [update, setUpdate] = useState(0);
-    const [tooltipOpened, setTooltipOpened] = useState<Listing>(null);
+
+    useEffect(() => {
+        let indexedData = []
+        data.forEach((row, idx) => {
+            let indexedRow: any = Object.assign({}, row);
+            indexedRow.index = idx + 1;
+            indexedData.push(indexedRow);
+        });
+        setIndexedData(indexedData);
+    }, [data])
 
     function handleRequestSort(event, property): void {
         const isAsc = orderBy === property && order === 'asc';
@@ -157,18 +165,24 @@ export default function EnhancedTable(props: TableProps) {
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
+                headCells={headCells}
             />
             <div style={{ ...WEB_STYLES.flexColum, flex: 1 }}>
                 {
-                    stableSort(data, getComparator(order, orderBy))
+                    stableSort(indexedData, getComparator(order, orderBy))
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((listing, index) => (
-                            <ListingCard editListing={() => onEditListing(listing)} tooltipVisible={tooltipOpened && listing._id == tooltipOpened._id} listing={listing} index={listing.index} onMorePressed={(listing) => {
-                                if (tooltipOpened && listing._id == tooltipOpened._id)
-                                    setTooltipOpened(null);
-                                else
-                                    setTooltipOpened(listing);
-                            }} />
+                        .map((row, index) => (
+                            renderItem(row)
+                            // ('onEditListing' in props) ? (
+                            //     <ListingCard editListing={() => props.onEditListing(row)} tooltipVisible={tooltipOpened && row._id == tooltipOpened._id} listing={row} index={row.index} onMorePressed={(listing) => {
+                            //         if (tooltipOpened && listing._id == tooltipOpened._id)
+                            //             setTooltipOpened(null);
+                            //         else
+                            //             setTooltipOpened(listing);
+                            //     }} />
+                            // ) : (
+                            //     <div>Product table</div>
+                            // )
                         ))
                 }
             </div>

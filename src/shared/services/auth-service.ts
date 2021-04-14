@@ -2,7 +2,7 @@ import { User } from '../models/user'
 import firebase from '../utils/firebase'
 import { LangCode } from '../utils/localization'
 import UserService from './user-service'
-import {Listing} from '../models/listing'
+import { Listing } from '../models/listing'
 
 
 class AuthService {
@@ -17,9 +17,9 @@ class AuthService {
         lastname,
         lang,
         email,
-      } 
+      }
       await firebase.firestore().collection('users').doc(currentUser._id).set(currentUser)
-      
+
       UserService.currentUser = new User(currentUser)
       return { result: "success" }
     } catch (err) {
@@ -31,6 +31,7 @@ class AuthService {
   async logout() {
     try {
       let res = await firebase.auth().signOut();
+      localStorage.removeItem("userID");
       console.log("logout successfull");
     } catch (err) {
       throw err
@@ -43,6 +44,7 @@ class AuthService {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       return this.getUserData().then(user => {
         UserService.currentUser = user
+        localStorage.setItem("userID", user._id)
         return user
       })
     } catch (err) {
@@ -107,9 +109,8 @@ class AuthService {
         currency: "TL"
       }
     ]
-    var rndmNUmber = Math.floor( Math.random() * 1000 + 1)
-    for (let i = 0; i < rndmNUmber; i++) 
-    {
+    var rndmNUmber = Math.floor(Math.random() * 1000 + 1)
+    for (let i = 0; i < rndmNUmber; i++) {
       let info = infos[i % infos.length];
       let details = {
         _id: this.generateRandomID(),
@@ -134,7 +135,7 @@ class AuthService {
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
     for (var i = 0; i < 12; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
   }

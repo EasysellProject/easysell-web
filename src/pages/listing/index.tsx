@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import ListingHeader from './listingHeader';
 import DashboardLayout from '../../shared/components/dashboard-layout';
 import { Listing } from '../../shared/models/listing'
-import Table from '../../shared/components/table';
-import ListingModal from '../../shared/components/listing-modal';
-import { MarketPlace } from '../../shared/models/integration';
+import Table, { HeadCell } from '../../shared/components/table';
+import ListingModal from '../../shared/components/modals/listing-modal';
+import ListingCard from '../../shared/components/listing-card';
+import styles from './styles';
 
 interface ListingProps {
 
@@ -12,6 +14,20 @@ interface ListingProps {
 
 
 function ListingPage(props: ListingProps): JSX.Element {
+    const intl = useIntl();
+
+    const headCells: HeadCell[] = [
+        { id: 'index', numeric: true, label: '' },
+        { id: 'title', numeric: false, label: intl.formatMessage({ id: 'product-info' }) },
+        { id: 'desc', numeric: false, label: intl.formatMessage({ id: 'description' }) },
+        { id: 'price', numeric: true, label: intl.formatMessage({ id: 'price' }) },
+        { id: 'currency', numeric: false, label: intl.formatMessage({ id: 'currency' }) },
+        { id: 'stock', numeric: true, label: intl.formatMessage({ id: 'quantity' }) },
+        { id: 'marketPlace', numeric: false, label: intl.formatMessage({ id: 'marketplace' }) },
+        { id: 'createdAt', numeric: true, label: intl.formatMessage({ id: 'created-at' }) },
+        { id: 'actions', numeric: false, label: intl.formatMessage({ id: 'actions' }) },
+    ];
+
     let listing = new Listing({
         _id: 'sdaslkdjas213',
         title: 'Test',
@@ -31,10 +47,11 @@ function ListingPage(props: ListingProps): JSX.Element {
 
     const [listings, setListings] = useState<Listing[]>([]);
     const [tableData, setTableData] = useState<any[]>([]);
-    const [filteredData, setFilteredData] = useState<any[]>([]);
+    const [filteredListing, setFilteredListings] = useState<any[]>([]);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [selectedListing, setSelectedListing] = useState<Listing>();
     const [createModalVisible, setCreateModalVisible] = useState(false);
+    const [tooltipOpened, setTooltipOpened] = useState<Listing>(null);
 
     useEffect(() => {
         fetchListings();
@@ -116,7 +133,7 @@ function ListingPage(props: ListingProps): JSX.Element {
             data.push(details);
         }
         setTableData(data);
-        setFilteredData(data);
+        setFilteredListings(listings);
         return listings;
     }
 
@@ -132,31 +149,46 @@ function ListingPage(props: ListingProps): JSX.Element {
     }
 
     function onSearchListing(text: string): void {
-        let filteredListings = tableData;
+        let filteredListings = listings;
         if (text) {
-            filteredListings = tableData.filter(listing =>
+            filteredListings = listings.filter(listing =>
                 listing.title.toLowerCase().includes(text) ||
                 listing.desc?.toLowerCase().includes(text) ||
                 listing.currency.toLowerCase().includes(text) ||
                 listing.marketPlace.filter(market => market.toLowerCase().includes(text)).length > 0
             )
         }
-        setFilteredData(filteredListings);
+        setFilteredListings(filteredListings);
     }
 
     function onFilterListing(market: string): void {
-        let filteredListings = tableData;
+        let filteredListings = listings;
         if (market)
             filteredListings = filteredListings.filter(listing => listing.marketPlace.findIndex(marketPlace => marketPlace == market) > -1);
-        setFilteredData(filteredListings);
+        setFilteredListings(filteredListings);
+    }
+
+    function renderListing(listing): JSX.Element {
+        return (
+            <ListingCard editListing={() => editListing(listing)} tooltipVisible={tooltipOpened && listing._id == tooltipOpened._id} listing={listing} index={listing.index} onMorePressed={(listing) => {
+                if (tooltipOpened && listing._id == tooltipOpened._id)
+                    setTooltipOpened(null);
+                else
+                    setTooltipOpened(listing);
+            }} />
+        )
     }
 
     return (
         <DashboardLayout route='Listing'>
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+            <div style={styles.innerContainer}>
                 <ListingHeader listingCount={listings.length} onSearchChanged={onSearchListing} onFilter={onFilterListing} />
-                <div style={{ marginLeft: 24, marginRight: 24, marginTop: 40, flex: 1, display: 'flex', paddingBottom: 12 }}>
-                    <Table data={filteredData} onEditListing={editListing} />
+                <div style={styles.tableContainer}>
+                    <Table
+                        data={filteredListing}
+                        onEditListing={editListing}
+                        headCells={headCells}
+                        renderItem={renderListing} />
                 </div>
             </div>
             {
@@ -172,9 +204,6 @@ function ListingPage(props: ListingProps): JSX.Element {
                     />
                 )
             }
-
-
-            {/* <ListingCard2 data={null} image={logo} /> */}
         </DashboardLayout>
     )
 }

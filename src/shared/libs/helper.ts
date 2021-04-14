@@ -1,11 +1,21 @@
 export class Helper {
 
-    static getWindowDimensions() {
+    static getWindowDimensions(): { width: number, height: number } {
         const { innerWidth: width, innerHeight: height } = window;
         return {
             width,
             height
         };
+    }
+
+    static generateRandomID(): string {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < 12; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
     }
 
     static validateEmail(email: string): boolean {
@@ -24,5 +34,8 @@ export class Helper {
             monthStr = '0' + month
         let yearStr = date.getFullYear() + ''
         return dayStr + '/' + monthStr + '/' + yearStr
+    }
+    static getUserID(): string {
+        return localStorage.getItem('userID');
     }
 }
