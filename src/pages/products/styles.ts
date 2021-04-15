@@ -15,5 +15,14 @@ export default {
         marginRight: 24,
         marginTop: 40,
         paddingBottom: 12
+    },
+    spinnerContainer: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    } as CSSProperties,
+    spinner: {
+        color: APP_COLORS.ligthBlue
     }
 }

@@ -1,3 +1,4 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import DashboardLayout from '../../shared/components/dashboard-layout';
@@ -6,6 +7,7 @@ import Table, { HeadCell } from '../../shared/components/table';
 import { Helper } from '../../shared/libs/helper';
 import { Product } from '../../shared/models/product';
 import ProductService from '../../shared/services/product-service';
+import { APP_COLORS } from '../../shared/styles';
 import ProductsHeader from './productsHeader';
 import styles from './styles';
 
@@ -32,6 +34,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         fetchProducts();
@@ -52,9 +55,14 @@ function ProductsPage(props: ProductProps): JSX.Element {
 
     function fetchProducts() {
         ProductService.getProducts()
-            .then(products => setProducts(products))
-            .catch(err => alert(err));
-
+            .then(products => {
+                setProducts(products)
+                setLoading(false);
+            })
+            .catch(err => {
+                alert(err)
+                setLoading(false);
+            });
     }
 
     function onSearchProduct(text: string): void {
@@ -81,10 +89,18 @@ function ProductsPage(props: ProductProps): JSX.Element {
             <div style={styles.container}>
                 <ProductsHeader onNewProductPress={() => setNewProductModalVisible(true)} onSearchChanged={onSearchProduct} />
                 <div style={styles.tableContainer}>
-                    <Table
-                        data={filteredProducts}
-                        headCells={headCells}
-                        renderItem={renderProduct} />
+                    {
+                        loading ? (
+                            <div style={styles.spinnerContainer}>
+                                <CircularProgress style={styles.spinner} />
+                            </div>
+                        ) : (
+                            <Table
+                                data={filteredProducts}
+                                headCells={headCells}
+                                renderItem={renderProduct} />
+                        )
+                    }
                 </div>
             </div>
         </DashboardLayout>
