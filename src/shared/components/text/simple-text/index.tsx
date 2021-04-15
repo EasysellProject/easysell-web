@@ -7,7 +7,8 @@ import styles from './styles'
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
 interface SimpleTextProps {
-    textID: string;
+    textID?: string;
+    text?: string
     capitalized?: boolean
     additionalStyle?: CSSProperties
     required?: boolean
@@ -17,8 +18,10 @@ interface SimpleTextProps {
 
 function SimpleText(props: SimpleTextProps): JSX.Element {
     const intl = useIntl()
-    const { textID, capitalized, additionalStyle, required, ellipsis, maxLine } = props
-    let formattedText = intl.formatMessage({ id: textID || 'Dummy' });
+    const { textID, text, capitalized, additionalStyle, required, ellipsis, maxLine } = props
+    let formattedText = text;
+    if (textID)
+        formattedText = intl.formatMessage({ id: textID || 'Dummy' });
     if (capitalized)
         formattedText = formattedText.toUpperCase()
     if (required)
