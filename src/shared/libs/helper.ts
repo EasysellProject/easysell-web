@@ -39,3 +39,8 @@ export class Helper {
         return localStorage.getItem('userID');
     }
 }
+
+export const currencyMap = {
+    "TL": "₺",
+    "USD": "$"
+}

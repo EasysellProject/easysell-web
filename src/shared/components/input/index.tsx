@@ -63,7 +63,6 @@ function Input(props: InputProps): JSX.Element {
                 )
             }
         </div>
-        // <input />
     )
 }
 
