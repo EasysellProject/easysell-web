@@ -5,7 +5,7 @@ import { APP_COLORS } from '../../styles'
 import SimpleText from '../text/simple-text'
 import styles from './styles'
 
-type InputType = "password" | "text"
+type InputType = "password" | "text" | "number"
 
 interface InputProps {
     value: string
@@ -25,6 +25,13 @@ function Input(props: InputProps): JSX.Element {
     const intl = useIntl()
     const { value, placeholder, additionalStyles, inputStyles, required, showLabel, type, label, onChangeText, showError, errorText } = props
     let formattedPlaceholder = intl.formatMessage({ id: placeholder })
+
+    function onKeyDown(e: React.KeyboardEvent): void {
+        let charCode = e.key.charCodeAt(0)
+        if (type == 'number' && !((charCode >= 48 && charCode <= 57) || charCode == 66 || charCode == 8 || charCode == 65 || charCode == 68))
+            e.preventDefault();
+    }
+
     return (
         <div style={additionalStyles}>
             {
@@ -38,7 +45,14 @@ function Input(props: InputProps): JSX.Element {
                 )
             }
             {
-                <input type={type || 'text'} value={value} style={{ ...styles.input, ...inputStyles }} placeholder={formattedPlaceholder} onChange={(e) => onChangeText(e.target.value)}></input>
+                <input
+                    type={type || 'text'}
+                    value={value}
+                    style={{ ...styles.input, ...inputStyles }}
+                    placeholder={formattedPlaceholder}
+                    onChange={(e) => onChangeText(e.target.value)}
+                    onKeyDown={onKeyDown}
+                />
             }
             {
                 showError && errorText && (
