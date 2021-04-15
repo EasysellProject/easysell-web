@@ -19,6 +19,7 @@ export default {
         paddingTop: 6,
         paddingBottom: 6,
         borderStyle: 'solid',
+        borderColor: APP_COLORS.lightGray,
         minWidth: 250,
         maxWidth: 480
     } as CSSProperties,
