@@ -15,6 +15,7 @@
     "all": "0.0.0",
     "axios": "^0.21.1",
     "firebase": "^8.2.1",
+    "linear-equation-system": "^1.1.1",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
