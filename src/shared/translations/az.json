@@ -55,5 +55,6 @@
 	"finalize": "Bitir",
 	"logout": "Çıxış et",
 	"dashboard": "Panel",
-	"new-product": "Yeni məhsul"
+	"new-product": "Yeni məhsul",
+	"reset-password":"Şifrəni Yenilə"
 }
