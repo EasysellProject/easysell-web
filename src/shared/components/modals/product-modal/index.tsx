@@ -92,6 +92,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                         setSubmitted(false)
                         setDesc(desc)
                     }}
+                    showLabel
                     label="description"
                     inputStyles={styles.inputStyle}
                     additionalStyles={styles.inputContainer}
