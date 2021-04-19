@@ -59,5 +59,6 @@
 	"new-product": "Yeni Ürün",
 	"image": "Fotoğraf",
 	"upload-image": "Fotoğraf Yükle",
-	"add-product": "Ürün Ekle"
+	"add-product": "Ürün Ekle",
+	"reset-password":"Şifreni Sıfırla"
 }

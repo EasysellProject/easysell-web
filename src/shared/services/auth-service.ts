@@ -27,7 +27,13 @@ class AuthService {
       throw err
     }
   }
-
+  async forgotPassword(email: string) {
+    try {
+      let res = await firebase.auth().sendPasswordResetEmail(email);
+    } catch (err) {
+      throw err
+    }
+  }
   async logout() {
     try {
       let res = await firebase.auth().signOut();

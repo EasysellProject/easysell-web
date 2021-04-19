@@ -4,6 +4,9 @@ export default {
     container: {
 
     },
+    forgotPassDialog:{
+        marginTop: 18,
+    },
     inputContainer: {
         marginTop: 18,
     },

@@ -17,6 +17,7 @@ import AuthService from "../../shared/services/auth-service";
 import Error_CODES from "../../shared/libs/error-codes";
 import UserService from "../../shared/services/user-service";
 
+
 function Login(): JSX.Element {
 
     const navigation = useHistory()
@@ -28,6 +29,8 @@ function Login(): JSX.Element {
     const [emailError, setEmaiError] = useState(false);
     const [passError, setPassError] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    const [forgot, setForgot] = useState(false)
     const [loginError, setLoginError] = useState('')
 
     function handleResize() {
@@ -45,9 +48,22 @@ function Login(): JSX.Element {
     function isTablet(): boolean {
         return windowDimensions.width < 1024;
     }
+    function onResetPassPress(): void {
+        AuthService.forgotPassword(email)
+            .then(user => {
+                console.log("reset mail send")
+            })
+            .catch(err => console.log(err))
 
+
+    }
     function onForgotPassPress(): void {
-        // TODO implement
+        if (forgot == false)
+            setForgot(true);
+        if (forgot == true)
+            setForgot(false)
+
+
     }
 
     function onLoginPress(): void {
@@ -94,8 +110,10 @@ function Login(): JSX.Element {
     }
 
     function renderInputs(): JSX.Element {
-        return (
-            <div style={styles.inputs}>
+        let forgotPass;
+        if (forgot) {
+            forgotPass = <div>
+
                 <Input
                     value={email}
                     placeholder="e-mail"
@@ -106,20 +124,7 @@ function Login(): JSX.Element {
                         setEmail(email)
                         setLoginError('')
                     }}
-                    additionalStyles={styles.inputContainer}
-                />
-                <Input
-                    value={pass}
-                    placeholder="password"
-                    showLabel
-                    type='password'
-                    label="password"
-                    onChangeText={(pass) => {
-                        setPassError(false)
-                        setPass(pass)
-                        setLoginError('')
-                    }}
-                    additionalStyles={styles.inputContainer}
+                    additionalStyles={styles.forgotPassDialog}
                 />
                 <div
                     style={styles.forgotPassButton}
@@ -127,22 +132,77 @@ function Login(): JSX.Element {
                     <Button
                         onPress={onForgotPassPress}
                     >
-                        <SimpleText additionalStyle={styles.forgotPassText} textID='forgot-password' />
+                        <SimpleText additionalStyle={styles.forgotPassText} textID='login' />
                     </Button>
                 </div>
                 <Button
-                    onPress={onLoginPress}
+                    onPress={onResetPassPress}
                     buttonStyle={{ ...styles.loginButton, ...WEB_STYLES.flexRow }}
                     loading={loading}
                 >
-                    <SimpleText additionalStyle={styles.loginText} textID='login' />
+                    <SimpleText additionalStyle={styles.loginText} textID='reset-password' />
                     <AiOutlineArrowRight style={styles.loginIcon} size={16} color={APP_COLORS.gray} />
                 </Button>
-                {
-                    loginError && (
-                        <SimpleText textID={loginError} additionalStyle={APP_STYLES.errorText} />
-                    )
-                }
+            </div>
+        }
+        else
+            forgotPass =
+                <div>
+                    <Input
+                        value={email}
+                        placeholder="e-mail"
+                        showLabel
+                        label="e-mail"
+                        onChangeText={(email) => {
+                            setEmaiError(false)
+                            setEmail(email)
+                            setLoginError('')
+                        }}
+                        additionalStyles={styles.inputContainer}
+                    />
+
+                    <Input
+                        value={pass}
+                        placeholder="password"
+                        showLabel
+                        type='password'
+                        label="password"
+                        onChangeText={(pass) => {
+                            setPassError(false)
+                            setPass(pass)
+                            setLoginError('')
+                        }}
+                        additionalStyles={styles.inputContainer}
+                    />
+                    <div
+                        style={styles.forgotPassButton}
+                    >
+                        <Button
+                            onPress={onForgotPassPress}
+                        >
+                            <SimpleText additionalStyle={styles.forgotPassText} textID='forgot-password' />
+                        </Button>
+                    </div>
+                    <Button
+                        onPress={onLoginPress}
+                        buttonStyle={{ ...styles.loginButton, ...WEB_STYLES.flexRow }}
+                        loading={loading}
+                    >
+                        <SimpleText additionalStyle={styles.loginText} textID='login' />
+                        <AiOutlineArrowRight style={styles.loginIcon} size={16} color={APP_COLORS.gray} />
+                    </Button>
+                    {
+                        loginError && (
+                            <SimpleText textID={loginError} additionalStyle={APP_STYLES.errorText} />
+                        )
+                    }
+                </div>
+
+
+
+        return (
+            <div style={styles.inputs}>
+                {forgotPass}
                 <div style={styles.newAccountButtonContainer}>
                     <Button
                         onPress={onNewAccountPressed}
