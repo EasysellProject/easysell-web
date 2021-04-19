@@ -65,7 +65,6 @@ export default {
     boxShadow: '0px 2px 4px 0px gray',
     display: 'flex',
     flexDirection: 'column',
-
     paddingTop: 20,
     paddingBottom: 12
   } as CSSProperties,

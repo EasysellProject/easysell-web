@@ -78,7 +78,6 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                             <SimpleText additionalStyle={styles.tooltipText} textID={'copy-listing'} />
                         </Button>
                     </div>
-
                 )
             }
         </div>

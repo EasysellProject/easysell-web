@@ -53,7 +53,11 @@
 	"remove-listing": "Listelemeyi Kaldır",
 	"logout": "Çıkış yap",
 	"choose-file": "Dosya Seç",
-	"finalize": "Tamamlandı",
+	"close": "İptal et",
+	"finalize": "Bitir",
 	"dashboard": "Gösterge Paneli",
-	"new-product": "Yeni Ürün"
+	"new-product": "Yeni Ürün",
+	"image": "Fotoğraf",
+	"upload-image": "Fotoğraf Yükle",
+	"add-product": "Ürün Ekle"
 }

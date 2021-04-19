@@ -2,12 +2,11 @@ import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import DashboardLayout from '../../shared/components/dashboard-layout';
+import ProductModal from '../../shared/components/modals/product-modal';
 import ProductCard from '../../shared/components/product-card';
 import Table, { HeadCell } from '../../shared/components/table';
-import { Helper } from '../../shared/libs/helper';
 import { Product } from '../../shared/models/product';
 import ProductService from '../../shared/services/product-service';
-import { APP_COLORS } from '../../shared/styles';
 import ProductsHeader from './productsHeader';
 import styles from './styles';
 
@@ -33,7 +32,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-    const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(false);
+    const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(true);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -75,7 +74,11 @@ function ProductsPage(props: ProductProps): JSX.Element {
                 product.price == parseInt(text)
             ))
         }
-        setFilteredProducts(products)
+        setFilteredProducts(filteredProducts)
+    }
+
+    function createProduct(product: Product): void {
+
     }
 
     function renderProduct(product): JSX.Element {
@@ -102,6 +105,11 @@ function ProductsPage(props: ProductProps): JSX.Element {
                         )
                     }
                 </div>
+                <ProductModal
+                    visible={newProductModalVisible}
+                    onClose={() => setNewProductModalVisible(false)}
+                    onSubmit={createProduct}
+                />
             </div>
         </DashboardLayout>
     )

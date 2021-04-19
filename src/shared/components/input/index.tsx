@@ -1,5 +1,4 @@
-import { CSSProperties } from '@material-ui/styles'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { APP_COLORS } from '../../styles'
 import SimpleText from '../text/simple-text'

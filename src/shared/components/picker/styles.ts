@@ -4,7 +4,7 @@ import { APP_COLORS } from "../../styles";
 export default {
     container: {
         marginTop: 8,
-        position: 'relative'
+        position: 'relative',
     } as CSSProperties,
     innerContainer: {
         display: 'flex',
@@ -41,7 +41,10 @@ export default {
         overflowY: 'scroll',
         maxHeight: 108,
         paddingTop: 12,
-        paddingBottom: 12
+        paddingBottom: 12,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: APP_COLORS.lightGray
     } as CSSProperties,
     pickerItem: {
         display: 'flex',

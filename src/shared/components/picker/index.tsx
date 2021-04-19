@@ -6,6 +6,7 @@ import Button from '../button';
 import SimpleText from '../text/simple-text';
 import styles from './styles';
 import './picker.css';
+import Rotatable from '../rotatable';
 
 type PickerItem = {
     value: string,
@@ -46,16 +47,19 @@ function Picker(props: PickerProps): JSX.Element {
                 onPress={() => setOpened(!opened)}
             >
                 <SimpleText
-                    text={selectedItem || placeholder}
+                    text={selectedItem ? pickerItems.find(item => item.value == selectedItem)?.label : placeholder}
                     additionalStyle={styles.selectedItem}
                 />
-                {
+                <Rotatable rotate={opened}>
+                    <ArrowDown size={24} color={APP_COLORS.lightGray} />
+                </Rotatable>
+                {/* {
                     opened ? (
                         <ArrowUp size={24} color={APP_COLORS.lightGray} />
                     ) : (
                         <ArrowDown size={24} color={APP_COLORS.lightGray} />
                     )
-                }
+                } */}
             </Button>
             {
                 opened && (

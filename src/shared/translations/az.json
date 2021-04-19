@@ -52,8 +52,12 @@
 	"copy-listing": "Kopyala",
 	"delete-listing": "Sil",
 	"choose-file": "Şəkil seç",
+	"cancel": "Ləğv et",
 	"finalize": "Bitir",
 	"logout": "Çıxış et",
 	"dashboard": "Panel",
-	"new-product": "Yeni məhsul"
+	"new-product": "Yeni məhsul",
+	"image": "Şəkil",
+	"upload-image": "Şəkil Yüklə",
+	"add-product": "Məhsul Yarat"
 }
