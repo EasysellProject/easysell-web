@@ -29,7 +29,9 @@ function Button(props: ButtonProps): JSX.Element {
             }} onClick={onPress}>
             {
                 loading ? (
-                    <CircularProgress size={16} />
+                    <div style={styles.spinner}>
+                        <CircularProgress size={16} />
+                    </div>
                 ) : (
                     children
                 )
