@@ -14,7 +14,6 @@ interface ProductProps {
 
 }
 
-
 function ProductsPage(props: ProductProps): JSX.Element {
     const intl = useIntl();
 
@@ -32,7 +31,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-    const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(true);
+    const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -77,8 +76,9 @@ function ProductsPage(props: ProductProps): JSX.Element {
         setFilteredProducts(filteredProducts)
     }
 
-    function createProduct(product: Product): void {
-
+    function createProduct(newProduct: any): void {
+        setProducts(products.concat([newProduct]));
+        setNewProductModalVisible(false);
     }
 
     function renderProduct(product): JSX.Element {

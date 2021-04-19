@@ -11,11 +11,12 @@ import Button from '../../button';
 import Picker from '../../picker';
 import Input from '../../input';
 import styles from './styles';
+import ProductService from '../../../services/product-service';
 
 interface ProductModalProps {
     visible: boolean;
     onClose: () => void;
-    onSubmit: (product: Product) => void
+    onSubmit: (product: any) => void
 }
 
 function ProductModal(props: ProductModalProps): JSX.Element {
@@ -26,11 +27,31 @@ function ProductModal(props: ProductModalProps): JSX.Element {
     const [stock, setStock] = useState<string>('');
     const [currency, setCurrency] = useState<'TL' | 'USD'>('TL');
     const [submitted, setSubmitted] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [image, setImage] = useState<File>(null);
 
     function finalize(): void {
-        let product = new Product({ title: name, desc, price, stock, currency, img: URL.createObjectURL(image) });
-        onSubmit(product);
+        setSubmitted(true);
+        if (!name || !price || !stock) {
+            return;
+        }
+        let product = {
+            title: name,
+            desc,
+            price,
+            stock,
+            currency,
+            img: image
+        };
+        setLoading(true);
+        ProductService.createNewProduct(product)
+            .then((product) => {
+                setLoading(false);
+                onSubmit(product);
+            })
+            .catch((err) => {
+                alert(err)
+            });
     }
 
     return (
@@ -52,7 +73,10 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 <Input
                     value={name}
                     placeholder="name"
-                    onChangeText={(name) => setName(name)}
+                    onChangeText={(name) => {
+                        setSubmitted(false)
+                        setName(name)
+                    }}
                     required
                     label="name"
                     showLabel
@@ -64,11 +88,11 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 <Input
                     value={desc}
                     placeholder="description"
-                    onChangeText={(desc) => setDesc(desc)}
+                    onChangeText={(desc) => {
+                        setSubmitted(false)
+                        setDesc(desc)
+                    }}
                     label="description"
-                    showLabel
-                    errorText='error-empty-field'
-                    showError={desc.length == 0 && submitted}
                     inputStyles={styles.inputStyle}
                     additionalStyles={styles.inputContainer}
                 />
@@ -81,7 +105,10 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     type='number'
                     errorText='error-empty-field'
                     showError={price.length == 0 && submitted}
-                    onChangeText={(price) => setPrice(price)}
+                    onChangeText={(price) => {
+                        setSubmitted(false)
+                        setPrice(price)
+                    }}
                     inputStyles={styles.priceInput}
                     additionalStyles={styles.inputContainer}
                 />
@@ -91,7 +118,10 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     placeholder='currency'
                     showLabel
                     label='currency'
-                    onSelectItem={(currency: "TL" | "USD") => setCurrency(currency)}
+                    onSelectItem={(currency: "TL" | "USD") => {
+                        setSubmitted(false)
+                        setCurrency(currency)
+                    }}
                 />
                 <Input
                     required
@@ -102,7 +132,10 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     type='number'
                     errorText='error-empty-field'
                     showError={stock.length == 0 && submitted}
-                    onChangeText={(stock) => setStock(stock)}
+                    onChangeText={(stock) => {
+                        setSubmitted(false)
+                        setStock(stock)
+                    }}
                     inputStyles={styles.priceInput}
                     additionalStyles={styles.inputContainer}
                 />
@@ -130,7 +163,9 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 </Button>
                 <Button
                     onPress={finalize}
-                    buttonStyle={styles.finalizeButton}>
+                    buttonStyle={styles.finalizeButton}
+                    loading={loading}
+                >
                     <SimpleText
                         textID='finalize'
                         additionalStyle={styles.finalizeText}

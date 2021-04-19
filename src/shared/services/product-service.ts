@@ -9,7 +9,11 @@ class ProductService {
             let productsDoc = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('products').get();
             let products: Product[] = [];
             if (!productsDoc.empty) {
-                products = productsDoc.docs.map(product => new Product(product.data()));
+                products = productsDoc.docs.map(details => {
+                    let product = new Product(details.data());
+                    product._id = details.id
+                    return product
+                });
             }
             return products;
         } catch (err) {
@@ -18,7 +22,14 @@ class ProductService {
     }
     async createNewProduct(details: any): Promise<Product> {
         try {
-            console.log('uid ', Helper.getUserID())
+            let imgID = Helper.generateRandomID();
+            let metadata = {
+                contentType: 'image/*'
+            }
+            if (details.img) {
+                await firebase.storage().ref().child(`users/${Helper.getUserID()}/${imgID}`).put(details.img, metadata);
+                details.img = await firebase.storage().ref().child(`users/${Helper.getUserID()}/${imgID}`).getDownloadURL();
+            }
             let productsDoc = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('products').add(details);
             let product = details;
             product._id = productsDoc.id;
