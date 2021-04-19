@@ -4,6 +4,8 @@ import { LangCode } from '../utils/localization'
 import UserService from './user-service'
 import { Listing } from '../models/listing'
 import { Order } from '../models/order'
+import { Address, CargoCompany, Customer, Product } from "../models/product"
+
 
 
 class AuthService {
@@ -174,23 +176,25 @@ class AuthService {
 
     let cargos = [
       {
-        _id: "0";
-        name: "Aras Kargo Firmasi";
-        shortName: "ARAS";
-        logo: "";
-        trackUrl?: "";
+        _id: "0",
+        name: "Aras Kargo Firmasi",
+        shortName: "ARAS",
+        logo: "",
+        trackUrl: ""
       },
       {
-        _id: "0";
-        name: "Aras Kargo Firmasi";
-        shortName: "ARAS";
-        logo: "";
-        trackUrl?: "";
+        _id: "0",
+        name: "Surat Kargo Firmasi",
+        shortName: "Surat",
+        logo: "",
+        trackUrl: ""
       }
     
     ]
 
     var orderCount = Math.floor(Math.random() * 1000 + 1);
+    let marketList = ["Trendyol", "Hepsiburada"];
+    
     let randomOrderDate;
     let randomDueDate;
     let randomDay;
@@ -204,13 +208,15 @@ class AuthService {
       }
       else{
         randomDueDate = new Date( 2021, randomDay + 7 , 4);
-      }
+      } 
+      
       let details = {
         orderNo: this.generateRandomID(),
         orderDate: randomOrderDate,
         dueDate: randomDueDate,
-        orderedBy: info.desc,
-        price: info.price,
+        orderedBy: { _id: String(Math.floor(Math.random() * 3000+2222)) ,
+                                    market: marketList[Math.floor(Math.random() * 2) ] }, 
+        cargoCompany: info.price,
         img: info.img,
         stock: Math.floor(Math.random() * 50),
         marketPlace: Math.floor(Math.random() * 2) == 1 ? ['Trendyol', 'Hepsiburada'] : Math.floor(Math.random() * 2) == 1 ? ["Hepsiburada"] : ["Trendyol"],
@@ -218,7 +224,6 @@ class AuthService {
         createdAt: this.getRandomDate(new Date(1609460000000), new Date()) // random time since 1 january 2021
       }
 
-        this.orderedBy = details.orderedBy;
         this.cargoCompany = details.cargoCompany;
         this.items = details.items.map(i => new Product(i));
         this.deliveryType = "details.deliveryType";
