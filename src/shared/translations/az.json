@@ -60,5 +60,11 @@
 	"image": "Şəkil",
 	"upload-image": "Şəkil Yüklə",
 	"add-product": "Məhsul Yarat",
-	"reset-password":"Şifrəni Yenilə"
+	"reset-password":"Şifrəni Yenilə",
+	"welcome":"Xoş gəlmisən",
+	"sales-amount":"Satış miqdarı",
+	"gross-profit":"Toplam qazanc",
+	"avg-sale-price":"Ortalama satış qiyməti",
+	"profit-margin":"Mənfəət marjası",
+	"avg-product-price":"Ortalama məhsul qiyməti"
 }

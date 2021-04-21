@@ -60,5 +60,11 @@
 	"image":"Image",
 	"upload-image":"Upload Image",
 	"add-product":"Add Product",
-	"reset-password":"Reset Password"
+	"reset-password":"Reset Password",
+	"welcome":"Welcome",
+	"sales-amount":"Sales amount",
+	"gross-profit":"Gross profit",
+	"avg-sale-price":"Avg sale price",
+	"profit-margin":"Profit margin",
+	"avg-product-price":"Avg product price"
 }

@@ -60,5 +60,11 @@
 	"image": "Fotoğraf",
 	"upload-image": "Fotoğraf Yükle",
 	"add-product": "Ürün Ekle",
-	"reset-password":"Şifreni Sıfırla"
+	"reset-password":"Şifreni Sıfırla",
+	"welcome":"Hoş geldin",
+	"sales-amount":"Satış miktarı",
+	"gross-profit":"Toplam kar",
+	"avg-sale-price":"Ortalama satış fiyatı",
+	"profit-margin":"Kar marjı",
+	"avg-product-price":"Ortalama Ürün fiyatı"
 }
