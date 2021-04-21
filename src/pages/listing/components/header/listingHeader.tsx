@@ -2,24 +2,25 @@ import React from 'react'
 import { useState } from "react";
 import { RiAddCircleLine } from 'react-icons/ri'
 
-import { MarketPlace } from '../../shared/models/integration';
-import SimpleText from "../../shared/components/text/simple-text";
-import Button from "../../shared/components/button";
-import DropDown from "../../shared/components/dropdown";
-import Search from "../../shared/components/search"
-import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
-import styles from './styles'
+import { MarketPlace } from '../../../../shared/models/integration';
+import SimpleText from "../../../../shared/components/text/simple-text";
+import Button from "../../../../shared/components/button";
+import DropDown from "../../../../shared/components/dropdown";
+import Search from "../../../../shared/components/search"
+import { APP_COLORS, WEB_STYLES } from '../../../../shared/styles';
 import { useIntl } from 'react-intl';
+import styles from './styles'
 
 
 interface ListingHeaderProps {
     onSearchChanged: (text: string) => void;
     onFilter: (market: string) => void;
+    onCreateNewPressed: () => void
     listingCount: number
 }
 
 function ListingHeader(props: ListingHeaderProps): JSX.Element {
-    const { onSearchChanged, onFilter, listingCount } = props;
+    const { onSearchChanged, onFilter, onCreateNewPressed, listingCount } = props;
     const intl = useIntl();
 
     const [searchText, setSearchText] = useState('');
@@ -41,6 +42,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
     }
     function createNewListing(): void {
         console.log("create new button pressed")
+        onCreateNewPressed();
     }
     return (
         <div style={styles.header}>

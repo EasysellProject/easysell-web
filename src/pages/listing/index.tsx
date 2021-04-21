@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import ListingHeader from './listingHeader';
+import ListingHeader from './components/header/listingHeader';
 import DashboardLayout from '../../shared/components/dashboard-layout';
 import { Listing } from '../../shared/models/listing'
 import Table, { HeadCell } from '../../shared/components/table';
 import ListingModal from '../../shared/components/modals/listing-modal';
 import ListingCard from '../../shared/components/listing-card';
 import styles from './styles';
+import NewListingModal from './components/new-listing-modal';
 
 interface ListingProps {
 
@@ -182,7 +183,7 @@ function ListingPage(props: ListingProps): JSX.Element {
     return (
         <DashboardLayout route='Listing'>
             <div style={styles.innerContainer}>
-                <ListingHeader listingCount={listings.length} onSearchChanged={onSearchListing} onFilter={onFilterListing} />
+                <ListingHeader listingCount={listings.length} onCreateNewPressed={() => setCreateModalVisible(true)} onSearchChanged={onSearchListing} onFilter={onFilterListing} />
                 <div style={styles.tableContainer}>
                     <Table
                         data={filteredListing}
@@ -204,6 +205,11 @@ function ListingPage(props: ListingProps): JSX.Element {
                     />
                 )
             }
+            <NewListingModal
+                visible={createModalVisible}
+                onClose={() => setCreateModalVisible(false)}
+            />
+
         </DashboardLayout>
     )
 }
