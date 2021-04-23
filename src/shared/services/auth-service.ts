@@ -173,19 +173,74 @@ class AuthService {
         currency: "TL"
       }
     ]
-
+    
     let cargos = [
       {
-        _id: "0",
-        name: "Aras Kargo Firmasi",
+        _id: "1",
+        name: "Yurtici Kargo",
+        shortName: "YK",
+        logo: "",
+        trackUrl: ""
+      },
+      {
+        _id: "2",
+        name: "MNG KARGO",
+        shortName: "MNG",
+        logo: "",
+        trackUrl: ""
+      },
+      {
+        _id: "3",
+        name: "ARAS KARGO",
         shortName: "ARAS",
         logo: "",
         trackUrl: ""
       },
       {
-        _id: "0",
-        name: "Surat Kargo Firmasi",
-        shortName: "Surat",
+        _id: "4",
+        name: "YURTICI KARGO Marketplace",
+        shortName: "YKMP",
+        logo: "",
+        trackUrl: ""
+      }
+      ,
+      {
+        _id: "5",
+        name: "Ayni Gun Teslimat",
+        shortName: "AGT",
+        logo: "",
+        trackUrl: ""
+      }
+      ,
+      {
+        _id: "6",
+        name: "Horoz Kargo Marketplace",
+        shortName: "HOROZMP",
+        logo: "",
+        trackUrl: ""
+      }
+      ,
+      {
+        _id: "7",
+        name: "Surat Kargo Marketplace",
+        shortName: "SURATMP",
+        logo: "",
+        trackUrl: ""
+      }
+      ,
+      {
+        _id: "8",
+        name: "Trendyol Lojistik",
+        shortName: "TEX",
+        logo: "",
+        trackUrl: ""
+      }
+
+      ,
+      {
+        _id: "9",
+        name: "PTT",
+        shortName: "PTT",
         logo: "",
         trackUrl: ""
       }
@@ -216,18 +271,28 @@ class AuthService {
         dueDate: randomDueDate,
         orderedBy: { _id: String(Math.floor(Math.random() * 3000+2222)) ,
                                     market: marketList[Math.floor(Math.random() * 2) ] }, 
-        cargoCompany: info.price,
-        img: info.img,
-        stock: Math.floor(Math.random() * 50),
-        marketPlace: Math.floor(Math.random() * 2) == 1 ? ['Trendyol', 'Hepsiburada'] : Math.floor(Math.random() * 2) == 1 ? ["Hepsiburada"] : ["Trendyol"],
-        currency: info.currency,
-        createdAt: this.getRandomDate(new Date(1609460000000), new Date()) // random time since 1 january 2021
-      }
+        cargoCompany: cargos[ Math.floor(Math.random() * 8)],
+        items: [ {
+          _id: this.generateRandomID(),
+          title: info.title,
+          desc: info.desc,
+          price: info.price,
+          stock: Math.floor(Math.random() * 50),
+          currency: Math.floor(Math.random() * 2) == 1 ? ['TL', '$'] : Math.floor(Math.random() * 2) == 1 ? ["TL"] : ["$"],
+          img: info.img,}
+           ],
 
-        this.cargoCompany = details.cargoCompany;
-        this.items = details.items.map(i => new Product(i));
-        this.deliveryType = "details.deliveryType";
-        this.deliveryAddress = details.deliveryAddress;
+        deliveryType: "Standart Delivery",
+        deliveryAddress: {
+          address: "",
+          name: "",
+          email: "",
+          phone: "",
+          district: "",
+          city: "",
+          town: "",
+        },
+        }
       orders.push(new Order(details));
     }
 
