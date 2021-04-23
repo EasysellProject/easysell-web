@@ -115,7 +115,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 />
                 <Picker
                     pickerItems={[{ label: '₺', value: 'TL' }, { label: '$', value: "USD" }]}
-                    selectedItem={currency}
+                    selectedItems={[currency]}
                     placeholder='currency'
                     showLabel
                     label='currency'
@@ -158,7 +158,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     buttonStyle={styles.cancelButton}>
                     <SimpleText
                         textID='cancel'
-                        additionalStyle={styles.finalizeText}
+                        additionalStyle={styles.cancelText}
                     />
                     <MdClose size={16} color={APP_COLORS.gray} />
                 </Button>

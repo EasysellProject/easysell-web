@@ -74,7 +74,6 @@ function Register(): JSX.Element {
             return
         }
         if (!Helper.validateEmail(email)) {
-            console.log('hello')
             setInvalidEmailError(true)
             return
         }

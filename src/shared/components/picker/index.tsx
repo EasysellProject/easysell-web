@@ -15,7 +15,8 @@ type PickerItem = {
 
 interface PickerProps {
     pickerItems: PickerItem[],
-    selectedItem: string,
+    multiple?: boolean
+    selectedItems: string[],
     placeholder: string,
     showLabel?: boolean,
     label?: string,
@@ -25,8 +26,9 @@ interface PickerProps {
 }
 
 function Picker(props: PickerProps): JSX.Element {
-    const { pickerItems, selectedItem, placeholder, showLabel, label, required, containerStyle, onSelectItem } = props;
+    const { pickerItems, selectedItems, multiple, placeholder, showLabel, label, required, containerStyle, onSelectItem } = props;
     const [opened, setOpened] = useState<boolean>(false);
+    const [update, setUpdate] = useState(0);
 
     return (
         <div style={{
@@ -43,35 +45,43 @@ function Picker(props: PickerProps): JSX.Element {
                     />
                 )
             }
-            <Button buttonStyle={styles.innerContainer}
+            <Button buttonStyle={{ ...styles.innerContainer, height: containerStyle?.height || 36 }}
                 onPress={() => setOpened(!opened)}
             >
-                <SimpleText
-                    text={selectedItem ? pickerItems.find(item => item.value == selectedItem)?.label : placeholder}
-                    additionalStyle={styles.selectedItem}
-                />
+                {
+                    selectedItems?.length > 0 && pickerItems.filter(item => selectedItems?.some(i => i == item.value)).length > 0 ? (
+                        <SimpleText
+                            text={pickerItems.filter(item => selectedItems?.some(i => i == item.value))?.map(selectedItem => selectedItem.label).join(', ')}
+                            additionalStyle={styles.selectedItem}
+                        />
+                    ) : (
+                        <SimpleText
+                            textID={placeholder}
+                            additionalStyle={styles.selectedItem}
+                        />
+                    )
+                }
                 <Rotatable rotate={opened}>
                     <ArrowDown size={24} color={APP_COLORS.lightGray} />
                 </Rotatable>
-                {/* {
-                    opened ? (
-                        <ArrowUp size={24} color={APP_COLORS.lightGray} />
-                    ) : (
-                        <ArrowDown size={24} color={APP_COLORS.lightGray} />
-                    )
-                } */}
             </Button>
             {
                 opened && (
                     <div style={styles.openedPicker} className='picker'>
                         {
                             pickerItems.map(item => (
-                                <Button buttonStyle={styles.pickerItem} onPress={() => { onSelectItem(item.value) }}>
+                                <Button buttonStyle={styles.pickerItem} onPress={() => {
+                                    setUpdate(update + 1) // re render picker
+                                    onSelectItem(item.value)
+                                }}>
                                     <SimpleText additionalStyle={styles.pickerItemText} text={item.label} />
                                     {
-                                        item.value == selectedItem && (
+                                        multiple ? (
+                                            selectedItems?.some(i => i == item.value) && (
+                                                <Done color={APP_COLORS.BUTTONS.darkGray} size={24} />
+                                            )
+                                        ) : item.value == selectedItems[0] && (
                                             <Done color={APP_COLORS.BUTTONS.darkGray} size={24} />
-
                                         )
                                     }
                                 </Button>

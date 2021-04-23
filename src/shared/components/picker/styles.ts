@@ -3,7 +3,6 @@ import { APP_COLORS } from "../../styles";
 
 export default {
     container: {
-        marginTop: 8,
         position: 'relative',
     } as CSSProperties,
     innerContainer: {
@@ -14,7 +13,7 @@ export default {
         backgroundColor: 'white',
         marginTop: 8,
         borderWidth: 1,
-        // borderRadius: 8,
+        borderRadius: 8,
         paddingLeft: 8,
         paddingTop: 6,
         paddingBottom: 6,
@@ -53,6 +52,7 @@ export default {
         paddingRight: 12,
         marginBottom: 12,
         flexDirection: 'row',
+        zIndex: 100,
         justifyContent: 'space-between',
     } as CSSProperties,
     pickerItemText: {

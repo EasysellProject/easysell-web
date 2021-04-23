@@ -41,7 +41,6 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
         onSearchChanged(searchText);
     }
     function createNewListing(): void {
-        console.log("create new button pressed")
         onCreateNewPressed();
     }
     return (

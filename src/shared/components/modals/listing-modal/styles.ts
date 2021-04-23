@@ -8,39 +8,33 @@ export default {
   },
   titleDescInputAdditional: {
     width: '100%',
-    margin: 10,
+    marginBottom: 10,
     maxWidth: "100%"
   },
   titleDescInput: {
     width: '100%',
-    margin: 10,
     maxWidth: "100%"
   },
   priceCurrQuantity: {
     display: "flex",
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   } as CSSProperties,
   priceInputAdditional: {
-    width: '40%',
-    margin: 10,
+    marginLeft: 6,
+    flex: 1,
+    // width: '40%',
     maxWidth: "100%"
   },
   priceInput: {
-    minWidth: 0, maxWidth: '100%',
-    width: '100%'
-  },
-  currencyInputAdditional: {
-    width: '10%',
-    margin: 10
-  },
-  currencyInput: {
+    // marginLeft: 6,
     minWidth: 0,
     maxWidth: '100%',
     width: '100%'
   },
   quantityInputAdditional: {
-    width: '40%',
-    margin: 10
+    flex: 1,
+    // width: '40%',
   },
   quantityInput: {
     minWidth: 0,
@@ -54,14 +48,18 @@ export default {
     maxWidth: '100%',
     width: '50%'
   },
+  currencyPicker: {
+    flex: 2,
+    height: 34,
+    marginLeft: 6,
+    // marginLeft: 12,
+    // marginRight: 12
+  } as CSSProperties,
   choosefileButton: {
     padding: 40,
     display: "flex",
     justifyContent: "space-between"
   } as CSSProperties,
-  finalizeButton: {
-    padding: 20
-  },
   headerContainer: {
     display: "flex",
     flexDirection: "row",
@@ -79,36 +77,40 @@ export default {
     width: "100%",
     height: "100%",
     background: "rgba(0, 0, 0, 0.6)",
-    zIndex: 1,
   } as CSSProperties,
   modalCard: {
     padding: 24,
     display: "flex",
-    justifyContent: "flex-end",
-    position: "fixed",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: APP_COLORS.textGreen,
-    boxShadow: "0px 1px 0px 0px gray",
-    borderRadius: 12,
-    background: "white",
-    width: "50%",
-    height: "auto",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
-    zIndex: 2
   } as CSSProperties,
-  button: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 8,
-    backgroundColor: APP_COLORS.lightGreen,
-    paddingTop: 6,
-    paddingBottom: 6,
-    borderRadius: 12,
-  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginRight: 24,
+    marginLeft: 24,
+    marginBottom: 24
+  } as CSSProperties,
+  cancelButton: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 100,
+    backgroundColor: APP_COLORS.BUTTONS.grayButton,
+    borderRadius: 12
+  } as CSSProperties,
+  finalizeButton: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 100,
+    backgroundColor: APP_COLORS.BUTTONS.green,
+    borderRadius: 12
+  } as CSSProperties,
+  cancelText: {
+    color: APP_COLORS.gray
+  } as CSSProperties,
+  finalizeText: {
+    color: APP_COLORS.gray
+  } as CSSProperties,
   chooseFileButton: {
     height: "40",
     width: "100",
@@ -120,9 +122,17 @@ export default {
     paddingBottom: 6,
     borderRadius: 12,
   },
+  filePickerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 8,
+    marginLeft: 24,
+    marginRight: 12,
+    // padding: 16
+  } as CSSProperties,
   image: {
-    marginLeft: 10,
-    width: 36,
-    height: 36,
-  },
+    height: 80,
+    width: 80,
+    borderRadius: '50%'
+  } as CSSProperties,
 };

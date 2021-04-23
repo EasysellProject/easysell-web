@@ -44,10 +44,12 @@
 	"marketplace": "Bazar Yeri",
 	"title": "Başlıq",
 	"total": "Toplam:",
-	"filter-marketplace": "Bazar yeri seç",
+	"filter-marketplace": "Platforma filtrlə",
+	"select-marketplace": "Platforma seç",
 	"product-info": "Məlumat",
 	"products": "Məhsullarım",
 	"actions": "Əməliyyatlar",
+	"create-listing": "Yarat",
 	"edit-listing": "Düzəliş Et",
 	"copy-listing": "Kopyala",
 	"delete-listing": "Sil",
@@ -60,5 +62,6 @@
 	"image": "Şəkil",
 	"upload-image": "Şəkil Yüklə",
 	"add-product": "Məhsul Yarat",
-	"reset-password":"Şifrəni Yenilə"
+	"reset-password": "Şifrəni Yenilə",
+	"select-product": "Məhsul Seç"
 }

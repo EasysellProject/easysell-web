@@ -38,6 +38,7 @@
 	"hepsiburada": "Hepsiburada",
 	"total": "Total:",
 	"filter-marketplace": "Filter marketplace",
+	"select-marketplace": "Select marketplace",
 	"product-info": "Product Information",
 	"products": "Products",
 	"created-at": "Created At",
@@ -48,6 +49,7 @@
 	"marketplace": "Marketplace",
 	"title": "Title",
 	"actions": "Actions",
+	"create-listing": "Create Listing",
 	"edit-listing": "Edit Listing",
 	"copy-listing": "Duplicate",
 	"delete-listing": "Remove Listing",
@@ -60,5 +62,6 @@
 	"image":"Image",
 	"upload-image":"Upload Image",
 	"add-product":"Add Product",
-	"reset-password":"Reset Password"
+	"reset-password":"Reset Password",
+	"select-product":"Select Product"
 }

@@ -15,13 +15,10 @@ export default {
         alignItems: "center",
         borderRadius: 12,
         marginBottom: 12,
-        // paddingRight: 6
     } as CSSProperties,
     indexContainer: {
         display: "flex",
         justifyContent: "center",
-        marginTop: -1,
-        marginBottom: -1,
         alignItems: "center",
         borderRadius: 10,
         width: 48,
@@ -45,7 +42,8 @@ export default {
         color: APP_COLORS.borderGray,
     } as CSSProperties,
     textHigherFlex: {
-        flex: 3,
+        flex: 1,
+        textAlign: 'center',
         fontSize: 18,
         color: APP_COLORS.borderGray,
     } as CSSProperties,

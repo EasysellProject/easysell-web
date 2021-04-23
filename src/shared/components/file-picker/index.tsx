@@ -13,7 +13,6 @@ function FilePicker(props: FilePickerProps): JSX.Element {
     const inputRef = useRef<HTMLInputElement>(null);
 
     function onChooseFilePressed(event): void {
-        console.log('file chooser ', event.target.files)
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             onFileChosen(img);

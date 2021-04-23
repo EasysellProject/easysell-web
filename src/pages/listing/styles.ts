@@ -5,7 +5,8 @@ export default {
     innerContainer: {
         display: 'flex',
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflow: 'auto'
     } as CSSProperties,
     tableContainer: {
         display: 'flex',

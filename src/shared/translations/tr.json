@@ -37,7 +37,8 @@
 	"amazon": "Amazon",
 	"hepsiburada": "Hepsiburada",
 	"total": "Toplam:",
-	"filter-marketplace": "Pazar yeri filtrele",
+	"filter-marketplace": "Platform filtrele",
+	"select-marketplace": "Platform seç",
 	"product-info": "Ürün bilgisi",
 	"created-at": "Oluşturuldu",
 	"price": "Fiyat",
@@ -48,6 +49,7 @@
 	"title": "Başlık",
 	"products": "Ürünlerim",
 	"actions": "İşlemler",
+	"create-listing": "Listeleme Oluştur",
 	"edit-listing": "Listelemeyi Düzenle",
 	"copy-listing": "Listelemeyi Kopyala",
 	"remove-listing": "Listelemeyi Kaldır",
@@ -60,5 +62,6 @@
 	"image": "Fotoğraf",
 	"upload-image": "Fotoğraf Yükle",
 	"add-product": "Ürün Ekle",
-	"reset-password":"Şifreni Sıfırla"
+	"reset-password":"Şifreni Sıfırla",
+	"select-product":"Ürün Seç"
 }

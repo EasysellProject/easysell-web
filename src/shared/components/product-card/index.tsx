@@ -1,23 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
 
-import { Helper } from '../../libs/helper'
 import { Product } from '../../models/product';
 import { APP_COLORS } from '../../styles';
-import Button from '../button';
 import SimpleText from '../text/simple-text'
 import styles from './styles'
 
 interface ProductCardProps {
     product: Product;
     index: number,
+    onPress: (product: Product) => void;
     // onMorePressed: (listing: Listing) => void;
     // editListing?: () => void;
     // tooltipVisible: boolean
 }
 
 function ProductCard(props: ProductCardProps): JSX.Element {
-    const { product, index } = props
+    const { product, index, onPress } = props
 
     const [hovered, setHovered] = useState<boolean>(false);
 
@@ -41,22 +40,38 @@ function ProductCard(props: ProductCardProps): JSX.Element {
     // }
 
     return (
-        // <div
-        //     onMouseEnter={() => setHovered(true)}
-        //     onMouseLeave={() => setHovered(false)}
-        //     style={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white', position: 'relative' }}>
-        <Button onPress={() => { }} buttonStyle={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white' }}>
+        <button
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onClick={() => onPress(product)}
+            style={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white', position: 'relative' }}>
+            {/* <Button onPress={() => { }}> */}
             <div style={{ ...styles.indexContainer, backgroundColor: hovered ? APP_COLORS.HOVER.gray : APP_COLORS.BUTTONS.grayButton }}>
-                <SimpleText textID={'' + index} additionalStyle={styles.indexText} />
+                <SimpleText text={'' + index} additionalStyle={styles.indexText} />
             </div>
-            <div style={styles.infoContainer}>
-                <img src={product.img} style={styles.image} />
-                <SimpleText ellipsis textID={product.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                <div style={styles.infoContainer}>
+                    <img src={product.img} style={styles.image} />
+                    <SimpleText ellipsis text={product.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+                </div>
+                <div style={{ height: 34, width: 30 }}></div>
             </div>
-            <SimpleText ellipsis textID={product.desc} additionalStyle={styles.textHigherFlex} />
-            <SimpleText textID={'' + product.price} additionalStyle={styles.text} />
-            <SimpleText textID={product.currency} additionalStyle={styles.text} />
-            <SimpleText textID={'' + product.stock} additionalStyle={styles.text} />
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
+                <SimpleText ellipsis text={product.desc} additionalStyle={styles.textHigherFlex} />
+                <div style={{ height: 34, width: 30 }}></div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}>
+                <SimpleText text={'' + product.price} additionalStyle={styles.text} />
+                <div style={{ height: 34, width: 30 }}></div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                <SimpleText text={product.currency} additionalStyle={styles.text} />
+                <div style={{ height: 34, width: 30 }}></div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                <SimpleText text={'' + product.stock} additionalStyle={styles.text} />
+                <div style={{ height: 34, width: 30 }}></div>
+            </div>
             {/* <SimpleText textID={product.marketPlace[0]} additionalStyle={styles.text} /> */}
             {/* <SimpleText textID={Helper.getDMYTime(listing.createdAt)} additionalStyle={styles.text} /> */}
             {/* <Button buttonStyle={styles.button} onPress={() => toggleTooltip()}>•••</Button> */}
@@ -79,12 +94,9 @@ function ProductCard(props: ProductCardProps): JSX.Element {
 
                 )
             } */}
-        </Button>
-        // </div>
+            {/* </Button> */}
+        </button>
     );
-
-
-
 }
 
 export default ProductCard
