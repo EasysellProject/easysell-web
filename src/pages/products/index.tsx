@@ -83,7 +83,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
 
     function renderProduct(product): JSX.Element {
         return (
-            <ProductCard product={product} index={product.index} />
+            <ProductCard onPress={() => { }} product={product} index={product.index} />
         )
     }
 
