@@ -10,6 +10,7 @@ import ListingCard from '../../shared/components/listing-card';
 import NewListingModal from './components/new-listing-modal';
 import styles from './styles';
 import { Product } from '../../shared/models/product';
+import ProductService from '../../shared/services/product-service';
 
 interface ListingProps {
 
@@ -194,14 +195,17 @@ function ListingPage(props: ListingProps): JSX.Element {
                         children={null}
                         closeModal={closeListingModal}
                         loading={createLoading}
-                        onSubmit={() => {
+                        onSubmit={(listing: any) => {
                             if (listingModal.type == 'edit') {
-
+                                // listingService.editListing(listing)
                             } else if (listingModal.type == 'create') {
                                 if (selectedListing) {
                                     // create a listing from product
+                                    // listingService.create(listing)
                                 } else {
                                     // create new listing and product
+                                    // listingService.create(listing)
+                                    ProductService.createNewProduct(listing)
                                 }
                             }
                         }}

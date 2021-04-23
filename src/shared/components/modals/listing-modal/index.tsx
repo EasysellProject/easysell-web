@@ -17,7 +17,7 @@ interface ListingModalProps {
     header: string,
     children: ReactNode,
     closeModal: () => void;
-    onSubmit: () => void;
+    onSubmit: (listing: any) => void;
     loading?: boolean
 }
 
@@ -165,7 +165,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             <MdClose size={16} color={APP_COLORS.gray} />
                         </Button>
                         <Button
-                            onPress={onSubmit}
+                            onPress={() => onSubmit({})}
                             buttonStyle={styles.finalizeButton}
                             loading={loading}
                         >

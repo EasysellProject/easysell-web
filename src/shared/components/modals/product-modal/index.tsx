@@ -47,6 +47,12 @@ function ProductModal(props: ProductModalProps): JSX.Element {
         ProductService.createNewProduct(product)
             .then((product) => {
                 setLoading(false);
+                setName('');
+                setDesc('')
+                setPrice('')
+                setStock('')
+                setCurrency('TL')
+                setSubmitted(false)
                 onSubmit(product);
             })
             .catch((err) => {
