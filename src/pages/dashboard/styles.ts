@@ -3,18 +3,19 @@ import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
 
 export default {
     container: {
-        backgroundColor:APP_COLORS.lightTurquoise,
+        backgroundColor: APP_COLORS.lightTurquoise,
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'auto',
         flex: 1,
     } as CSSProperties,
-    dashboardHeader:{
-        width:"100%",
-        height:"30%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"space-between",
-        alignItems:"center",
+    dashboardHeader: {
+        width: "100%",
+        // height: "30%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
     } as CSSProperties,
     spinnerContainer: {
         flex: 1,
@@ -25,97 +26,98 @@ export default {
     spinner: {
         color: APP_COLORS.ligthBlue
     } as CSSProperties,
-    firstLayer:{
-        width:"100%",
-        height:"10%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"flex-start",
-        alignSelf:"flex-start",
-        padding:10
+    firstLayer: {
+        width: "100%",
+        height: "10%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignSelf: "flex-start",
+        padding: 10
     } as CSSProperties,
-    numbersLayer:{
-        width:"100%",
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"space-evenly",
-        alignSelf:"center",
-        padding:20
+    numbersLayer: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: 'wrap',
+        justifyContent: "space-evenly",
+        alignSelf: "center",
     } as CSSProperties,
-    infoLayer:{
-        width:200,
-        minHeight:60,
+    infoLayer: {
+        width: 200,
+        minHeight: 60,
+        margin: 10,
         ...WEB_STYLES.flexWrap,
-        height:"100%",
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"flex-start",
-        backgroundColor:"white",
-        padding:20,
-        borderRadius:8
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        backgroundColor: "white",
+        padding: 20,
+        borderRadius: 8
     } as CSSProperties,
-    infoLayerTextArea:{
-        height:"100%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"flex-start",
-        alignItems:"flex-start",
-        paddingRight:8
+    infoLayerTextArea: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        paddingRight: 8
     } as CSSProperties,
-    infoLayerText:{
+    infoLayerText: {
         fontFamily: "Helvetica",
         color: APP_COLORS.gray,
         fontSize: 15,
-        marginLeft:5
+        marginLeft: 5
     } as CSSProperties,
-    infoLayerTextNumber:{
+    infoLayerTextNumber: {
         fontFamily: "Helvetica",
         color: APP_COLORS.gray,
-        fontWeight:"bold",
+        fontWeight: "bold",
         fontSize: 15,
-        marginLeft:5
+        marginLeft: 5
     } as CSSProperties,
-    infoLayerSymbolLira:{
-        backgroundColor:"lightblue",
-        padding:8,
-        borderRadius:5
+    infoLayerSymbolLira: {
+        backgroundColor: "lightblue",
+        padding: 8,
+        borderRadius: 5
     } as CSSProperties,
-    infoLayerSymbolPercent:{
-        backgroundColor:"orange",
-        padding:8,
-        borderRadius:5
+    infoLayerSymbolPercent: {
+        backgroundColor: "orange",
+        padding: 8,
+        borderRadius: 5
     } as CSSProperties,
-    infoLayerSymbolMargin:{
-        backgroundColor:APP_COLORS.lightGreen,
-        padding:8,
-        borderRadius:5
+    infoLayerSymbolMargin: {
+        backgroundColor: APP_COLORS.lightGreen,
+        padding: 8,
+        borderRadius: 5
     } as CSSProperties,
-    welcomeLayer:{
-        width:"100%",
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"flex-start",
-        alignSelf:"flex-start"
+    welcomeLayer: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignSelf: "flex-start"
     } as CSSProperties,
     headerText: {
         fontFamily: "Helvetica",
         color: APP_COLORS.gray,
         fontSize: 30,
-        paddingLeft:20
+        paddingLeft: 20
     } as CSSProperties,
     dateText: {
         fontFamily: "Helvetica",
         color: APP_COLORS.gray,
         fontSize: 20,
-        paddingLeft:20
+        paddingLeft: 20
     } as CSSProperties,
     nameText: {
         fontFamily: "Helvetica",
         fontWeight: 'bold',
         color: APP_COLORS.gray,
         fontSize: 30,
-        paddingLeft:10
+        paddingLeft: 10
     } as CSSProperties,
-    
+
 }
