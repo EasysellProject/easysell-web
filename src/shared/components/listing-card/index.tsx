@@ -49,18 +49,18 @@ function ListingCard(props: ListingCardProps): JSX.Element {
             onMouseLeave={() => setHovered(false)}
             style={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white', position: 'relative' }}>
             <div style={{ ...styles.indexContainer, backgroundColor: hovered ? APP_COLORS.HOVER.gray : APP_COLORS.BUTTONS.grayButton }}>
-                <SimpleText textID={'' + index} additionalStyle={styles.indexText} />
+                <SimpleText text={'' + index} additionalStyle={styles.indexText} />
             </div>
             <div style={styles.infoContainer}>
                 <img src={listing.img} style={styles.image} />
-                <SimpleText ellipsis textID={listing.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+                <SimpleText ellipsis text={listing.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
             </div>
-            <SimpleText ellipsis textID={listing.desc} additionalStyle={styles.textHigherFlex} />
-            <SimpleText textID={'' + listing.price} additionalStyle={styles.text} />
-            <SimpleText textID={listing.currency} additionalStyle={styles.text} />
-            <SimpleText textID={'' + listing.stock} additionalStyle={styles.text} />
-            <SimpleText textID={listing.marketPlace[0]} additionalStyle={styles.text} />
-            <SimpleText textID={Helper.getDMYTime(listing.createdAt)} additionalStyle={styles.text} />
+            <SimpleText ellipsis text={listing.desc} additionalStyle={styles.textHigherFlex} />
+            <SimpleText text={'' + listing.price} additionalStyle={styles.text} />
+            <SimpleText text={listing.currency} additionalStyle={styles.text} />
+            <SimpleText text={'' + listing.stock} additionalStyle={styles.text} />
+            <SimpleText text={listing.marketPlace[0]} additionalStyle={styles.text} />
+            <SimpleText text={Helper.getDMYTime(listing.createdAt)} additionalStyle={styles.text} />
             <Button buttonStyle={styles.button} onPress={() => toggleTooltip()}>•••</Button>
             {
                 tooltipVisible && (
