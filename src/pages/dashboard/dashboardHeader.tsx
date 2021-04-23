@@ -4,9 +4,11 @@ import SimpleText from "../../shared/components/text/simple-text";
 import {BiLira} from 'react-icons/bi'
 import {FiPercent} from "react-icons/fi"
 import {RiTShirtLine} from "react-icons/ri"
+import UserService from "../../shared/services/user-service";
+import {useEffect, useState} from "react"
+import { CircularProgress } from '@material-ui/core';
 
 interface dashboardHeaderProps{
-    username:string,
     sales_amount:number,
     total_profit:number,
     avg_sale_price:number,
@@ -15,15 +17,21 @@ interface dashboardHeaderProps{
 }
 
 function DashboardHeader(props:dashboardHeaderProps): JSX.Element {
-    const {username, sales_amount, total_profit, avg_sale_price, profit_margin, avg_product_price} = props
+    const {sales_amount, total_profit, avg_sale_price, profit_margin, avg_product_price} = props
     const date = new Date();
+    const [username, setUsername] = useState("");
+    const [loaded, setLoaded] = useState<boolean>(false);
+    useEffect(()=>{
+        setTimeout(()=>{setUsername(UserService.currentUser.firstname)
+        setLoaded(true)}, 1000)
+    },[])
     return(
-        <div style={styles.dashboardHeader}>
+        loaded ? (<div style={styles.dashboardHeader}>
             <div style={styles.firstLayer}>
                 <div style={styles.welcomeLayer}>
                     <SimpleText textID={"welcome"}
                         additionalStyle={styles.headerText}/>
-                    <SimpleText textID={username}
+                    <SimpleText textID={ UserService.currentUser.firstname}
                         additionalStyle={styles.nameText}/>
                 </div>
                 <div>                
@@ -57,7 +65,7 @@ function DashboardHeader(props:dashboardHeaderProps): JSX.Element {
                             <BiLira size={15} color="green" style={{marginTop:3}}/>
                             <SimpleText
                             additionalStyle={styles.infoLayerTextNumber}
-                            textID={sales_amount.toString()}/>
+                            textID={total_profit.toString()}/>
                         </div>
                     </div>
                     <div style={styles.infoLayerSymbolPercent}>
@@ -73,7 +81,7 @@ function DashboardHeader(props:dashboardHeaderProps): JSX.Element {
                             <BiLira size={15} color="green" style={{marginTop:3}}/>
                             <SimpleText
                             additionalStyle={styles.infoLayerTextNumber}
-                            textID={sales_amount.toString()}/>
+                            textID={avg_sale_price.toString()}/>
                         </div>
                     </div>
                 </div>
@@ -86,7 +94,7 @@ function DashboardHeader(props:dashboardHeaderProps): JSX.Element {
                         <FiPercent size={15} color="green" style={{marginTop:3}}/>
                         <SimpleText
                         additionalStyle={styles.infoLayerTextNumber}
-                        textID={sales_amount.toString()}/>
+                        textID={profit_margin.toString()}/>
                         </div>
                     </div>
                     <div style={styles.infoLayerSymbolMargin}>
@@ -102,12 +110,14 @@ function DashboardHeader(props:dashboardHeaderProps): JSX.Element {
                         <BiLira size={15} color="green" style={{marginTop:3}}/>
                         <SimpleText
                         additionalStyle={styles.infoLayerTextNumber}
-                        textID={sales_amount.toString()}/>
+                        textID={avg_product_price.toString()}/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>)
+        </div>):(<div style={styles.spinnerContainer}>
+            <CircularProgress style={styles.spinner}/>
+        </div>))
 }
 
 export default DashboardHeader;

@@ -17,8 +17,8 @@ function Dashboard(props: DashboardProps): JSX.Element {
     return (
         <DashboardLayout route='Dashboard'>
             <div style={styles.container}>
-                <DashboardHeader username={"Anar"} sales_amount = {200} total_profit = {100} 
-                avg_sale_price = {100} profit_margin = {500} avg_product_price = {100} />
+                <DashboardHeader sales_amount = {0} total_profit = {0} 
+                avg_sale_price = {0} profit_margin = {0} avg_product_price = {0} />
             </div>
         </DashboardLayout>
     )

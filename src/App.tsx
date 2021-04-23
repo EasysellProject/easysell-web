@@ -9,6 +9,11 @@ import Utils from './shared/utils';
 import ProductsPage from './pages/products';
 import Dashboard from './pages/dashboard';
 import { Helper } from './shared/libs/helper';
+import {useEffect} from "react"
+import UserService from "./shared/services/user-service"
+import AuthService from "./shared/services/auth-service"
+import {User} from "./shared/models/user"
+import firebase from './shared/utils/firebase'
 
 const { Firebase } = Utils;
 
@@ -19,6 +24,19 @@ interface AppProps {
 
 
 function App(props: AppProps) {
+
+  useEffect(()=>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        AuthService.getUserData().then(curr=>{
+          UserService.currentUser = curr
+        }).catch(err=>{
+          console.log(err.message)
+        })
+      }
+    });
+  },[])
+
   return (
     <BrowserRouter>
       <Switch>
