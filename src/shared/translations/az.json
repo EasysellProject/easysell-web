@@ -69,5 +69,10 @@
 	"gross-profit":"Toplam qazanc",
 	"avg-sale-price":"Ortalama satış qiyməti",
 	"profit-margin":"Mənfəət marjası",
-	"avg-product-price":"Ortalama məhsul qiyməti"
+	"avg-product-price":"Ortalama məhsul qiyməti",
+	"order-no":"Sipariş nömrəsi",
+	"ordered-by":"Sipariş eden",
+	"order-date":"Sipariş tarixi",
+	"due-date":"Son tarix",
+	"sync-orders":"Sifarişləri sinxronizasiya edin "
 }

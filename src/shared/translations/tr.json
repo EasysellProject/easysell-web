@@ -69,5 +69,10 @@
 	"gross-profit":"Toplam kar",
 	"avg-sale-price":"Ortalama satış fiyatı",
 	"profit-margin":"Kar marjı",
-	"avg-product-price":"Ortalama Ürün fiyatı"
+	"avg-product-price":"Ortalama Ürün fiyatı",
+	"order-no":"Sipariş numarası",
+	"ordered-by":"Sipariş eden",
+	"order-date":"Sipariş tarihi",
+	"due-date":"Son tarih",
+	"sync-orders":"Siparişleri senkronize et"
 }

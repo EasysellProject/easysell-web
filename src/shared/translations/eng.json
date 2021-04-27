@@ -69,5 +69,10 @@
 	"gross-profit":"Gross profit",
 	"avg-sale-price":"Avg sale price",
 	"profit-margin":"Profit margin",
-	"avg-product-price":"Avg product price"
+	"avg-product-price":"Avg product price",
+	"order-no":"Order no",
+	"ordered-by":"Ordered by",
+	"order-date":"Order date",
+	"due-date":"Due date",
+	"sync-orders":"Syncronize orders"
 }

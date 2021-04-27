@@ -7,6 +7,7 @@ import Register from './pages/register';
 import Integration from './pages/integration';
 import Utils from './shared/utils';
 import ProductsPage from './pages/products';
+import OrdersPage from "./pages/orders"
 import Dashboard from './pages/dashboard';
 import { Helper } from './shared/libs/helper';
 import {useEffect} from "react"
@@ -43,6 +44,7 @@ function App(props: AppProps) {
         <Route exact path='/' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Landing />))} />
         {/* <Route path='/profile' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Profile />))} /> */}
         <Route path='/products' render={() => (Helper.getUserID() ? (<ProductsPage />) : (<Redirect to="/login" />))} />
+        <Route path='/orders' render={() => (Helper.getUserID() ? (<OrdersPage />) : (<Redirect to="/login" />))} />
         <Route path='/dashboard' render={() => (Helper.getUserID() ? (<Dashboard />) : (<Redirect to="/login" />))} />
         <Route path='/login' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Login />))} />
         <Route path='/listings' render={() => (Helper.getUserID() ? (<Listing />) : (<Redirect to="/login" />))} />

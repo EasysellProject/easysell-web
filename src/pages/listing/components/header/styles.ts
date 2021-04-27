@@ -36,7 +36,7 @@ export default {
         backgroundColor: APP_COLORS.BUTTONS.green,
         borderTopRightRadius: 12,
         borderBottomRightRadius: 12,
-        marginLeft: 8,
+        marginLeft: 0,
     } as CSSProperties,
     create_new_button_style: {
         backgroundColor: APP_COLORS.BUTTONS.green,
