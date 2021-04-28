@@ -52,7 +52,7 @@
 	"create-listing": "Listeleme Oluştur",
 	"edit-listing": "Listelemeyi Düzenle",
 	"copy-listing": "Listelemeyi Kopyala",
-	"remove-listing": "Listelemeyi Kaldır",
+	"disable-listing": "Listelemeyi Kapat",
 	"logout": "Çıkış yap",
 	"choose-file": "Dosya Seç",
 	"close": "İptal et",
@@ -69,5 +69,6 @@
 	"gross-profit":"Toplam kar",
 	"avg-sale-price":"Ortalama satış fiyatı",
 	"profit-margin":"Kar marjı",
-	"avg-product-price":"Ortalama Ürün fiyatı"
+	"avg-product-price":"Ortalama Ürün fiyatı",
+	"nothing-to-show":"Gösterilecek veri yok"
 }

@@ -84,7 +84,7 @@ function ProductCard(props: ProductCardProps): JSX.Element {
                         </Button>
                         <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(1)}>
                             <FiTrash size={24} color={APP_COLORS.BUTTONS.darkGray} />
-                            <SimpleText additionalStyle={styles.tooltipText} textID={'delete-listing'} />
+                            <SimpleText additionalStyle={styles.tooltipText} textID={'disable-listing'} />
                         </Button>
                         <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(2)}>
                             <FiCopy size={24} color={APP_COLORS.BUTTONS.darkGray} />

@@ -27,8 +27,8 @@ class ProductService {
                 contentType: 'image/*'
             }
             if (details.img) {
-                await firebase.storage().ref().child(`users/${Helper.getUserID()}/${imgID}`).put(details.img, metadata);
-                details.img = await firebase.storage().ref().child(`users/${Helper.getUserID()}/${imgID}`).getDownloadURL();
+                await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).put(details.img, metadata);
+                details.img = await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).getDownloadURL();
             }
             let productsDoc = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('products').add(details);
             let product = details;

@@ -8,6 +8,7 @@ import { Product } from '../../../../shared/models/product';
 import { APP_COLORS } from '../../../../shared/styles';
 import ProductCard from '../../../../shared/components/product-card';
 import styles from './styles';
+import EmptyList from '../../../../shared/components/empty-list';
 
 interface NewListingModalProps {
     visible: boolean
@@ -34,11 +35,7 @@ function NewListingModal(props: NewListingModalProps): JSX.Element {
             ProductService.getProducts()
                 .then((products: Product[]) => {
                     setProductsLoading(false);
-                    let productsss = [];
-                    for (let i = 0; i < 100; i++) {
-                        productsss = productsss.concat(products);
-                    }
-                    setProducts(productsss)
+                    setProducts(products)
                 })
                 .catch(err => alert(err))
         }
@@ -78,19 +75,10 @@ function NewListingModal(props: NewListingModalProps): JSX.Element {
 
     function renderProductList(): JSX.Element {
         return (
-            <div style={{
-                flex: 1,
-                display: 'flex',
-                padding: 36
-            }}>
+            <div style={styles.container}>
                 {
                     productsLoading ? (
-                        <div style={{
-                            flex: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
+                        <div style={styles.spinner}>
                             <CircularProgress size={16} />
                         </div>
                     ) : (
@@ -107,15 +95,19 @@ function NewListingModal(props: NewListingModalProps): JSX.Element {
                                 />
                             </Button>
                             {
-                                products.map((product, index) =>
-                                    <ProductCard
-                                        key={product._id + index} // todo
-                                        index={index}
-                                        product={product}
-                                        onPress={(product: Product) => {
-                                            onSelectProduct(product)
-                                            onClosePress();
-                                        }} />
+                                products.length > 0 ? (
+                                    products.map((product, index) =>
+                                        <ProductCard
+                                            key={product._id}
+                                            index={index}
+                                            product={product}
+                                            onPress={(product: Product) => {
+                                                onSelectProduct(product)
+                                                onClosePress();
+                                            }} />
+                                    )
+                                ) : (
+                                    <EmptyList />
                                 )
                             }
                         </div>

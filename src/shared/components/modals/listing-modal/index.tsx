@@ -28,15 +28,17 @@ function ListingModal(props: ListingModalProps): JSX.Element {
     const [title, setTitle] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
     const [price, setPrice] = useState<string>('');
-    const [currency, setCurrency] = useState<string>('');
+    const [currency, setCurrency] = useState<'TL' | 'USD'>('TL');
     const [stock, setStock] = useState<string>('');
     const [markets, setMarkets] = useState<MarketPlace[]>([]);
-    const [img, setImg] = useState<File | string>();
+    const [img, setImg] = useState<File | string>(null);
+    const [submitted, setSubmitted] = useState<boolean>(false);
 
 
     useEffect(() => {
         if (listing) {
-            const { title, desc, price, stock, currency, marketPlace, img } = listing;
+            const { marketPlace, product } = listing;
+            const { title, desc, price, stock, currency, img } = product;
             setTitle(title);
             setDesc(desc);
             setPrice(price + '');
@@ -56,6 +58,29 @@ function ListingModal(props: ListingModalProps): JSX.Element {
         setWindowDimensions(Helper.getWindowDimensions());
     }
 
+    function onFinalizePress(): void {
+        setSubmitted(true);
+        if (!title || !price || !stock) {
+            return;
+        }
+        if (!markets.length) {
+            alert('You should choose at least one marketplace') // todo
+            return
+        }
+        let listing = {
+            marketPlace: markets,
+            product: {
+                title,
+                desc,
+                price,
+                stock,
+                currency,
+                img
+            },
+            createdAt: new Date().getTime()
+        }
+        onSubmit(listing);
+    }
 
     return (
         <Dialog open onClose={closeModal}>
@@ -73,7 +98,10 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                         required
                         showLabel
                         label="title"
+                        errorText='error-empty-field'
+                        showError={title.length == 0 && submitted}
                         onChangeText={(title) => {
+                            setSubmitted(false);
                             setTitle(title);
                         }} />
                     <Input
@@ -84,6 +112,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                         showLabel
                         label="description"
                         onChangeText={(desc) => {
+                            setSubmitted(false);
                             setDesc(desc);
                         }} />
                     <div style={styles.priceCurrQuantity}>
@@ -94,8 +123,11 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             placeholder="quantity"
                             type='number'
                             showLabel
+                            required
                             label="quantity"
-                            onChangeText={(stock) => {
+                            errorText='error-empty-field'
+                            showError={stock.length == 0 && submitted} onChangeText={(stock) => {
+                                setSubmitted(false);
                                 setStock(stock);
                             }} />
                         <Input
@@ -106,7 +138,11 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             showLabel
                             type='number'
                             label="price"
+                            required
+                            errorText='error-empty-field'
+                            showError={price.length == 0 && submitted}
                             onChangeText={(price) => {
+                                setSubmitted(false);
                                 setPrice(price);
                             }} />
                         <Picker
@@ -116,6 +152,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             showLabel
                             label='currency'
                             onSelectItem={(currency: "TL" | "USD") => {
+                                setSubmitted(false);
                                 setCurrency(currency);
                             }}
                             containerStyle={styles.currencyPicker}
@@ -126,6 +163,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                         pickerItems={[{ value: "Hepsiburada", label: "Hepsiburada" }, { value: "Trendyol", label: "Trendyol" }]}
                         selectedItems={markets}
                         multiple
+                        required
                         onSelectItem={(item: MarketPlace) => {
                             let marketIdx = markets?.findIndex(market => market == item);
                             if (marketIdx > -1) {
@@ -133,6 +171,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             } else {
                                 markets.push(item);
                             }
+                            setSubmitted(false);
                             setMarkets(markets)
                         }}
                         placeholder='select-marketplace'
@@ -149,6 +188,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                         }
                         <FilePicker
                             onFileChosen={(image: File) => {
+                                setSubmitted(false);
                                 setImg(image);
                             }}
                         />
@@ -165,7 +205,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                             <MdClose size={16} color={APP_COLORS.gray} />
                         </Button>
                         <Button
-                            onPress={() => onSubmit({})}
+                            onPress={onFinalizePress}
                             buttonStyle={styles.finalizeButton}
                             loading={loading}
                         >

@@ -15,11 +15,12 @@ interface ListingCardProps {
     index: number,
     onMorePressed: (listing: Listing) => void;
     editListing?: () => void;
+    removeListing?: () => void;
     tooltipVisible: boolean
 }
 
 function ListingCard(props: ListingCardProps): JSX.Element {
-    const { listing, index, onMorePressed, tooltipVisible, editListing } = props
+    const { listing, index, onMorePressed, tooltipVisible, editListing, removeListing } = props
 
     // const [tooltipVisible, setTooltipVisible] = useState<boolean>(index == 1);
     const [hovered, setHovered] = useState<boolean>(false);
@@ -35,6 +36,7 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                 break;
             case 1:
                 //TODO
+                removeListing()
                 break;
             case 2:
                 //TODO
@@ -52,14 +54,14 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                 <SimpleText text={'' + index} additionalStyle={styles.indexText} />
             </div>
             <div style={styles.infoContainer}>
-                <img src={listing.img} style={styles.image} />
-                <SimpleText ellipsis text={listing.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+                <img src={listing.product.img} style={styles.image} />
+                <SimpleText ellipsis text={listing.product.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
             </div>
-            <SimpleText ellipsis text={listing.desc} additionalStyle={styles.textHigherFlex} />
-            <SimpleText text={'' + listing.price} additionalStyle={styles.text} />
-            <SimpleText text={listing.currency} additionalStyle={styles.text} />
-            <SimpleText text={'' + listing.stock} additionalStyle={styles.text} />
-            <SimpleText text={listing.marketPlace[0]} additionalStyle={styles.text} />
+            <SimpleText ellipsis text={listing.product.desc} additionalStyle={styles.textHigherFlex} />
+            <SimpleText text={'' + listing.product.price} additionalStyle={styles.text} />
+            <SimpleText text={listing.product.currency} additionalStyle={styles.text} />
+            <SimpleText text={'' + listing.product.stock} additionalStyle={styles.text} />
+            <SimpleText text={listing.marketPlace.join(', ')} additionalStyle={styles.text} ellipsis />
             <SimpleText text={Helper.getDMYTime(listing.createdAt)} additionalStyle={styles.text} />
             <Button buttonStyle={styles.button} onPress={() => toggleTooltip()}>•••</Button>
             {
@@ -71,7 +73,7 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                         </Button>
                         <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(1)}>
                             <FiTrash size={24} color={APP_COLORS.BUTTONS.darkGray} />
-                            <SimpleText additionalStyle={styles.tooltipText} textID={'delete-listing'} />
+                            <SimpleText additionalStyle={styles.tooltipText} textID={'disable-listing'} />
                         </Button>
                         <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(2)}>
                             <FiCopy size={24} color={APP_COLORS.BUTTONS.darkGray} />

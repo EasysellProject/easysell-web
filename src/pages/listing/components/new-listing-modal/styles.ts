@@ -2,6 +2,11 @@ import { CSSProperties } from "react";
 import { APP_COLORS } from "../../../../shared/styles";
 
 export default {
+    container: {
+        flex: 1,
+        display: 'flex',
+        padding: 36
+    } as CSSProperties,
     innerContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -32,5 +37,11 @@ export default {
         backgroundColor: APP_COLORS.lightTurquoise,
         marginBottom: 12,
         borderRadius: 12
+    } as CSSProperties,
+    spinner: {
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     } as CSSProperties
 }

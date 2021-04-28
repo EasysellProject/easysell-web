@@ -52,7 +52,7 @@
 	"create-listing": "Create Listing",
 	"edit-listing": "Edit Listing",
 	"copy-listing": "Duplicate",
-	"delete-listing": "Remove Listing",
+	"disable-listing": "Disable Listing",
 	"logout": "Logout",
 	"choose-file": "Choose File",
 	"cancel": "Cancel",
@@ -69,5 +69,6 @@
 	"gross-profit":"Gross profit",
 	"avg-sale-price":"Avg sale price",
 	"profit-margin":"Profit margin",
-	"avg-product-price":"Avg product price"
+	"avg-product-price":"Avg product price",
+	"nothing-to-show":"No data available"
 }

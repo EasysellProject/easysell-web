@@ -52,7 +52,7 @@
 	"create-listing": "Yarat",
 	"edit-listing": "Düzəliş Et",
 	"copy-listing": "Kopyala",
-	"delete-listing": "Sil",
+	"disable-listing": "Satışa Bağla",
 	"choose-file": "Şəkil seç",
 	"cancel": "Ləğv et",
 	"finalize": "Bitir",
@@ -69,5 +69,6 @@
 	"gross-profit":"Toplam qazanc",
 	"avg-sale-price":"Ortalama satış qiyməti",
 	"profit-margin":"Mənfəət marjası",
-	"avg-product-price":"Ortalama məhsul qiyməti"
+	"avg-product-price":"Ortalama məhsul qiyməti",
+	"nothing-to-show":"Göstəriləcək məlumat yoxdur"
 }
