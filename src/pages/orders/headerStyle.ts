@@ -29,20 +29,20 @@ export default {
         borderBottomRightRadius: 12,
         marginLeft: 0,
     } as CSSProperties,
-    newProductButton: {
+    newOrderButton: {
         backgroundColor: APP_COLORS.BUTTONS.green,
         marginLeft: 8,
         height: 35,
-        width: 100,
+        width: 200,
     } as CSSProperties,
-    newProductButtonInner: {
+    newOrderButtonInner: {
         display: 'flex',
         flexDirection: 'row'
     } as CSSProperties,
-    newProductText: {
+    newOrderText: {
         fontFamily: "Times New Roman",
         color: APP_COLORS.gray,
-        fontSize: 12,
+        fontSize: 14,
         marginLeft: 4
     } as CSSProperties
 }

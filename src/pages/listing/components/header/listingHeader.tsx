@@ -81,7 +81,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     DropDownStyle={styles.drop_down_style}
                 />
                 <Search
-                    containerStyle={{ marginTop: 8 }}
+                    containerStyle={{ marginTop: 8, marginLeft:8 }}
                     buttonStyle={styles.searchButton}
                     value={searchText}
                     placeholder="type-in-to-search"

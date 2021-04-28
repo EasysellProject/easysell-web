@@ -27,8 +27,8 @@ function Dashboard(props: DashboardProps): JSX.Element {
         <DashboardLayout route='Dashboard'>
             <div style={styles.container}>
                 <div>
-                    <DashboardHeader sales_amount={0} total_profit={0}
-                        avg_sale_price={0} profit_margin={0} avg_product_price={0} />
+                    <DashboardHeader sales_amount={0} 
+                        avg_sale_price={0} />
                 </div>
                 <LineChart title={title} data={data} labels={labels} height={height} width={width} />
             </div>

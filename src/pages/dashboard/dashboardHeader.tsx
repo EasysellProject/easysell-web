@@ -8,30 +8,75 @@ import UserService from "../../shared/services/user-service";
 import styles from './styles';
 import firebase from '../../shared/utils/firebase'
 import AuthService from "../../shared/services/auth-service";
+import ProductService from "../../shared/services/product-service"
+import OrdersService from "../../shared/services/order-service"
 
 interface dashboardHeaderProps {
     sales_amount: number,
-    total_profit: number,
     avg_sale_price: number,
-    profit_margin: number,
-    avg_product_price: number
 }
 
 function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
-    const { sales_amount, total_profit, avg_sale_price, profit_margin, avg_product_price } = props
+    const { sales_amount, avg_sale_price } = props
     const date = new Date();
     const [username, setUsername] = useState("");
     const [loaded, setLoaded] = useState<boolean>(false);
+    const [avg_product_price, setAvgProductPrice] = useState<string>("0")
+    const [salesAmount, setSalesAmount] = useState<string>("0");
+    const [avgSalePrice, setAvgSalePrice] = useState<string>("0");
 
     useEffect(() => {
-
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 AuthService.getUserData().then(curr => {
                     UserService.currentUser = curr
-                    setLoaded(true);
+                    ProductService.getProducts().then(products=>{
+                        if(products.length > 0){
+                            var sum:number = 0
+                            var count:number = 0
+                            products.map(product =>{sum = sum + Number(product.price)* Number(product.stock) * (product.currency=="TL"?1:8)
+                                                    count = count + Number(product.stock)})
+                            var result:string = (sum/count).toFixed()
+                            setAvgProductPrice(result)
+                        }
+                        else{
+                            setAvgProductPrice("0")
+                        }
+                        OrdersService.getOrders().then(data=>{
+                            if(data.length > 0){
+                                var Tsum:number = 0
+                                var count = 0
+                                let now = new Date();
+                                data.map(point =>{
+                                    if(point.dueDate > now){
+                                        Tsum = Tsum + Number(point.price)*Number(point.stock)*(point.currency=="TL"?1:8)
+                                        count = count + Number(point.stock)
+                                    }
+                                    }
+                                )
+                                var result:string = (Tsum).toFixed()
+                                var avg:string = (Tsum/count).toFixed()
+                                setSalesAmount(result);
+                                setAvgSalePrice(avg);
+                            }
+                            else{
+                                setSalesAmount("0");
+                                setAvgSalePrice("0");
+                            }
+                            setLoaded(true);
+                        })
+                        .catch(err=>{
+                            console.log(err.message);
+                            alert(err);
+                        })
+                    }).catch(err =>{
+                        console.log(err.message);
+                        alert(err);
+                    })
+                
                 }).catch(err => {
                     console.log(err.message)
+                    alert(err);
                 })
             }
         });
@@ -72,22 +117,6 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                         <div style={styles.infoLayerTextArea}>
                             <SimpleText
                                 additionalStyle={styles.infoLayerText}
-                                textID={"gross-profit"} />
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                <BiLira size={15} color="green" style={{ marginTop: 3 }} />
-                                <SimpleText
-                                    additionalStyle={styles.infoLayerTextNumber}
-                                    textID={total_profit.toString()} />
-                            </div>
-                        </div>
-                        <div style={styles.infoLayerSymbolPercent}>
-                            <FiPercent />
-                        </div>
-                    </div>
-                    <div style={styles.infoLayer}>
-                        <div style={styles.infoLayerTextArea}>
-                            <SimpleText
-                                additionalStyle={styles.infoLayerText}
                                 textID={"avg-sale-price"} />
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <BiLira size={15} color="green" style={{ marginTop: 3 }} />
@@ -95,22 +124,6 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                                     additionalStyle={styles.infoLayerTextNumber}
                                     textID={avg_sale_price.toString()} />
                             </div>
-                        </div>
-                    </div>
-                    <div style={styles.infoLayer}>
-                        <div style={styles.infoLayerTextArea}>
-                            <SimpleText
-                                additionalStyle={styles.infoLayerText}
-                                textID={"profit-margin"} />
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                <FiPercent size={15} color="green" style={{ marginTop: 3 }} />
-                                <SimpleText
-                                    additionalStyle={styles.infoLayerTextNumber}
-                                    textID={profit_margin.toString()} />
-                            </div>
-                        </div>
-                        <div style={styles.infoLayerSymbolMargin}>
-                            <RiTShirtLine />
                         </div>
                     </div>
                     <div style={styles.infoLayer}>

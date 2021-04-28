@@ -64,11 +64,16 @@
 	"add-product":"Add Product",
 	"reset-password":"Reset Password",
 	"select-product":"Select Product",
-	"welcome":"Welcome",
+	"welcome":"Welcome,",
 	"sales-amount":"Sales amount",
 	"gross-profit":"Gross profit",
 	"avg-sale-price":"Avg sale price",
 	"profit-margin":"Profit margin",
 	"avg-product-price":"Avg product price",
-	"nothing-to-show":"No data available"
+	"nothing-to-show":"No data available",
+	"order-no":"Order no",
+	"ordered-by":"Ordered by",
+	"order-date":"Order date",
+	"due-date":"Due date",
+	"sync-orders":"Syncronize orders"
 }

@@ -64,11 +64,16 @@
 	"add-product": "Ürün Ekle",
 	"reset-password":"Şifreni Sıfırla",
 	"select-product":"Ürün Seç",
-	"welcome":"Hoş geldin",
+	"welcome":"Hoş geldin,",
 	"sales-amount":"Satış miktarı",
 	"gross-profit":"Toplam kar",
 	"avg-sale-price":"Ortalama satış fiyatı",
 	"profit-margin":"Kar marjı",
 	"avg-product-price":"Ortalama Ürün fiyatı",
-	"nothing-to-show":"Gösterilecek veri yok"
+	"nothing-to-show":"Gösterilecek veri yok",
+	"order-no":"Sipariş numarası",
+	"ordered-by":"Sipariş eden",
+	"order-date":"Sipariş tarihi",
+	"due-date":"Son tarih",
+	"sync-orders":"Senkronize et"
 }
