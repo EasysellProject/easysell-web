@@ -8,6 +8,7 @@ import { Order } from '../../shared/models/order';
 import OrdersService from "../../shared/services/order-service"
 import styles from './styles';
 import OrdersHeader from "./ordersHeader"
+import EmptyList from '../../shared/components/empty-list';
 
 interface ordersProps{
 
@@ -88,11 +89,13 @@ function OrdersPage(props:ordersProps):JSX.Element{
                     <div style={styles.spinnerContainer}>
                         <CircularProgress style={styles.spinner} />
                     </div>
-                ) : (
+                ) : orders.length > 0? (
                     <Table
                         data={filteredOrders}
                         headCells={headCells}
                         renderItem={renderOrder} />
+                ):(
+                    <EmptyList/>
                 )
             }
         </div>

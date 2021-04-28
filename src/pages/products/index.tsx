@@ -2,6 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import DashboardLayout from '../../shared/components/dashboard-layout';
+import EmptyList from '../../shared/components/empty-list';
 import ProductModal from '../../shared/components/modals/product-modal';
 import ProductCard from '../../shared/components/product-card';
 import Table, { HeadCell } from '../../shared/components/table';
@@ -97,12 +98,12 @@ function ProductsPage(props: ProductProps): JSX.Element {
                             <div style={styles.spinnerContainer}>
                                 <CircularProgress style={styles.spinner} />
                             </div>
-                        ) : (
+                        ) : products.length > 0?(
                             <Table
                                 data={filteredProducts}
                                 headCells={headCells}
                                 renderItem={renderProduct} />
-                        )
+                        ):(<EmptyList/>)
                     }
                 </div>
                 <ProductModal
