@@ -62,6 +62,7 @@
 	"image": "Şəkil",
 	"upload-image": "Şəkil Yüklə",
 	"add-product": "Məhsul Yarat",
+	"edit-product":"Məhsulu redaktə edin",
 	"select-product": "Məhsul Seç",
 	"reset-password":"Şifrəni Yenilə",
 	"welcome":"Xoş gəlmisən",
@@ -69,5 +70,7 @@
 	"gross-profit":"Toplam qazanc",
 	"avg-sale-price":"Ortalama satış qiyməti",
 	"profit-margin":"Mənfəət marjası",
-	"avg-product-price":"Ortalama məhsul qiyməti"
+	"avg-product-price":"Ortalama məhsul qiyməti",
+	"delete":"Silin",
+	"duplicate":"Dublikat"
 }

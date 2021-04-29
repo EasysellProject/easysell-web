@@ -62,6 +62,7 @@
 	"image":"Image",
 	"upload-image":"Upload Image",
 	"add-product":"Add Product",
+	"edit-product":"Edit Product",
 	"reset-password":"Reset Password",
 	"select-product":"Select Product",
 	"welcome":"Welcome",
@@ -69,5 +70,7 @@
 	"gross-profit":"Gross profit",
 	"avg-sale-price":"Avg sale price",
 	"profit-margin":"Profit margin",
-	"avg-product-price":"Avg product price"
+	"avg-product-price":"Avg product price",
+	"delete":"Delete",
+	"duplicate":"Duplicate"
 }

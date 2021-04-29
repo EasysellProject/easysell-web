@@ -30,6 +30,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
     ];
 
     const [products, setProducts] = useState<Product[]>([]);
+    const [productToEdit, setProducttoEdit] = useState<Product>();
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
@@ -81,11 +82,23 @@ function ProductsPage(props: ProductProps): JSX.Element {
         setNewProductModalVisible(false);
     }
 
+    function editProduct(newProduct: any): void {
+        //setProducts(products.concat([newProduct]));
+        setNewProductModalVisible(false);
+    }
+
+
+
     function renderProduct(product): JSX.Element {
         return (
-            <ProductCard onPress={() => { }} product={product} index={product.index} />
+            <ProductCard onPress={() => {
+                setProducttoEdit(product);
+                setNewProductModalVisible(true);
+            }} product={product} index={product.index} />
         )
     }
+
+
 
     return (
         <DashboardLayout route='Product'>
@@ -107,8 +120,9 @@ function ProductsPage(props: ProductProps): JSX.Element {
                 </div>
                 <ProductModal
                     visible={newProductModalVisible}
-                    onClose={() => setNewProductModalVisible(false)}
+                    onClose={() => { setNewProductModalVisible(false); setProducttoEdit(null); }}
                     onSubmit={createProduct}
+                    editData={productToEdit}
                 />
             </div>
         </DashboardLayout>
