@@ -33,10 +33,48 @@ function Profile(props: ProfileProps): JSX.Element {
     return (
         <DashboardLayout route='Profile'>
             <div style={styles.innerContainer}>
-                {isMobile() ? (<div>
+                {/* {
+                    isMobile() ? (<div>
+                        <div style={{
+                            ...WEB_STYLES.flexColum,
+                            ...WEB_STYLES.flexWrap,
+                        }}>
+                            <div style={{
+                                padding: 20,
+                                display: "flex",
+                                backgroundColor: 'red',
+                                ...WEB_STYLES.flexRow,
+                                ...WEB_STYLES.flexWrap,
+                                justifyContent: "left",
+                                alignItems: "center"
+                            }}
+                            >
+                                <HiMenu
+                                    size={36}
+                                    color='#565656'
+                                    onClick={() => {
+
+                                    }}
+                                />
+                                <div style={{ marginLeft: 20 }}>
+                                    <HeaderText textID="Profile" />
+                                </div>
+
+                            </div>
+                            <Body />
+                        </div>
+                    </div>
+                    ) : */}
+                {/* ( */}
+                <div style={{
+                    ...WEB_STYLES.flexRow,
+                    ...WEB_STYLES.flexWrap,
+                    flex: 1
+                }}>
                     <div style={{
                         ...WEB_STYLES.flexColum,
                         ...WEB_STYLES.flexWrap,
+                        flex: 1
                     }}>
                         <div style={{
                             padding: 20,
@@ -45,52 +83,16 @@ function Profile(props: ProfileProps): JSX.Element {
                             ...WEB_STYLES.flexRow,
                             ...WEB_STYLES.flexWrap,
                             justifyContent: "left",
-                            height: "15%",
+                            height: "10%",
                             alignItems: "center"
-                        }}
-                        >
-                            <HiMenu
-                                size={36}
-                                color='#565656'
-                                onClick={() => {
-
-                                }}
-                            />
-                            <div style={{ marginLeft: 20 }}><HeaderText textID="Profile" /></div>
-
-
+                        }}>
+                            <HeaderText textID="Profile" />
                         </div>
                         <Body />
                     </div>
-                </div>) :
-                    (<div style={{
-                        ...WEB_STYLES.flexRow,
-                        ...WEB_STYLES.flexWrap,
-                    }}>
-                        <div style={{
-                            ...WEB_STYLES.flexColum,
-                            ...WEB_STYLES.flexWrap,
-                            flexGrow: 1,
-                        }}>
-                            <div style={{
-                                padding: 20,
-                                display: "flex",
-                                backgroundColor: APP_COLORS.lightTurquoise,
-                                ...WEB_STYLES.flexRow,
-                                ...WEB_STYLES.flexWrap,
-                                justifyContent: "left",
-                                height: "15%",
-                                alignItems: "center"
-                            }}>
-                                <HeaderText textID="Profile" />
-
-                            </div>
-                            <Body />
-
-                        </div>
-                    </div>
-                    )
-                }
+                </div>
+                {/* ) */}
+                {/* } */}
             </div>
         </DashboardLayout>
     )

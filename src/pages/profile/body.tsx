@@ -3,7 +3,7 @@ import Button from "../../shared/components/button";
 import SimpleText from "../../shared/components/text/simple-text";
 import Input from "../../shared/components/input";
 import styles from "./styles";
-import {FaPen} from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
 import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
 
 
@@ -13,12 +13,12 @@ interface BodyProps {
 
 function Body(props: BodyProps): JSX.Element {
 
-    function validateEmail( email){
+    function validateEmail(email) {
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
-        if (!pattern.test(email) ){
+        if (!pattern.test(email)) {
             var a;
-          //print();//errors["email"] = "Please enter valid email address.";
+            //print();//errors["email"] = "Please enter valid email address.";
 
         }
     }
@@ -30,18 +30,16 @@ function Body(props: BodyProps): JSX.Element {
         <div style={{
             ...WEB_STYLES.flexColum,
             ...WEB_STYLES.flexWrap,
-            marginLeft: "5%",
-            marginTop: "5%",
-            height: "50%",
-            width: "100%",
+            marginLeft: "2.5%",
+            marginTop: "2.5%",
+            // height: "50%",
+            // width: "100%",
             justifyContent: "space-between",
+            // flex: 1,
             alignItems: "flex-start",
-            }}> 
-            <div style={{
-                display: "flex",
-            ...WEB_STYLES.flexRow,
-            alignItems:"center",}}>
-            <Input
+        }}>
+            <div style={styles.inputContainer}>
+                <Input
                     value=""
                     placeholder="Full Name"
                     showLabel
@@ -55,12 +53,9 @@ function Body(props: BodyProps): JSX.Element {
                     //showError={nameError}
                     errorText={'error-empty-field'}
                 />
-                <FaPen color = {APP_COLORS.ligthBlue} style={{marginLeft: 10, marginTop: 15}} />
-                </div>
-                <div style={{
-                display: "flex",
-            ...WEB_STYLES.flexRow,
-            alignItems:"center",}}>
+                <FaPen color={APP_COLORS.ligthBlue} style={{ marginLeft: 10, marginTop: 15 }} />
+            </div>
+            <div style={styles.inputContainer}>
                 <Input
                     value=""
                     placeholder="E-mail"
@@ -75,13 +70,10 @@ function Body(props: BodyProps): JSX.Element {
                     //showError={nameError}
                     errorText={'error-empty-field'}
                 />
-                <FaPen color = {APP_COLORS.ligthBlue} style={{marginLeft: 10, marginTop: 15}} />
-                </div>
-                
-                <div style={{
-                display: "flex",
-            ...WEB_STYLES.flexRow,
-            alignItems:"center",}}>
+                <FaPen color={APP_COLORS.ligthBlue} style={{ marginLeft: 10, marginTop: 15 }} />
+            </div>
+
+            <div style={styles.inputContainer}>
                 <Input
                     value=""
                     placeholder="Password"
@@ -96,22 +88,22 @@ function Body(props: BodyProps): JSX.Element {
                     //showError={nameError}
                     errorText={'error-empty-field'}
                 />
-                <FaPen color = {APP_COLORS.ligthBlue} style={{marginLeft: 10, marginTop: 15}} />
-                </div>
-                <Button
-                        
-                        onPress={onSaveChanges}
-                        buttonStyle={{
-                            backgroundColor: APP_COLORS.lightGreen,
-                            marginTop: 10,
-                            justifyContent: 'center',
-                            borderRadius: 8,
-                            minWidth:"100"}}
-                    >
-                        <SimpleText textID='Save Changes' additionalStyle = {{...styles.buttonText}}/>
-                    </Button>
-
+                <FaPen color={APP_COLORS.ligthBlue} style={{ marginLeft: 10, marginTop: 15 }} />
             </div>
+            <Button
+                onPress={onSaveChanges}
+                buttonStyle={{
+                    backgroundColor: APP_COLORS.lightGreen,
+                    marginTop: 10,
+                    justifyContent: 'center',
+                    borderRadius: 8,
+                    minWidth: "100"
+                }}
+            >
+                <SimpleText textID='Save Changes' additionalStyle={{ ...styles.buttonText }} />
+            </Button>
+
+        </div>
     )
 }
 

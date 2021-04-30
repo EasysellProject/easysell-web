@@ -14,4 +14,10 @@ export default {
         flexDirection: 'column',
         flex: 1,
     } as CSSProperties,
+    inputContainer: {
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: "center",
+        marginTop: 16
+    } as CSSProperties
 }
