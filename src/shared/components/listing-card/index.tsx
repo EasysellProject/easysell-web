@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { FiCopy, FiTrash } from 'react-icons/fi';
@@ -7,6 +7,7 @@ import { Helper } from '../../libs/helper'
 import { Listing } from '../../models/listing'
 import { APP_COLORS } from '../../styles';
 import Button from '../button'
+import { useOutsideAlerter } from '../picker';
 import SimpleText from '../text/simple-text'
 import styles from './styles'
 
@@ -16,17 +17,23 @@ interface ListingCardProps {
     onMorePressed: (listing: Listing) => void;
     editListing?: () => void;
     removeListing?: () => void;
-    tooltipVisible: boolean
 }
 
 function ListingCard(props: ListingCardProps): JSX.Element {
-    const { listing, index, onMorePressed, tooltipVisible, editListing, removeListing } = props
+    const { listing, index, onMorePressed, editListing, removeListing } = props
 
-    // const [tooltipVisible, setTooltipVisible] = useState<boolean>(index == 1);
     const [hovered, setHovered] = useState<boolean>(false);
+    const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
+
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef, () => {
+        setTooltipVisible(false);
+        onMorePressed(null)
+    });
 
     function toggleTooltip(): void {
         onMorePressed(listing)
+        setTooltipVisible(!tooltipVisible)
     }
 
     function onActionPressed(index: number) {
@@ -49,7 +56,9 @@ function ListingCard(props: ListingCardProps): JSX.Element {
         <div
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            style={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white', position: 'relative' }}>
+            style={{ ...styles.card, backgroundColor: hovered ? APP_COLORS.HOVER.green : 'white', position: 'relative' }}
+            ref={wrapperRef}
+        >
             <div style={{ ...styles.indexContainer, backgroundColor: hovered ? APP_COLORS.HOVER.gray : APP_COLORS.BUTTONS.grayButton }}>
                 <SimpleText text={'' + index} additionalStyle={styles.indexText} />
             </div>

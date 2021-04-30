@@ -15,6 +15,7 @@ import UserService from "./shared/services/user-service"
 import AuthService from "./shared/services/auth-service"
 import {User} from "./shared/models/user"
 import firebase from './shared/utils/firebase'
+import Profile from './pages/profile';
 
 const { Firebase } = Utils;
 
@@ -44,6 +45,7 @@ function App(props: AppProps) {
         <Route exact path='/' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Landing />))} />
         {/* <Route path='/profile' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Profile />))} /> */}
         <Route path='/products' render={() => (Helper.getUserID() ? (<ProductsPage />) : (<Redirect to="/login" />))} />
+        <Route path='/profile' render={() => (Helper.getUserID() ? (<Profile />) : (<Redirect to="/login" />))} />
         <Route path='/orders' render={() => (Helper.getUserID() ? (<OrdersPage />) : (<Redirect to="/login" />))} />
         <Route path='/dashboard' render={() => (Helper.getUserID() ? (<Dashboard />) : (<Redirect to="/login" />))} />
         <Route path='/login' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Login />))} />

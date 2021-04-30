@@ -24,10 +24,10 @@ function Login(): JSX.Element {
     //state
     const [windowDimensions, setWindowDimensions] = useState(Helper.getWindowDimensions());
     // input values
-    const [email, setEmail] = useState("cavid.hacizade.99@gmail.com");
-    const [pass, setPass] = useState("easysellPass1");
-    const [emailError, setEmaiError] = useState(false);
-    const [passError, setPassError] = useState(false)
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
+    const [emailError, setEmaiError] = useState('');
+    const [passError, setPassError] = useState('')
     const [loading, setLoading] = useState(false)
 
     const [forgot, setForgot] = useState(false)
@@ -67,6 +67,14 @@ function Login(): JSX.Element {
     }
 
     function onLoginPress(): void {
+        if (!email) {
+            setEmaiError('error-empty-field')
+            return;
+        }
+        if (!pass) {
+            setPassError('error-empty-field')
+            return;
+        }
         setLoading(true)
         AuthService.signIn(email, pass)
             .then(user => {
@@ -117,10 +125,12 @@ function Login(): JSX.Element {
                 <Input
                     value={email}
                     placeholder="e-mail"
+                    errorText={emailError}
+                    showError
                     showLabel
                     label="e-mail"
                     onChangeText={(email) => {
-                        setEmaiError(false)
+                        setEmaiError('')
                         setEmail(email)
                         setLoginError('')
                     }}
@@ -152,9 +162,11 @@ function Login(): JSX.Element {
                         value={email}
                         placeholder="e-mail"
                         showLabel
+                        errorText={emailError}
+                        showError
                         label="e-mail"
                         onChangeText={(email) => {
-                            setEmaiError(false)
+                            setEmaiError('')
                             setEmail(email)
                             setLoginError('')
                         }}
@@ -165,10 +177,12 @@ function Login(): JSX.Element {
                         value={pass}
                         placeholder="password"
                         showLabel
+                        errorText={passError}
+                        showError
                         type='password'
                         label="password"
                         onChangeText={(pass) => {
-                            setPassError(false)
+                            setPassError('')
                             setPass(pass)
                             setLoginError('')
                         }}

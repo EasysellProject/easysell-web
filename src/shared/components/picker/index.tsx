@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import { IoIosArrowDown as ArrowDown, IoIosArrowUp as ArrowUp } from 'react-icons/io';
 import { MdDone as Done } from 'react-icons/md';
 import { APP_COLORS } from '../../styles';
@@ -25,16 +25,42 @@ interface PickerProps {
     onSelectItem: (value: string) => void
 }
 
+export function useOutsideAlerter(ref, action) {
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                action();
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
+}
+
 function Picker(props: PickerProps): JSX.Element {
     const { pickerItems, selectedItems, multiple, placeholder, showLabel, label, required, containerStyle, onSelectItem } = props;
     const [opened, setOpened] = useState<boolean>(false);
     const [update, setUpdate] = useState(0);
 
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef, () => {
+        setOpened(false);
+    });
+
     return (
         <div style={{
             ...styles.container,
             ...containerStyle
-        }}>
+        }}
+            ref={wrapperRef}>
             {
                 showLabel && label && (
                     <SimpleText

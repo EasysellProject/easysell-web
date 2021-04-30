@@ -1,10 +1,17 @@
+import { CSSProperties } from "react";
 import { APP_COLORS } from "../../shared/styles";
 
 export default {
     container: {
 
     },
-    buttonText:{
+    buttonText: {
         color: "white"
     },
+    innerContainer: {
+        backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+    } as CSSProperties,
 }

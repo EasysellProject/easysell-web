@@ -162,6 +162,16 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'Profile' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link> */}
+                                <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'About' ? 'white' : 'transparent' }}>
+                                    <AiOutlineInfoCircle
+                                        size={DRAWER_ICON_SIZE}
+                                        color={item == 'Profile' ? APP_COLORS.borderGray : 'white'}
+                                    />
+                                    <SimpleText
+                                        textID='profile'
+                                        additionalStyle={{ ...styles.rowTitle, color: item == 'Profile' ? APP_COLORS.borderGray : 'white' }}
+                                    />
+                                </Link>
                                 <Link to='/about' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'About' ? 'white' : 'transparent' }}>
                                     <AiOutlineInfoCircle
                                         size={DRAWER_ICON_SIZE}
@@ -169,7 +179,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                     />
                                     <SimpleText
                                         textID='about'
-                                        additionalStyle={{ ...styles.rowTitle, color: item == 'Order' ? APP_COLORS.borderGray : 'white' }}
+                                        additionalStyle={{ ...styles.rowTitle, color: item == 'About' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link>
                                 <MUIButton

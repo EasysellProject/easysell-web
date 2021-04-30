@@ -39,6 +39,8 @@ export default {
         marginLeft: 0,
     } as CSSProperties,
     create_new_button_style: {
+        alignSelf: 'baseline',
+        marginTop: 8,
         backgroundColor: APP_COLORS.BUTTONS.green,
         marginLeft: 8,
         height: 35,
@@ -59,9 +61,7 @@ export default {
         fontSize: 14
     } as CSSProperties,
     drop_down_style: {
-        width: 150,
-        height: 50,
-        backgroundColor: "white",
+        // height: 50,
         marginLeft: 8,
     } as CSSProperties,
 }

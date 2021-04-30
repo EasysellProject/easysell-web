@@ -119,14 +119,10 @@ function ListingPage(props: ListingProps): JSX.Element {
             <ListingCard
                 editListing={() => editListing(listing)}
                 removeListing={() => removeListing(listing)}
-                tooltipVisible={tooltipOpened && listing._id == tooltipOpened._id}
                 listing={listing}
                 index={listing.index}
                 onMorePressed={(listing) => {
-                    if (tooltipOpened && listing._id == tooltipOpened._id)
-                        setTooltipOpened(null);
-                    else
-                        setTooltipOpened(listing);
+                    setTooltipOpened(listing);
                 }}
 
             />

@@ -10,6 +10,7 @@ import Search from "../../../../shared/components/search"
 import { APP_COLORS, WEB_STYLES } from '../../../../shared/styles';
 import { useIntl } from 'react-intl';
 import styles from './styles'
+import Picker from '../../../../shared/components/picker';
 
 
 interface ListingHeaderProps {
@@ -60,7 +61,7 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     />
                 </div>
             </div>
-            <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline', justifyContent: 'flex-end' }}>
+            <div style={{ ...WEB_STYLES.flexRow, flex: 1,  justifyContent: 'flex-end' }}>
                 <Button
                     onPress={createNewListing}
                     buttonStyle={styles.create_new_button_style}>
@@ -71,7 +72,14 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                             additionalStyle={styles.createNewText} />
                     </div>
                 </Button>
-                <DropDown
+                <Picker
+                    pickerItems={[{ label: "Hepsiburada", value: 'Hepsiburada' }, { label: "Trendyol", value: 'Trendyol' }]}
+                    selectedItems={[marketPlace]}
+                    onSelectItem={filterMarketPlace}
+                    placeholder={'filter-marketplace'}
+                    containerStyle={styles.drop_down_style}
+                />
+                {/* <DropDown
                     data={data}
                     value={marketPlace}
                     onChange={(e) => {
@@ -79,9 +87,9 @@ function ListingHeader(props: ListingHeaderProps): JSX.Element {
                     }}
                     label={intl.formatMessage({ id: 'filter-marketplace' })}
                     DropDownStyle={styles.drop_down_style}
-                />
+                /> */}
                 <Search
-                    containerStyle={{ marginTop: 8, marginLeft:8 }}
+                    containerStyle={{ marginTop: 8, marginLeft: 8 }}
                     buttonStyle={styles.searchButton}
                     value={searchText}
                     placeholder="type-in-to-search"
