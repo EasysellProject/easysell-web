@@ -26,7 +26,7 @@ class ProductService {
             let metadata = {
                 contentType: 'image/*'
             }
-            if (details.img) {
+            if (details.img && details.img instanceof File) {
                 await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).put(details.img, metadata);
                 details.img = await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).getDownloadURL();
             }

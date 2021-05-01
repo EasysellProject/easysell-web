@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { Helper } from '../../libs/helper';
 
 import { Order } from '../../models/order';
 import { APP_COLORS } from '../../styles';
@@ -32,16 +33,16 @@ function OrderCard(props: OrderCardProps): JSX.Element {
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                 <div style={styles.infoContainer}>
                     <img src={order.product.img} style={styles.image} />
-                    <SimpleText ellipsis text={order.product.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+                    <SimpleText ellipsis text={order.product.desc} additionalStyle={styles.textHigherFlex} />
                 </div>
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
+            {/* <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
                 <SimpleText ellipsis text={order.product.title} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
-            </div>
+            </div> */}
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
-                <SimpleText ellipsis text={order.product.desc} additionalStyle={styles.textHigherFlex} />
+                <SimpleText ellipsis text={order.orderedBy.name} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}>
@@ -53,23 +54,23 @@ function OrderCard(props: OrderCardProps): JSX.Element {
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-                <SimpleText text={'' + order.product.stock} additionalStyle={styles.text} />
+                <SimpleText text={'' + 1} additionalStyle={styles.text} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                 <SimpleText ellipsis text={"" + order.orderNo} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
+            {/* <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
                 <SimpleText ellipsis text={"" + order.orderedBy.market} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
-                <SimpleText ellipsis text={"" + order.orderDate.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} additionalStyle={styles.textHigherFlex} />
+            </div> */}
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                <SimpleText ellipsis text={Helper.getDMYTime(order.orderDate)} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
-                <SimpleText ellipsis text={"" + order.dueDate.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} additionalStyle={styles.textHigherFlex} />
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                <SimpleText ellipsis text={Helper.getDMYTime(order.dueDate)} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             {/* <SimpleText textID={product.marketPlace[0]} additionalStyle={styles.text} /> */}

@@ -6,6 +6,7 @@ export default {
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'auto',
         flex: 1,
     } as CSSProperties,
     tableContainer: {

@@ -28,6 +28,7 @@ export type Attribute = { _id: string; value: string };
 export type Customer = {
   _id: string;
   market: MarketPlace;
+  name: string
 };
 
 export type CargoCompany = {

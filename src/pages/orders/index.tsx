@@ -18,13 +18,13 @@ function OrdersPage(props: ordersProps): JSX.Element {
 
     const headCells: HeadCell[] = [
         { id: 'index', numeric: true, label: '' },
-        { id: 'name', numeric: false, label: intl.formatMessage({ id: 'name' }) },
+        // { id: 'name', numeric: false, label: intl.formatMessage({ id: 'name' }) },
         { id: 'desc', numeric: false, label: intl.formatMessage({ id: 'description' }) },
+        { id: 'ordered by', numeric: false, label: intl.formatMessage({ id: 'ordered-by' }) },
         { id: 'price', numeric: true, label: intl.formatMessage({ id: 'price' }) },
         { id: 'currency', numeric: false, label: intl.formatMessage({ id: 'currency' }) },
         { id: 'stock', numeric: true, label: intl.formatMessage({ id: 'quantity' }) },
         { id: 'order no', numeric: true, label: intl.formatMessage({ id: 'order-no' }) },
-        { id: 'ordered by', numeric: false, label: intl.formatMessage({ id: 'ordered-by' }) },
         { id: 'order date', numeric: false, label: intl.formatMessage({ id: 'order-date' }) },
         { id: 'due date', numeric: false, label: intl.formatMessage({ id: 'due-date' }) },
         // { id: 'actions', numeric: false, label: intl.formatMessage({ id: 'actions' }) },
@@ -34,6 +34,7 @@ function OrdersPage(props: ordersProps): JSX.Element {
     const [filteredOrders, setFilteredOrders] = useState<Order[]>([])
     const [newOrderModalVisible, setNewOrderModalVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
+
     useEffect(() => {
         fetchOrders();
     }, [])

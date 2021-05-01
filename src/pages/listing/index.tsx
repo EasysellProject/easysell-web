@@ -14,6 +14,12 @@ import ProductService from '../../shared/services/product-service';
 import ListingService from '../../shared/services/listing-service';
 import { CircularProgress, Dialog } from '@material-ui/core';
 import EmptyList from '../../shared/components/empty-list';
+import items from './items.json';
+import names from './names.json';
+import districts from './districts.json';
+import streets from './streets.json';
+import AuthService from '../../shared/services/auth-service';
+import orderService from '../../shared/services/order-service';
 
 interface ListingProps {
 
@@ -48,6 +54,18 @@ function ListingPage(props: ListingProps): JSX.Element {
         fetchListings();
     }, [])
 
+
+    function generateNumber(length) {
+        var result = [];
+        var characters = '0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result.push(characters.charAt(Math.floor(Math.random() *
+                charactersLength)));
+        }
+        return result.join('');
+    }
+
     function fetchListings(): void {
         // TODO fetch listings from integrationService
         setListingsLoading(true);
@@ -55,6 +73,75 @@ function ListingPage(props: ListingProps): JSX.Element {
             .then((listings) => {
                 setListingsLoading(false);
                 setListings(listings);
+                // let count = 150;
+                // for (let i = 0; i < count; i++) {
+                //     let idx = Math.floor(Math.random() * listings.length);
+                //     let listing = listings[idx];
+                //     console.log('create order from listing ', listing)
+                //     let dueDate = new Date();
+                //     dueDate.setDate(new Date().getDate() + Math.floor(Math.random() * 10 + 5))
+                //     let nidx = Math.floor(Math.random() * names.people.length);
+                //     let didx = Math.floor(Math.random() * districts.districts.length);
+                //     let sidx = Math.floor(Math.random() * streets.streets.length);
+                //     let order = {
+                //         orderNo: generateNumber(9),
+                //         orderDate: AuthService.getRandomDate(new Date(1609460000000), new Date()).getTime(),
+                //         dueDate: AuthService.getRandomDate(new Date(), dueDate).getTime(),
+                //         cargoCompany: {
+                //             _id: "ASwtsHgsawE",
+                //             name: "MNG Kargo",
+                //             shortName: "MNG",
+                //             logo: "https://pbs.twimg.com/profile_images/999569747778748416/PIkmvcJf_400x400.jpg",
+                //         },
+                //         product: {
+                //             _id: listing.product._id,
+                //             title: listing.product.title,
+                //             desc: listing.product.desc,
+                //             price: listing.product.price,
+                //             stock: listing.product.stock,
+                //             currency: listing.product.currency,
+                //             img: listing.product.img,
+                //         },
+                //         deliveryAddress: {
+                //             address: 'Bina No:' + Math.floor(Math.random() * 100 + 1) + ', Kapi No:' + Math.floor(Math.random() * 30 + 1) + ` ${streets.streets[sidx][0]}, ${districts.districts[didx][0]}, ${districts.districts[didx][1]}`,
+                //             name: names.people[nidx][0],
+                //             email: names.people[nidx][1],
+                //             district: streets.streets[sidx][0],
+                //             town: districts.districts[didx][0],
+                //             city: districts.districts[didx][1],
+                //         },
+                //         orderedBy: {
+                //             _id: generateNumber(9),
+                //             name: names.people[nidx][0],
+                //             market: Math.floor(Math.random() * 2) == 1 ? 'Trendyol' : 'Hepsiburada'
+                //         }
+                //     }
+                //     console.log('create order ', order)
+                //     orderService.createNewOrder(order);
+                // }
+                /**
+                 let order = {
+                     orderNo: generateNumber()
+                     orderDate: AuthService.getRandomDate(new Date(1609460000000), new Date())
+                     dueDate: AuthService.getRandomDate(new Date(), new Date().addDays(Math.floor(Math.random() * 10 + 5 )))
+                     cargoCompany:{
+                         _id: "ASwtsHgsawE",
+                         name: "MNG Kargo",
+                         shortName: "MNG",
+                         logo:"https://pbs.twimg.com/profile_images/999569747778748416/PIkmvcJf_400x400.jpg",
+                     },
+                     product:{
+                         _id: listing.product._id,
+                         title: listing.product.title,
+                         desc: listing.product.desc,
+                         price: listing.product.price,
+                         stock: listing.product.stock,
+                         currency: listing.product.currency,
+                         img: listing.product.img,
+                     },
+                     deliveryAddress:
+                 }
+                 */
                 setFilteredListings(listings);
             })
             .catch(err => {
@@ -129,10 +216,64 @@ function ListingPage(props: ListingProps): JSX.Element {
         )
     }
 
+    function randomListings() {
+        const json = items.items
+        let count = 50;
+        for (let i = 0; i < count; i++) {
+            let idx = Math.floor(Math.random() * json.length);
+            let item = json[idx];
+            let product = {
+                title: item[1],
+                desc: item[2],
+                price: item[0],
+                stock: Math.floor(Math.random() * 50) + 10,
+                currency: "TL",
+                category: "",
+                img: item[3]
+            }
+            let listing = {
+                product,
+                createdAt: new Date().getTime(),
+                marketPlace: Math.floor(Math.random() * 2) == 1 ? ['Trendyol', 'Hepsiburada'] : Math.floor(Math.random() * 2) == 1 ? ["Hepsiburada"] : ["Trendyol"]
+            }
+            ProductService.createNewProduct(product)
+                .then(() => {
+                    listing.product = product;
+                    ListingService.createListing(listing)
+                        .then((listing: Listing) => {
+                            setCreateLoading(false);
+                            setListings(listings.concat(listing));
+                            setFilteredListings(listings.concat(listing));
+                            closeListingModal()
+                        })
+                        .catch(() => {
+                            setCreateLoading(false);
+                        })
+                });
+        }
+        console.log('json ', json)
+        /**
+         {
+             product:{
+                 title: '',
+                 desc: '',
+                 price: 0,
+                 stock: Math.random() * 50 + 10,
+                 currency: "TL",
+                 category: "",
+                 img: ""
+             },
+             createdAt: new Date().getTime(),
+             marketPlace: Math.floor(Math.random() * 2) == 1 ? ['Trendyol', 'Hepsiburada'] : Math.floor(Math.random() * 2) == 1 ? ["Hepsiburada"] : ["Trendyol"],
+         }
+         */
+    }
+
     return (
         <DashboardLayout route='Listing'>
             <div style={styles.innerContainer}>
                 <ListingHeader listingCount={listings.length} onCreateNewPressed={() => setCreateModalVisible(true)} onSearchChanged={onSearchListing} onFilter={onFilterListing} />
+                {/* <button onClick={randomListings}>Randomize</button> */}
                 <div style={styles.dataContainer}>
                     {
                         listingsLoading ? (

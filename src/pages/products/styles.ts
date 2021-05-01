@@ -7,6 +7,7 @@ export default {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
+        overflow: 'auto',
     } as CSSProperties,
     tableContainer: {
         display: 'flex',
