@@ -127,15 +127,18 @@ export default function EnhancedTable(props: ListingTableProps | ProductTablePro
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
+        console.log('property ', property)
         setUpdate(update + 1);
     };
 
     function getComparator(order, orderBy) {
         function descendingComparator(a, b, orderBy) {
-            if (b[orderBy] < a[orderBy]) {
+            let compA = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? a : a.product;
+            let compB = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? b : b.product;
+            if (compB[orderBy] < compA[orderBy]) {
                 return -1;
             }
-            if (b[orderBy] > a[orderBy]) {
+            if (compB[orderBy] > compA[orderBy]) {
                 return 1;
             }
             return 0;
