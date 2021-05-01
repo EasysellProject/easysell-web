@@ -133,8 +133,12 @@ export default function EnhancedTable(props: ListingTableProps | ProductTablePro
 
     function getComparator(order, orderBy) {
         function descendingComparator(a, b, orderBy) {
-            let compA = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? a : a.product;
-            let compB = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? b : b.product;
+            let compA = a;
+            let compB = b;
+            if (props.data.length > 0 && props.data[0] instanceof Listing) {
+                compA = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? a : a.product;
+                compB = (orderBy == 'marketPlace' || orderBy == 'createdAt' || orderBy == 'index') ? b : b.product;
+            }
             if (compB[orderBy] < compA[orderBy]) {
                 return -1;
             }
