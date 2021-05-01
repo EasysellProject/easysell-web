@@ -41,9 +41,9 @@ function Integration(): JSX.Element {
             <div>
                 <Container>
                     <div style={styles.inputs}>
-                        <label style={styles.name}>
-                            trendyol
-                    </label>
+                        <SimpleText
+                            additionalStyle={styles.name}
+                            textID="trendyol" />
                         <Input
                             value={trendyol}
                             placeholder="API key..."
@@ -63,9 +63,9 @@ function Integration(): JSX.Element {
                                 width: '100%',
                             }}
                         />
-                        <label style={styles.name}>
-                            hepsiburada
-                    </label>
+                        <SimpleText
+                            additionalStyle={styles.name}
+                            textID="hepsiburada" />
                         <Input
                             value={hepsiburada}
                             placeholder="API key..."
@@ -115,21 +115,21 @@ function Integration(): JSX.Element {
                         </div>
                     </div>
                 ) : (
-                        <div
-                            style={{
-                                ...WEB_STYLES.flexColum,
-                                background: APP_COLORS.lightTurquoise,
-                                ...styles.integrationContents,
-                                width: windowDimensions.width,
-                                height: windowDimensions.height,
-                            }}
-                        >
-                            <label style={styles.label}> Marketplace Integration</label>
-                            <div style={styles.container}>
-                                {renderInputs()}
-                            </div>
+                    <div
+                        style={{
+                            ...WEB_STYLES.flexColum,
+                            background: APP_COLORS.lightTurquoise,
+                            ...styles.integrationContents,
+                            width: windowDimensions.width,
+                            height: windowDimensions.height,
+                        }}
+                    >
+                        <label style={styles.label}> Marketplace Integration</label>
+                        <div style={styles.container}>
+                            {renderInputs()}
                         </div>
-                    )}
+                    </div>
+                )}
             </div>
         </DashboardLayout>
     );
