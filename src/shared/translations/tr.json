@@ -75,5 +75,6 @@
 	"ordered-by":"Sipariş eden",
 	"order-date":"Sipariş tarihi",
 	"due-date":"Son tarih",
-	"sync-orders":"Senkronize et"
+	"sync-orders":"Senkronize et",
+	"save-changes":"Değişikleri kaydet"
 }

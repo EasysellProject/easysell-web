@@ -54,8 +54,6 @@ function Login(): JSX.Element {
                 console.log("reset mail send")
             })
             .catch(err => console.log(err))
-
-
     }
     function onForgotPassPress(): void {
         if (forgot == false)

@@ -10,11 +10,12 @@ interface ButtonProps {
     buttonStyle?: CSSProperties,
     onPress: () => void,
     children: ReactNode
-    loading?: boolean
+    loading?: boolean,
+    disabled?: boolean
 }
 
 function Button(props: ButtonProps): JSX.Element {
-    const { buttonStyle, onPress, children, loading } = props
+    const { buttonStyle, onPress, children, loading, disabled } = props
     const [hovered, setHovered] = useState<boolean>(false);
 
     return (
@@ -26,7 +27,9 @@ function Button(props: ButtonProps): JSX.Element {
                 ...buttonStyle,
                 textTransform: 'none',
                 backgroundColor: hovered ? APP_COLORS.HOVER.gray : (buttonStyle?.backgroundColor || 'white')
-            }} onClick={onPress}>
+            }}
+            onClick={onPress}
+            disabled={disabled}>
             {
                 loading ? (
                     <div style={styles.spinner}>

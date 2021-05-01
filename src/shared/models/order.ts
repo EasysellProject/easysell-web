@@ -1,23 +1,23 @@
 import { Address, CargoCompany, Customer, Product } from "./product";
 
-export class Order extends Product {
+export class Order {
+    _id: string
     orderNo: number;
     orderDate: Date;
     dueDate: Date;
     orderedBy: Customer
     cargoCompany: CargoCompany;
-    items: Product[]
+    product: Product
     deliveryType: string;
     deliveryAddress: Address;
 
     constructor(details?: any) {
-        super(details)
         this.orderNo = details.orderNo;
         this.orderDate = details.orderDate;
         this.dueDate = details.dueDate;
         this.orderedBy = details.orderedBy;
         this.cargoCompany = details.cargoCompany;
-        this.items = details.items.map(i => new Product(i));
+        this.product = new Product(details.product);
         this.deliveryType = details.deliveryType;
         this.deliveryAddress = details.deliveryAddress;
     }

@@ -10,10 +10,10 @@ import styles from './styles';
 import OrdersHeader from "./ordersHeader"
 import EmptyList from '../../shared/components/empty-list';
 
-interface ordersProps{
+interface ordersProps {
 
 }
-function OrdersPage(props:ordersProps):JSX.Element{
+function OrdersPage(props: ordersProps): JSX.Element {
     const intl = useIntl();
 
     const headCells: HeadCell[] = [
@@ -59,10 +59,10 @@ function OrdersPage(props:ordersProps):JSX.Element{
         if (text) {
             filteredOrders = orders.filter(order => (
                 order.orderNo.toString().includes(text) ||
-                order.orderedBy.market.includes(text)||
-                order.desc?.toLowerCase().includes(text) ||
-                order.currency?.toLowerCase().includes(text) ||
-                order.price == parseInt(text)
+                order.orderedBy.market.includes(text) ||
+                order.product.desc?.toLowerCase().includes(text) ||
+                order.product.currency?.toLowerCase().includes(text) ||
+                order.product.price == parseInt(text)
             ))
         }
         setFilteredOrders(filteredOrders)
@@ -80,32 +80,32 @@ function OrdersPage(props:ordersProps):JSX.Element{
         )
     }
 
-    return(<DashboardLayout route='Order'>
-    <div style={styles.container}>
-        <OrdersHeader onNewOrderPress={() => fetchOrders()} onSearchChanged={onSearchOrder} />
-        <div style={styles.tableContainer}>
-            {
-                loading ? (
-                    <div style={styles.spinnerContainer}>
-                        <CircularProgress style={styles.spinner} />
-                    </div>
-                ) : orders.length > 0? (
-                    <Table
-                        data={filteredOrders}
-                        headCells={headCells}
-                        renderItem={renderOrder} />
-                ):(
-                    <EmptyList/>
-                )
-            }
-        </div>
-        {/*<ProductModal
+    return (<DashboardLayout route='Order'>
+        <div style={styles.container}>
+            <OrdersHeader onNewOrderPress={() => fetchOrders()} onSearchChanged={onSearchOrder} />
+            <div style={styles.tableContainer}>
+                {
+                    loading ? (
+                        <div style={styles.spinnerContainer}>
+                            <CircularProgress style={styles.spinner} />
+                        </div>
+                    ) : orders.length > 0 ? (
+                        <Table
+                            data={filteredOrders}
+                            headCells={headCells}
+                            renderItem={renderOrder} />
+                    ) : (
+                        <EmptyList />
+                    )
+                }
+            </div>
+            {/*<ProductModal
             visible={newProductModalVisible}
             onClose={() => setNewProductModalVisible(false)}
             onSubmit={createProduct}
         />*/}
-    </div>
-</DashboardLayout>)
+        </div>
+    </DashboardLayout>)
 }
 
 export default OrdersPage

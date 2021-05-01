@@ -31,29 +31,29 @@ function OrderCard(props: OrderCardProps): JSX.Element {
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                 <div style={styles.infoContainer}>
-                    <img src={order.img} style={styles.image} />
-                    <SimpleText ellipsis text={order.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
+                    <img src={order.product.img} style={styles.image} />
+                    <SimpleText ellipsis text={order.product.title} additionalStyle={{ ...styles.text, textAlign: 'left' }} />
                 </div>
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
-                <SimpleText ellipsis text={order.title} additionalStyle={styles.textHigherFlex} />
+                <SimpleText ellipsis text={order.product.title} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>
-                <SimpleText ellipsis text={order.desc} additionalStyle={styles.textHigherFlex} />
+                <SimpleText ellipsis text={order.product.desc} additionalStyle={styles.textHigherFlex} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}>
-                <SimpleText text={'' + order.price} additionalStyle={styles.text} />
+                <SimpleText text={'' + order.product.price} additionalStyle={styles.text} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-                <SimpleText text={order.currency} additionalStyle={styles.text} />
+                <SimpleText text={order.product.currency} additionalStyle={styles.text} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-                <SimpleText text={'' + order.stock} additionalStyle={styles.text} />
+                <SimpleText text={'' + order.product.stock} additionalStyle={styles.text} />
                 <div style={{ height: 34, width: 30 }}></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 3 }}>

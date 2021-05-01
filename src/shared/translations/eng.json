@@ -75,5 +75,6 @@
 	"ordered-by":"Ordered by",
 	"order-date":"Order date",
 	"due-date":"Due date",
-	"sync-orders":"Syncronize orders"
+	"sync-orders":"Syncronize orders",
+	"save-changes":"Save changes"
 }

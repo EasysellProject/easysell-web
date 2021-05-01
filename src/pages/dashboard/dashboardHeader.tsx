@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import { CircularProgress } from '@material-ui/core';
 import SimpleText from "../../shared/components/text/simple-text";
 import { BiLira } from 'react-icons/bi'
-import { FiPercent } from "react-icons/fi"
-import { RiTShirtLine } from "react-icons/ri"
 import UserService from "../../shared/services/user-service";
 import styles from './styles';
 import firebase from '../../shared/utils/firebase'
@@ -30,50 +28,52 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
             if (user) {
                 AuthService.getUserData().then(curr => {
                     UserService.currentUser = curr
-                    ProductService.getProducts().then(products=>{
-                        if(products.length > 0){
-                            var sum:number = 0
-                            var count:number = 0
-                            products.map(product =>{sum = sum + Number(product.price)* Number(product.stock) * (product.currency=="TL"?1:8)
-                                                    count = count + Number(product.stock)})
-                            var result:string = (sum/count).toFixed()
+                    ProductService.getProducts().then(products => {
+                        if (products.length > 0) {
+                            var sum: number = 0
+                            var count: number = 0
+                            products.map(product => {
+                                sum = sum + Number(product.price) * Number(product.stock) * (product.currency == "TL" ? 1 : 8)
+                                count = count + Number(product.stock)
+                            })
+                            var result: string = (sum / count).toFixed()
                             setAvgProductPrice(result)
                         }
-                        else{
+                        else {
                             setAvgProductPrice("0")
                         }
-                        OrdersService.getOrders().then(data=>{
-                            if(data.length > 0){
-                                var Tsum:number = 0
+                        OrdersService.getOrders().then(data => {
+                            if (data.length > 0) {
+                                var Tsum: number = 0
                                 var count = 0
                                 let now = new Date();
-                                data.map(point =>{
-                                    if(point.dueDate > now){
-                                        Tsum = Tsum + Number(point.price)*Number(point.stock)*(point.currency=="TL"?1:8)
-                                        count = count + Number(point.stock)
+                                data.map(point => {
+                                    if (point.dueDate > now) {
+                                        Tsum = Tsum + Number(point.product.price) * Number(point.product.stock) * (point.product.currency == "TL" ? 1 : 8)
+                                        count = count + Number(point.product.stock)
                                     }
-                                    }
+                                }
                                 )
-                                var result:string = (Tsum).toFixed()
-                                var avg:string = (Tsum/count).toFixed()
+                                var result: string = (Tsum).toFixed()
+                                var avg: string = (Tsum / count).toFixed()
                                 setSalesAmount(result);
                                 setAvgSalePrice(avg);
                             }
-                            else{
+                            else {
                                 setSalesAmount("0");
                                 setAvgSalePrice("0");
                             }
                             setLoaded(true);
                         })
-                        .catch(err=>{
-                            console.log(err.message);
-                            alert(err);
-                        })
-                    }).catch(err =>{
+                            .catch(err => {
+                                console.log(err.message);
+                                alert(err);
+                            })
+                    }).catch(err => {
                         console.log(err.message);
                         alert(err);
                     })
-                
+
                 }).catch(err => {
                     console.log(err.message)
                     alert(err);
@@ -81,6 +81,7 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
             }
         });
     }, [])
+
     return (
         loaded ? (
             <div style={styles.dashboardHeader}>

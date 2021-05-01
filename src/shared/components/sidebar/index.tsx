@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory, Link } from "react-router-dom";
-import { CgList } from 'react-icons/cg'
+import { CgList, CgProfile } from 'react-icons/cg'
 import { TiNews } from 'react-icons/ti';
 import { RiDashboardLine } from 'react-icons/ri';
 import MUIButton from '@material-ui/core/Button'
@@ -152,18 +152,8 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'Integration' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link>
-                                {/* <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Profile' ? 'white' : 'transparent' }}>
+                                <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'Profile' ? 'white' : 'transparent' }}>
                                     <AiOutlineUser
-                                        size={DRAWER_ICON_SIZE}
-                                        color={item == 'Profile' ? APP_COLORS.borderGray : 'white'}
-                                    />
-                                    <SimpleText
-                                        textID='profile'
-                                        additionalStyle={{ ...styles.rowTitle, color: item == 'Profile' ? APP_COLORS.borderGray : 'white' }}
-                                    />
-                                </Link> */}
-                                <Link to='/profile' style={{ ...WEB_STYLES.flexRow, ...styles.row, backgroundColor: item == 'About' ? 'white' : 'transparent' }}>
-                                    <AiOutlineInfoCircle
                                         size={DRAWER_ICON_SIZE}
                                         color={item == 'Profile' ? APP_COLORS.borderGray : 'white'}
                                     />

@@ -20,7 +20,7 @@ export class Product {
     if (details.img) this.img = details.img;
     this.currency = details.currency;
     this.stock = details.stock;
-    this.category = details?.stock;
+    this.category = details?.category;
   }
 }
 

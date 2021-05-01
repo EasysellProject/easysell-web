@@ -8,6 +8,7 @@ import ListingCard from '../listing-card';
 import { WEB_STYLES } from '../../styles';
 import styles from './styles'
 import { Product } from '../../models/product';
+import { Order } from '../../models/order';
 
 interface TableHeaderProps {
     onRequestSort: (event, property) => void,
@@ -98,7 +99,11 @@ interface ProductTableProps extends TableProps {
     data: Product[],
 }
 
-export default function EnhancedTable(props: ListingTableProps | ProductTableProps) {
+interface OrderTableProps extends TableProps {
+    data: Order[],
+}
+
+export default function EnhancedTable(props: ListingTableProps | ProductTableProps | OrderTableProps) {
     const { data, headCells, renderItem } = props;
 
     const [indexedData, setIndexedData] = useState<any[]>([]);

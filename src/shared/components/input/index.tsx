@@ -18,11 +18,12 @@ interface InputProps {
     showError?: boolean
     errorText?: string
     type?: InputType
+    disabled?: boolean
 }
 
 function Input(props: InputProps): JSX.Element {
     const intl = useIntl()
-    const { value, placeholder, additionalStyles, inputStyles, required, showLabel, type, label, onChangeText, showError, errorText } = props
+    const { disabled, value, placeholder, additionalStyles, inputStyles, required, showLabel, type, label, onChangeText, showError, errorText } = props
     let formattedPlaceholder = intl.formatMessage({ id: placeholder })
 
     function onKeyDown(e: React.KeyboardEvent): void {
@@ -47,6 +48,7 @@ function Input(props: InputProps): JSX.Element {
                 <input
                     type={type || 'text'}
                     value={value}
+                    disabled={disabled}
                     style={{ ...styles.input, ...inputStyles }}
                     placeholder={formattedPlaceholder}
                     onChange={(e) => onChangeText(e.target.value)}
