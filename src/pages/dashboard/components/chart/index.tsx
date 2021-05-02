@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react'
 import { Bar, Line } from 'react-chartjs-2'
+import { APP_COLORS } from '../../../../shared/styles'
 
 import styles from './styles'
 
@@ -20,6 +21,8 @@ function LineChart(props: ChartData): JSX.Element {
                 labels: labels,
                 datasets: [{
                     label: title,
+                    backgroundColor: APP_COLORS.lightTurquoise,
+                    borderColor: APP_COLORS.darkGreen,
                     data: data,
                 }]
             }
@@ -27,7 +30,7 @@ function LineChart(props: ChartData): JSX.Element {
                 type="line"
                 height={480}
                 width={992}
-                options={{ maintainAspectRation: false }} />
+                options={{ maintainAspectRation: true}} />
         </div>
     )
 }

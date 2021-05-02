@@ -10,12 +10,10 @@ import ProductService from "../../shared/services/product-service"
 import OrdersService from "../../shared/services/order-service"
 
 interface dashboardHeaderProps {
-    sales_amount: number,
-    avg_sale_price: number,
+   
 }
 
 function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
-    const { sales_amount, avg_sale_price } = props
     const date = new Date();
     const [username, setUsername] = useState("");
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -48,9 +46,9 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                                 var count = 0
                                 let now = new Date();
                                 data.map(point => {
-                                    if (point.dueDate > now) {
-                                        Tsum = Tsum + Number(point.product.price) * Number(point.product.stock) * (point.product.currency == "TL" ? 1 : 8)
-                                        count = count + Number(point.product.stock)
+                                    if (point.dueDate < now) {
+                                        Tsum = Tsum + Number(point.product.price) * (point.product.currency == "TL" ? 1 : 8)
+                                        count = count + 1
                                     }
                                 }
                                 )
@@ -107,7 +105,7 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                                 <BiLira size={15} color="green" style={{ marginTop: 3 }} />
                                 <SimpleText
                                     additionalStyle={styles.infoLayerTextNumber}
-                                    textID={sales_amount.toString()} />
+                                    textID={salesAmount.toString()} />
                             </div>
                         </div>
                         <div style={styles.infoLayerSymbolLira}>
@@ -123,7 +121,7 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                                 <BiLira size={15} color="green" style={{ marginTop: 3 }} />
                                 <SimpleText
                                     additionalStyle={styles.infoLayerTextNumber}
-                                    textID={avg_sale_price.toString()} />
+                                    textID={avgSalePrice.toString()} />
                             </div>
                         </div>
                     </div>
