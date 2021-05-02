@@ -15,6 +15,7 @@ function Integration(): JSX.Element {
     );
     const [trendyol, setText] = useState("");
     const [hepsiburada, setText2] = useState("");
+    const [n11, setText3] = useState("");
 
     function onSavePress(): void {
         console.log("save")
@@ -46,7 +47,7 @@ function Integration(): JSX.Element {
                             textID="trendyol" />
                         <Input
                             value={trendyol}
-                            placeholder="API key..."
+                            placeholder="api-key"
                             showLabel
                             required
                             onChangeText={(trendyol: string) => {
@@ -68,7 +69,7 @@ function Integration(): JSX.Element {
                             textID="hepsiburada" />
                         <Input
                             value={hepsiburada}
-                            placeholder="API key..."
+                            placeholder="api-key"
                             showLabel
                             required
                             onChangeText={(hepsiburada: string) => {
@@ -85,12 +86,33 @@ function Integration(): JSX.Element {
                                 width: '100%',
                             }}
                         />
+                        <SimpleText
+                            additionalStyle={styles.name}
+                            textID="N11" />
+                        <Input
+                            value={n11}
+                            placeholder="api-key"
+                            showLabel
+                            required
+                            onChangeText={(n11: string) => {
+                                console.log(n11)
+                                setText3(n11)
+                            }}
+                            additionalStyles={styles.inputContainer}
+                        />
+                        <hr
+                            style={{
+                                color: colors.errorRed,
+                                backgroundColor: colors.lightGray,
+                                height: 3,
+                                width: '100%',
+                            }}
+                        />
                         <div style={{ display: 'flex' }}>
                             <Button onPress={onSavePress} buttonStyle={styles.saveButton}>
-                                <SimpleText additionalStyle={styles.newAccountText} textID='Save' />
+                                <SimpleText additionalStyle={styles.newAccountText} textID='save' />
                             </Button>
                         </div>
-
                     </div>
                 </Container>
             </div>
@@ -109,7 +131,7 @@ function Integration(): JSX.Element {
                             height: windowDimensions.height,
                         }}
                     >
-                        <label style={styles.labelM}> Marketplace Integration</label>
+                        <SimpleText textID = "marketplace-integration" additionalStyle = {styles.labelM}></SimpleText>
                         <div style={styles.container}>
                             {renderInputs()}
                         </div>
