@@ -69,7 +69,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
     }
 
     return (
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'relative' }}>
             <div style={isMobile() ? {
                 ...WEB_STYLES.flexRow,
                 position: 'absolute',
