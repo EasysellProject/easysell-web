@@ -46,7 +46,7 @@ function ListingPage(props: ListingProps): JSX.Element {
     const [listingModal, setListingModal] = useState<{ visible: boolean, type: 'edit' | 'create' }>({ visible: false, type: 'edit' });
     const [selectedListing, setSelectedListing] = useState<Listing>();
     const [createModalVisible, setCreateModalVisible] = useState(false);
-    const [tooltipOpened, setTooltipOpened] = useState<Listing>(null);
+    // const [tooltipOpened, setTooltipOpened] = useState<Listing>(null);
     const [createLoading, setCreateLoading] = useState<boolean>(false);
     const [removeLoading, setRemoveLoading] = useState<boolean>(false);
 
@@ -73,6 +73,7 @@ function ListingPage(props: ListingProps): JSX.Element {
             .then((listings) => {
                 setListingsLoading(false);
                 setListings(listings);
+                setFilteredListings(listings);
                 // let count = 150;
                 // for (let i = 0; i < count; i++) {
                 //     let idx = Math.floor(Math.random() * listings.length);
@@ -142,12 +143,10 @@ function ListingPage(props: ListingProps): JSX.Element {
                      deliveryAddress:
                  }
                  */
-                setFilteredListings(listings);
             })
             .catch(err => {
                 setListingsLoading(false);
             })
-        // setListings(generateRandomListings());
     }
 
     function editListing(listing: Listing): void {
@@ -160,9 +159,12 @@ function ListingPage(props: ListingProps): JSX.Element {
         ListingService.deleteListing(listing)
             .then(() => {
                 setRemoveLoading(false);
-                listings.splice(listings.findIndex(l => l._id == listing._id), 1);
-                console.log('deleting ', listings)
-                setListings(listings);
+                // listings.splice(listings.findIndex(l => l._id == listing._id), 1);
+                // console.log('deleting ', listings)
+                // setListings(listings);
+                // setFilteredListings(listings);
+                // setUpdate(update + 1);
+                fetchListings();
             }).catch(err => {
                 setRemoveLoading(false);
             })
@@ -202,16 +204,18 @@ function ListingPage(props: ListingProps): JSX.Element {
     }
 
     function renderListing(listing): JSX.Element {
+        if (listing.product.title == 'Filiz') {
+            console.log('render listing ', listing);
+        }
         return (
             <ListingCard
                 editListing={() => editListing(listing)}
                 removeListing={() => removeListing(listing)}
                 listing={listing}
                 index={listing.index}
-                onMorePressed={(listing) => {
-                    setTooltipOpened(listing);
-                }}
-
+                // onMorePressed={(listing) => {
+                //     setTooltipOpened(listing);
+                // }
             />
         )
     }
@@ -305,7 +309,13 @@ function ListingPage(props: ListingProps): JSX.Element {
                             if (listingModal.type == 'edit') {
                                 ListingService.editListing(listing)
                                     .then(() => {
-                                        setCreateLoading(false);
+                                        // listings[listings.findIndex(li => li._id == listing._id)] = new Listing(listing);
+                                        // console.log('listings after edit ', listings);
+                                        // setListings(listings);
+                                        // setFilteredListings(listings);
+                                        // setUpdate(update + 1);
+                                        // setCreateLoading(false);
+                                        fetchListings();
                                         closeListingModal()
                                     })
                                     .catch(() => {
