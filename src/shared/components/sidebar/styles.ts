@@ -6,9 +6,10 @@ export default {
         paddingTop: 32,
         alignItems: 'center',
         width: '100%',
-        height: '100%',
+        // height: '100%',
         backgroundColor: APP_COLORS.sidebarGreen,
-        overflow: 'auto'
+        overflow: 'auto',
+        flex: 9
     } as CSSProperties,
     row: {
         alignItems: 'center',
@@ -35,8 +36,10 @@ export default {
         padding: 30
     },
     logoutButton: {
-        position: 'absolute',
-        bottom: 0,
+        // position: 'absolute',
+        // bottom: 0,
+        // flex: 1,
+        alignSelf: 'flex-end',
         width: '100%',
         paddingTop: 16,
         paddingBottom: 16,

@@ -92,7 +92,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
                             zIndex: 999,
                         } :
                             {
-                                backgroundColor: APP_COLORS.textGreen,
+                                backgroundColor: 'red',
                             } : {
                             ...WEB_STYLES.flexColum,
                         }
