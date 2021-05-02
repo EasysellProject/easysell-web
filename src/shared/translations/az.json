@@ -79,5 +79,7 @@
 	"sync-orders": "Sinxronizə et",
 	"save-changes": "Dəyişiklikləri yadda saxla",
 	"api-key": "API şifrəsi...",
-	"save": "Yadda saxla"
+	"save": "Yadda saxla",
+	"abstract0": "Onlayn alış-veriş 2020-ci ildən bütün pərakəndə satışların 20%-dən çoxunu təşkil etdiyindən, elektron ticarət platformalarının sayı kəskin şəkildə artmaqdadır. Onlayn satıcılar üçün bu platformaların hamısını ayrı-ayrılıqda idarə etmək zaman və enerji itkisinə səbəb olur.",
+	"abstract1": "Bu layihədə, istifadəçilərin fərqli platformalardakı satıcı hesablarını  eyni vaxtda idarə etmələrini təmin edən və istifadəçilərə satış analizi və sifarişin idarə edilməsi kimi funksiyaları təmin edən EasySell adlı istifadəçi dostu, etibarlı və çox kanallı bir elektron ticarət platforması hazırladıq."
 }

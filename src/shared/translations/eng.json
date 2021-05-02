@@ -79,5 +79,7 @@
 	"sync-orders":"Syncronize orders",
 	"save-changes":"Save changes",
 	"api-key": "API key...",
-	"save": "Save"
+	"save": "Save",
+	"abstract0": "As online shopping now accounts for more than 20% of all retail purchases in 2020, the number of ecommerce platforms increased dramatically. For online sellers, managing all of those platforms separately causes time and energy waste.",
+	"abstract1": "In this project, we developed a user-friendly, secure and reliable multi-channel ecommerce platform called EasySell which enables users to manage their online seller accounts from different platforms simultaneously and provides users with functionalities like sales analysis and order management."
 }

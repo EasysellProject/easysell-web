@@ -6,7 +6,7 @@ import DashboardLayout from "../../shared/components/dashboard-layout";
 import SimpleText from '../../shared/components/text/simple-text';
 import styles from './styles';
 import logo from "../../assets/images/logo.png";
-import comp from "../../assets/images/pngkomp-01.png";
+import comp from "../../assets/images/about-comp.png";
 import HeaderText from "../../shared/components/text/header-text";
 
 interface AboutProps {
@@ -35,72 +35,144 @@ function About(props: AboutProps): JSX.Element {
 
     return (
         <DashboardLayout route='About'>
-            <div  style={styles.body}>
-                <div style={styles.header}>
-                    <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline' }}>
-                    <SimpleText
-                            additionalStyle={styles.headerText}
-                            textID={"About"}
-                        />
+            
+                { isMobile() ? (
+                    <div  style={styles.body}>
+                        <div style={styles.header}>
+                            <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline' }}>
+                            <SimpleText
+                                    additionalStyle={styles.headerText}
+                                    textID={"About"}
+                                />   
+                            </div>
+                        </div>
+                        <img
+                                    src={logo}
+                                    alt="logo"
+                                    style={{
+                                        width: 200,
+                                        paddingTop:  10,
+                                        paddingLeft: 15,
+                                    }}
+                                />
+                        <div
+                            style={{
+                                ...WEB_STYLES.flexColum,
+                                paddingTop:  10,
+                                paddingLeft: 15,
+                                //alignItems: "center",
+                            }}>
+                        <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='MULTI CHANNEL RETAIL PLATFORM' />
+                        <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
+                        </div>
+                        <div
+                            style={{
+                                    ...WEB_STYLES.flexColum,
+                                    paddingTop:  10,
+                                    paddingLeft: 15,
+                                    //alignItems: "center",
+                            }}>
+                            <SimpleText additionalStyle={styles.abstractText} textID='abstract0' />
+                        </div>
+                        <div
+                            style={{
+                                ...WEB_STYLES.flexColum,
+                                paddingTop:  5,
+                                paddingLeft: 15,                                
+                                //alignItems: "center",
+                            }}>
+                            <SimpleText additionalStyle={styles.abstractText} textID='abstract1' />
+                        </div>
+                    </div>
+                ):(
+                    <div  style={styles.body}> 
+                        <div style={styles.header}>
+                        <div style={{ ...WEB_STYLES.flexRow, flex: 1, alignItems: 'baseline' }}>
+                        <SimpleText
+                                additionalStyle={styles.headerText}
+                                textID={"About"}
+                            />
+                        </div>
                         
                     </div>
-                </div>
-                <div style={styles.posterContainer}>
-                    <div
-                        style={{
-                            ...WEB_STYLES.flexColum,
-                            width: '100%',
-                            paddingTop: !isMobile() ? 16 : 4,
-                            paddingLeft: isMobile() ? 0 : 0,
-                        }}
-                    >
+                    <div style={styles.posterContainer}>
                         <div
-                        style={{
-                            paddingLeft: 20,
-                            paddingBottom: 20,
-                        }}
-                    >
-                            <img
-                                src={logo}
-                                alt="logo"
+                            style={{
+                                ...WEB_STYLES.flexColum,
+                                width: '100%',
+                                paddingTop: !isMobile() ? 16 : 4,
+                                paddingLeft: isMobile() ? 0 : 0,
+                            }}
+                        >
+                            <div
+                            style={{
+                                paddingLeft: 20,
+                                paddingBottom: 20,
+                            }}
+                        >
+                                <img
+                                    src={logo}
+                                    alt="logo"
+                                    style={{
+                                        width: 200,
+                                    }}
+                                />
+                                
+                                </div>
+                            {
+                                !isTablet() && (
+                                    <div style={{
+                                        ...WEB_STYLES.flexColum,
+                                        justifyContent: 'left',
+                                        alignItems: 'left',
+                                        width: '100%',
+                                        paddingLeft: 20,
+                                        marginTop: 10,
+                                        flex: 1,
+                                    }}>
+                                        <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='MULTI CHANNEL RETAIL PLATFORM' />
+                                        <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
+                                        <div
+                                            style={{
+                                                ...WEB_STYLES.flexColum,
+                                                paddingTop:  10,
+                                                paddingLeft: 0,
+                                            }}>
+                                            <SimpleText additionalStyle={styles.abstractText} textID='abstract0' />
+                                        </div>
+                                        <div
+                                            style={{
+                                                ...WEB_STYLES.flexColum,
+                                                paddingTop:  5,
+                                                paddingLeft: 0,
+                                            }}>
+                                            <SimpleText additionalStyle={styles.abstractText} textID='abstract1' />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div style={{
+                                ...WEB_STYLES.flexColum,
+                                paddingTop:  80,
+                                paddingLeft: 0,
+                            }}>
+                    <img
+                                src={comp}
+                                alt="workspace"
                                 style={{
-                                    width: 200,
+                                    width: 400,
+                                    alignItems: 'center',
+                                    
                                 }}
                             />
-                            
                             </div>
-                        {
-                            !isTablet() && (
-                                <div style={{
-                                    ...WEB_STYLES.flexColum,
-                                    justifyContent: 'left',
-                                    alignItems: 'left',
-                                    width: '100%',
-                                    paddingLeft: 20,
-                                    marginTop: 10,
-                                    flex: 1,
-                                }}>
-                                    <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='MULTI CHANNEL RETAIL PLATFORM' />
-                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
-                                </div>
-                            )
-                        }
                     </div>
-                    <div style={{
-                            ...WEB_STYLES.flexColum,
-                            paddingTop:  4,
-                            paddingLeft: 0,
-                        }}>
-                <img
-                            src={comp}
-                            alt="workspace"
-                            style={{
-                                width: 600,
-                            }}
-                        />
-                        </div>
                 </div>
-            </div>
+                )
+                }
+                
+            
             
         </DashboardLayout>
     )

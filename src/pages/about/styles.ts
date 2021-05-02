@@ -38,7 +38,11 @@ export default {
         fontSize: 28,
     },
     manageText: {
-        fontSize: 18,
+        fontSize: 22,
         maxWidth: '100%',
+    },
+    abstractText: {
+        fontSize: 18,
+        maxWidth: '80%',
     }
 }
