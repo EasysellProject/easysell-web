@@ -14,13 +14,13 @@ import styles from './styles'
 interface ListingCardProps {
     listing: Listing;
     index: number,
-    onMorePressed: (listing: Listing) => void;
+    // onMorePressed: (listing: Listing) => void;
     editListing?: () => void;
     removeListing?: () => void;
 }
 
 function ListingCard(props: ListingCardProps): JSX.Element {
-    const { listing, index, onMorePressed, editListing, removeListing } = props
+    const { listing, index, editListing, removeListing } = props
 
     const [hovered, setHovered] = useState<boolean>(false);
     const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
@@ -28,11 +28,11 @@ function ListingCard(props: ListingCardProps): JSX.Element {
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, () => {
         setTooltipVisible(false);
-        onMorePressed(null)
+        // onMorePressed(null)
     });
 
     function toggleTooltip(): void {
-        onMorePressed(listing)
+        // onMorePressed(listing)
         setTooltipVisible(!tooltipVisible)
     }
 
@@ -84,10 +84,10 @@ function ListingCard(props: ListingCardProps): JSX.Element {
                             <FiTrash size={24} color={APP_COLORS.BUTTONS.darkGray} />
                             <SimpleText additionalStyle={styles.tooltipText} textID={'disable-listing'} />
                         </Button>
-                        <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(2)}>
+                        {/* <Button buttonStyle={styles.tooltipButton} onPress={() => onActionPressed(2)}>
                             <FiCopy size={24} color={APP_COLORS.BUTTONS.darkGray} />
                             <SimpleText additionalStyle={styles.tooltipText} textID={'copy-listing'} />
-                        </Button>
+                        </Button> */}
                     </div>
                 )
             }

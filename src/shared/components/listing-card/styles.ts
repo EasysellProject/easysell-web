@@ -60,7 +60,7 @@ export default {
     backgroundColor: 'white',
     position: 'absolute',
     right: 0,
-    bottom: -180,
+    bottom: -132,
     borderRadius: 16,
     zIndex: 999,
     boxShadow: '0px 2px 4px 0px gray',

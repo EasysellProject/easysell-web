@@ -12,8 +12,6 @@ class AuthService {
   async register(email: string, password: string, firstname: string, lastname: string, lang: LangCode) {
     try {
       let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
-      let randomListings = this.generateRandomListings()
-      //TODO save user to firestore
       let currentUser = {
         _id: res.user?.uid,
         firstname,
@@ -22,7 +20,11 @@ class AuthService {
         email,
       }
       await firebase.firestore().collection('users').doc(currentUser._id).set(currentUser)
-
+      this.getUserData().then(user => {
+        UserService.currentUser = user
+        localStorage.setItem("userID", user._id)
+        return user
+      })
       UserService.currentUser = new User(currentUser)
       return { result: "success" }
     } catch (err) {
@@ -179,7 +181,7 @@ class AuthService {
         currency: "TL"
       }
     ]
-    
+
     let cargos = [
       {
         _id: "1",
@@ -250,43 +252,46 @@ class AuthService {
         logo: "",
         trackUrl: ""
       }
-    
+
     ]
 
     var orderCount = Math.floor(Math.random() * 1000 + 1);
     let marketList = ["Trendyol", "Hepsiburada"];
-    
+
     let randomOrderDate;
     let randomDueDate;
     let randomDay;
 
     for (let i = 0; i < orderCount; i++) {
       let info = infos[i % infos.length];
-      randomDay = Math.random()*29 + 1;
-      randomOrderDate = new Date( 2021, randomDay , 4);
-      if( randomDay > 23 ){
-        randomDueDate = new Date( 2021, randomDay + 7 - 30 , 5);
+      randomDay = Math.random() * 29 + 1;
+      randomOrderDate = new Date(2021, randomDay, 4);
+      if (randomDay > 23) {
+        randomDueDate = new Date(2021, randomDay + 7 - 30, 5);
       }
-      else{
-        randomDueDate = new Date( 2021, randomDay + 7 , 4);
-      } 
-      
+      else {
+        randomDueDate = new Date(2021, randomDay + 7, 4);
+      }
+
       let details = {
         orderNo: this.generateRandomID(),
         orderDate: randomOrderDate,
         dueDate: randomDueDate,
-        orderedBy: { _id: String(Math.floor(Math.random() * 3000+2222)) ,
-                                    market: marketList[Math.floor(Math.random() * 2) ] }, 
-        cargoCompany: cargos[ Math.floor(Math.random() * 8)],
-        items: [ {
+        orderedBy: {
+          _id: String(Math.floor(Math.random() * 3000 + 2222)),
+          market: marketList[Math.floor(Math.random() * 2)]
+        },
+        cargoCompany: cargos[Math.floor(Math.random() * 8)],
+        items: [{
           _id: this.generateRandomID(),
           title: info.title,
           desc: info.desc,
           price: info.price,
           stock: Math.floor(Math.random() * 50),
           currency: Math.floor(Math.random() * 2) == 1 ? ['TL', '$'] : Math.floor(Math.random() * 2) == 1 ? ["TL"] : ["$"],
-          img: info.img,}
-           ],
+          img: info.img,
+        }
+        ],
 
         deliveryType: "Standart Delivery",
         deliveryAddress: {
@@ -298,7 +303,7 @@ class AuthService {
           city: "",
           town: "",
         },
-        }
+      }
       orders.push(new Order(details));
     }
 

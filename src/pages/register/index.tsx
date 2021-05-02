@@ -93,7 +93,7 @@ function Register(): JSX.Element {
         AuthService.register(email, pass, name, surname, currentLang)
             .then((res) => {
                 console.log('register successfull do smt', res)
-                //TODO
+                navigation.replace('/listings')
                 setRegisterLoading(false)
             }).catch((err) => {
                 setRegisterLoading(false)

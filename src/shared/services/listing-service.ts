@@ -52,6 +52,10 @@ class ListingService {
             return res.docs.map(listing => {
                 let data = listing.data();
                 data._id = listing.id
+                if (data.product.title == 'Filiz') {
+                    console.log("listing data ", data)
+                    console.log("listing id ", listing.id)
+                }
                 return new Listing(data)
             }
             );

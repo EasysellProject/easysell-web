@@ -78,7 +78,6 @@ function Login(): JSX.Element {
             .then(user => {
                 setLoading(false)
                 UserService.currentUser = user
-                //TODO go to main page
                 navigation.replace('/listings')
             })
             .catch(err => {
