@@ -8,6 +8,7 @@ import firebase from '../../shared/utils/firebase'
 import AuthService from "../../shared/services/auth-service";
 import ProductService from "../../shared/services/product-service"
 import OrdersService from "../../shared/services/order-service"
+import userService from "../../shared/services/user-service";
 
 interface dashboardHeaderProps {
    
@@ -91,7 +92,7 @@ function DashboardHeader(props: dashboardHeaderProps): JSX.Element {
                             additionalStyle={styles.nameText} />
                     </div>
                     <div>
-                        <SimpleText textID={date.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+                        <SimpleText textID={date.toLocaleDateString(userService.currentUser.lang, { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
                             additionalStyle={styles.dateText} />
                     </div>
                 </div>

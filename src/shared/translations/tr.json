@@ -79,5 +79,6 @@
 	"sync-orders":"Senkronize et",
 	"save-changes":"Değişikleri kaydet",
 	"api-key": "API şifresi...",
-	"save": "Kaydet"
+	"save": "Kaydet",
+	"number-of-orders":"Sipariş sayısı"
 }

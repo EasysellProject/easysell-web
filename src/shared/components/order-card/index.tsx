@@ -33,7 +33,7 @@ function OrderCard(props: OrderCardProps): JSX.Element {
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                 <div style={styles.infoContainer}>
                     <img src={order.product.img} style={styles.image} />
-                    <SimpleText ellipsis text={order.product.desc} additionalStyle={styles.textHigherFlex} />
+                    <SimpleText ellipsis text={order.product.title} additionalStyle={styles.textHigherFlex} />
                 </div>
                 <div style={{ height: 34, width: 30 }}></div>
             </div>

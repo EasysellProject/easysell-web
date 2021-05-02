@@ -79,5 +79,6 @@
 	"sync-orders":"Syncronize orders",
 	"save-changes":"Save changes",
 	"api-key": "API key...",
-	"save": "Save"
+	"save": "Save",
+	"number-of-orders":"Number of orders"
 }

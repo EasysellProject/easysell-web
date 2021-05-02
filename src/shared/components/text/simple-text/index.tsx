@@ -37,7 +37,7 @@ function SimpleText(props: SimpleTextProps): JSX.Element {
                     <ResponsiveEllipsis
                         text={formattedText}
                         basedOn="letters"
-                        maxLine={maxLine || 1}
+                        maxLine={1}
                         style={{ "overflow-wrap": "break-word", "white-space": "pre-wrap", "flex": 1 }}
                     />
                 )

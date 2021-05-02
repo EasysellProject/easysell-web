@@ -41,7 +41,7 @@
 	"price": "Qiymət",
 	"description": "Təsvir",
 	"currency": "Valyuta",
-	"quantity": "Miktar",
+	"quantity": "Miqdar",
 	"marketplace": "Bazar Yeri",
 	"title": "Başlıq",
 	"total": "Toplam:",
@@ -79,5 +79,6 @@
 	"sync-orders": "Sinxronizə et",
 	"save-changes": "Dəyişiklikləri yadda saxla",
 	"api-key": "API şifrəsi...",
-	"save": "Yadda saxla"
+	"save": "Yadda saxla",
+	"number-of-orders":"Sifariş sayı"
 }

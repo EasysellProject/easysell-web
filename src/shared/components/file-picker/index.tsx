@@ -37,7 +37,7 @@ function FilePicker(props: FilePickerProps): JSX.Element {
                     style={{ display: 'none' }}
                 />
                 <Button buttonStyle={styles.chooseFileButton} onPress={() => inputRef.current?.click()}>
-                    <SimpleText additionalStyle={styles.chooseFileText} text="Choose File" />
+                    <SimpleText additionalStyle={styles.chooseFileText} textID="choose-file" />
                 </Button>
             </div>
 
