@@ -30,12 +30,15 @@ class ListingService {
     async createListing(listing: any): Promise<Listing> {
         console.log('create listing ', listing)
         try {
+            if ("_id" in listing) {
+                delete listing._id
+            }
+            let res = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('listings').add(listing);
+            listing._id = res.id;
             if (listing.product?.img instanceof File) {
                 await firebase.storage().ref(`users/${Helper.getUserID()}/listings/${listing._id}`).put(listing.product.img)
                 listing.product.img = await firebase.storage().ref(`users/${Helper.getUserID()}/listings/${listing._id}`).getDownloadURL();
             }
-            let res = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('listings').add(listing);
-            listing._id = res.id;
             return new Listing(listing);
         } catch (err) {
             alert(err);

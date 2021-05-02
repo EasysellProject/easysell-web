@@ -26,6 +26,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
     const [windowDimensions, setWindowDimensions] = useState(Helper.getWindowDimensions());
     // const [listingData, setListing] = useState<Listing>(listing.copy());
     const [id, setId] = useState<string>('');
+    const [productID, setProductId] = useState<string>('');
     const [createdAt, setCreatedAt] = useState<Date>(new Date());
     const [title, setTitle] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
@@ -40,7 +41,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
     useEffect(() => {
         if (listing) {
             const { marketPlace, product, _id, createdAt } = listing;
-            const { title, desc, price, stock, currency, img } = product;
+            const { title, desc, price, stock, currency, img, } = product;
             setTitle(title);
             setDesc(desc);
             setPrice(price + '');
@@ -49,6 +50,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
             setMarkets(marketPlace);
             setImg(img)
             setId(_id)
+            setProductId(product._id)
             setCreatedAt(createdAt)
         }
     }, [listing])
@@ -75,6 +77,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
             _id: id,
             marketPlace: markets,
             product: {
+                _id: productID,
                 title,
                 desc,
                 price,
@@ -82,7 +85,7 @@ function ListingModal(props: ListingModalProps): JSX.Element {
                 currency,
                 img
             },
-            createdAt: createdAt.getTime()
+            createdAt: createdAt ? createdAt.getTime() : new Date().getTime()
         }
         onSubmit(listing);
     }
