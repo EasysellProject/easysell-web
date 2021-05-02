@@ -317,6 +317,7 @@ function ListingPage(props: ListingProps): JSX.Element {
                                         // setCreateLoading(false);
                                         fetchListings();
                                         closeListingModal()
+                                        setCreateLoading(false);
                                     })
                                     .catch(() => {
                                         setCreateLoading(false);
