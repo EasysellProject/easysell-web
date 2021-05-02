@@ -49,11 +49,17 @@ function About(props: AboutProps): JSX.Element {
                     <div
                         style={{
                             ...WEB_STYLES.flexColum,
+                            width: '100%',
                             paddingTop: !isMobile() ? 16 : 4,
                             paddingLeft: isMobile() ? 0 : 0,
                         }}
                     >
-
+                        <div
+                        style={{
+                            paddingLeft: 20,
+                            paddingBottom: 20,
+                        }}
+                    >
                             <img
                                 src={logo}
                                 alt="logo"
@@ -62,17 +68,19 @@ function About(props: AboutProps): JSX.Element {
                                 }}
                             />
                             
+                            </div>
                         {
                             !isTablet() && (
                                 <div style={{
                                     ...WEB_STYLES.flexColum,
                                     justifyContent: 'left',
                                     alignItems: 'left',
+                                    width: '100%',
                                     paddingLeft: 20,
                                     marginTop: 10,
                                     flex: 1,
                                 }}>
-                                    <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
+                                    <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='MULTI CHANNEL RETAIL PLATFORM' />
                                     <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
                                 </div>
                             )
@@ -87,7 +95,7 @@ function About(props: AboutProps): JSX.Element {
                             src={comp}
                             alt="workspace"
                             style={{
-                                width: 522,
+                                width: 600,
                             }}
                         />
                         </div>

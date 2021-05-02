@@ -13,8 +13,8 @@ export default {
         flex: 1,
         flexDirection: 'row',
         marginLeft: 24,
-        marginRight: 24,
-        marginTop: 40,
+        marginRight: 0,
+        marginTop: 20,
         paddingBottom: 12
     } as CSSProperties,
     header: {
@@ -33,12 +33,12 @@ export default {
         fontSize: 36,
     } as CSSProperties,
     multiChannelText: {
-        maxWidth: 330,
+        maxWidth: '100%',
         color: APP_COLORS.textGreen,
-        fontSize: 36
+        fontSize: 28,
     },
     manageText: {
         fontSize: 18,
-        maxWidth: '50%',
+        maxWidth: '100%',
     }
 }
