@@ -7,8 +7,9 @@ export default {
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: APP_COLORS.sidebarGreen
-    },
+        backgroundColor: APP_COLORS.sidebarGreen,
+        overflow: 'auto'
+    } as CSSProperties,
     row: {
         alignItems: 'center',
         width: '90%',

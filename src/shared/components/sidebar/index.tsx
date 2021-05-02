@@ -69,7 +69,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
     }
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
             <div style={isMobile() ? {
                 ...WEB_STYLES.flexRow,
                 position: 'absolute',
@@ -172,19 +172,19 @@ function Sidebar(props: SidebarProps): JSX.Element {
                                         additionalStyle={{ ...styles.rowTitle, color: item == 'About' ? APP_COLORS.borderGray : 'white' }}
                                     />
                                 </Link>
-                                <MUIButton
-                                    style={styles.logoutButton}
-                                    onClick={logout}
-                                    autoCapitalize={"none"}
-                                >
-                                    <SimpleText
-                                        textID={"logout"}
-                                        additionalStyle={styles.logoutButtonText}
-                                    />
-                                </MUIButton>
                             </div>
                         )
                     }
+                    <MUIButton
+                        style={styles.logoutButton}
+                        onClick={logout}
+                        autoCapitalize={"none"}
+                    >
+                        <SimpleText
+                            textID={"logout"}
+                            additionalStyle={styles.logoutButtonText}
+                        />
+                    </MUIButton>
                 </div>
             </div>
         </div>
