@@ -36,7 +36,7 @@ function Profile(props: ProfileProps): JSX.Element {
                 <div style={styles.container}>
                     <div style={styles.container}>
                         <div style={styles.headerContainer}>
-                            <HeaderText textID="Profile" />
+                            <HeaderText textID="profile" />
                         </div>
                         <Body />
                     </div>

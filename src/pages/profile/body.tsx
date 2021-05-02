@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaPen } from "react-icons/fa";
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import ReactFlagsSelect from 'react-flags-select';
 import Button from "../../shared/components/button";
 import SimpleText from "../../shared/components/text/simple-text";
 import Input from "../../shared/components/input";
@@ -10,6 +11,7 @@ import AuthService from "../../shared/services/auth-service";
 import styles from "./styles";
 import { APP_COLORS, WEB_STYLES } from '../../shared/styles';
 import { User } from '../../shared/models/user';
+import { languageActions } from '../..';
 
 interface BodyProps {
 
@@ -19,11 +21,15 @@ function Body(props: BodyProps): JSX.Element {
 
     const [user, setUser] = useState<User>(null);
     const [saveDisabled, setSavedDisabled] = useState<boolean>(true);
+
+    const flagPicker = useRef<ReactFlagsSelect>(null);
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 AuthService.getUserData().then(curr => {
                     UserService.currentUser = curr;
+                    flagPicker.current.updateSelected(curr.lang.substring(curr.lang.length - 2))
                     setUser(curr);
                 }).catch(err => {
                     console.log(err.message)
@@ -35,6 +41,14 @@ function Body(props: BodyProps): JSX.Element {
 
     function onSaveChanges(): void {
         // TODO implement
+        AuthService.updateUser(user)
+            .then(() => {
+                setSavedDisabled(true);
+                alert("Successfully saved changes")
+            })
+            .catch((err) => {
+                alert("Error occured " + err)
+            });
     }
 
     function onResetPassPress(): void {
@@ -57,13 +71,29 @@ function Body(props: BodyProps): JSX.Element {
         }}>
             <div style={styles.inputContainer}>
                 <Input
-                    value={user?.name}
-                    placeholder="Full Name"
+                    value={user?.firstname}
+                    placeholder="name"
                     showLabel
                     required
-                    label="Full Name"
-                    disabled
+                    label="name"
                     onChangeText={(name: string) => {
+                        setSavedDisabled(false);
+                        setUser({ ...user, firstname: name, name: name + " " + user.lastname });
+                    }}
+                    errorText={'error-empty-field'}
+                />
+                <FaPen color={APP_COLORS.ligthBlue} style={{ marginLeft: 10, marginTop: 15 }} />
+            </div>
+            <div style={styles.inputContainer}>
+                <Input
+                    value={user?.lastname}
+                    placeholder="surname"
+                    showLabel
+                    required
+                    label="surname"
+                    onChangeText={(name: string) => {
+                        setSavedDisabled(false);
+                        setUser({ ...user, lastname: name, name: user.firstname + " " + name });
                     }}
                     errorText={'error-empty-field'}
                 />
@@ -83,7 +113,40 @@ function Body(props: BodyProps): JSX.Element {
                 />
                 <FaPen color={APP_COLORS.ligthBlue} style={{ marginLeft: 10, marginTop: 15 }} />
             </div>
+            <div style={{ marginTop: 15 }}>
 
+            </div>
+            <ReactFlagsSelect
+                ref={flagPicker}
+                className='flag-selector'
+                countries={["US", "TR", "AZ"]}
+                defaultCountry={'US'}
+
+                customLabels={{ "US": "English", "TR": "Türkçe", "AZ": "Azərbaycanca" }}
+                onSelect={(countryCode: string) => {
+                    setSavedDisabled(false);
+                    switch (countryCode) {
+                        case "US": {
+                            languageActions.next({ value: 'en-US' })
+                            user.lang = 'en-US'
+                            // setUser(user);
+                            break
+                        } case "TR": {
+                            languageActions.next({ value: 'tr-TR' })
+                            user.lang = 'tr-TR'
+                            setUser(user);
+                            // setCurrentLang('tr-TR')
+                            break
+                        } case "AZ": {
+                            languageActions.next({ value: "az-Latn-AZ" })
+                            user.lang = 'az-Latn-AZ'
+                            setUser(user);
+                            // setCurrentLang('az-Latn-AZ')
+                            break
+                        }
+                    }
+                }}
+            />
             <div style={styles.buttonsContainer}>
                 <Button
                     onPress={onResetPassPress}

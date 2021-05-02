@@ -80,6 +80,19 @@ class AuthService {
       throw err;
     }
   }
+
+  async updateUser(user: User): Promise<void> {
+    console.log('user ', user)
+    try {
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(user._id)
+        .update({ lang: user.lang, firstname: user.firstname, lastname: user.lastname })
+    } catch (err) {
+      throw err
+    }
+  }
   generateRandomListings(): Listing[] {
     let listings: Listing[] = [];
     let infos = [

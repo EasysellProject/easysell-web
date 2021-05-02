@@ -148,7 +148,7 @@ function Register(): JSX.Element {
                     className='flag-selector'
                     countries={["US", "TR", "AZ"]}
                     defaultCountry="US"
-                    customLabels={{ "US": "EN-US", "TR": "Türkçe", "AZ": "Azərbaycanca" }}
+                    customLabels={{ "US": "English", "TR": "Türkçe", "AZ": "Azərbaycanca" }}
                     onSelect={(countryCode: string) => {
                         switch (countryCode) {
                             case "US": {
@@ -308,49 +308,49 @@ function Register(): JSX.Element {
                     </div>
                 </div>
             ) : (
+                <div
+                    style={{
+                        ...WEB_STYLES.flexRow,
+                        paddingTop: !isMobile() ? 160 : 40,
+                        paddingLeft: isMobile() ? 0 : 40,
+                    }}
+                >
                     <div
                         style={{
-                            ...WEB_STYLES.flexRow,
-                            paddingTop: !isMobile() ? 160 : 40,
-                            paddingLeft: isMobile() ? 0 : 40,
+                            ...styles.registerContent,
                         }}
                     >
-                        <div
+                        <img
+                            src={logo}
+                            alt="logo"
                             style={{
-                                ...styles.registerContent,
+                                width: 200,
                             }}
-                        >
-                            <img
-                                src={logo}
-                                alt="logo"
-                                style={{
-                                    width: 200,
-                                }}
-                            />
-                            <HeaderText textID="register" additionalStyle={styles.textStyle} />
-                            <HeaderText
-                                textID="enter-creds"
-                                additionalStyle={{ fontSize: 24, ...styles.textStyle }}
-                            />
-                            {renderInputs()}
-                        </div>
-                        {
-                            !isTablet() && (
-                                <div style={{
-                                    ...WEB_STYLES.flexColum,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    paddingLeft: -20,
-                                    marginTop: 150,
-                                    flex: 1,
-                                }}>
-                                    <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
-                                    <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
-                                </div>
-                            )
-                        }
+                        />
+                        <HeaderText textID="register" additionalStyle={styles.textStyle} />
+                        <HeaderText
+                            textID="enter-creds"
+                            additionalStyle={{ fontSize: 24, ...styles.textStyle }}
+                        />
+                        {renderInputs()}
                     </div>
-                )}
+                    {
+                        !isTablet() && (
+                            <div style={{
+                                ...WEB_STYLES.flexColum,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                paddingLeft: -20,
+                                marginTop: 150,
+                                flex: 1,
+                            }}>
+                                <HeaderText capitalized additionalStyle={{ ...styles.multiChannelText, textAlign: 'left' }} textID='multi-channel-retail-platform' />
+                                <SimpleText additionalStyle={styles.manageText} textID='manage-sales' />
+                            </div>
+                        )
+                    }
+                </div>
+            )}
         </div>
     );
 }
