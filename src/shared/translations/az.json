@@ -25,6 +25,7 @@
 	"listings": "Siyahılar",
 	"orders": "Sifarişlər",
 	"integration": "İnteqrasiyalar",
+	"marketplace-integration": "Bazar İnteqrasiyaları",
 	"profile": "Profil",
 	"about": "Haqqımızda",
 	"search": "Axtar",
@@ -76,5 +77,7 @@
 	"order-date": "Sipariş tarixi",
 	"due-date": "Son tarix",
 	"sync-orders": "Sinxronizə et",
-	"save-changes": "Dəyişiklikləri yadda saxla"
+	"save-changes": "Dəyişiklikləri yadda saxla",
+	"api-key": "API şifrəsi...",
+	"save": "Yadda saxla"
 }

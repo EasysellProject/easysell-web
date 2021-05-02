@@ -25,6 +25,7 @@
 	"listings": "Listings",
 	"orders": "Orders",
 	"integration": "Integrations",
+	"marketplace-integration": "Marketplace Integration",
 	"profile": "Profile",
 	"about": "About",
 	"search": "Search",
@@ -76,5 +77,7 @@
 	"order-date":"Order date",
 	"due-date":"Due date",
 	"sync-orders":"Syncronize orders",
-	"save-changes":"Save changes"
+	"save-changes":"Save changes",
+	"api-key": "API key...",
+	"save": "Save"
 }
