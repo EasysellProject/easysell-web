@@ -63,6 +63,7 @@
 	"image": "Fotoğraf",
 	"upload-image": "Fotoğraf Yükle",
 	"add-product": "Ürün Ekle",
+	"edit-product":"Ürün Düzenle",
 	"reset-password":"Şifreni Sıfırla",
 	"select-product":"Ürün Seç",
 	"welcome":"Hoş geldin,",
@@ -80,5 +81,8 @@
 	"save-changes":"Değişikleri kaydet",
 	"api-key": "API şifresi...",
 	"save": "Kaydet",
-	"number-of-orders":"Sipariş sayısı"
+	"number-of-orders":"Sipariş sayısı",
+	"delete":"Sil",
+	"duplicate":"Kopya Oluştur"
+
 }

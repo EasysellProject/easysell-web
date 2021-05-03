@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog } from '@material-ui/core';
 import { MdDone, MdClose } from 'react-icons/md'
 
@@ -16,11 +16,14 @@ import ProductService from '../../../services/product-service';
 interface ProductModalProps {
     visible: boolean;
     onClose: () => void;
-    onSubmit: (product: any) => void
+    onSubmit: (product: any) => void;
+    editData: any;
 }
 
 function ProductModal(props: ProductModalProps): JSX.Element {
-    const { visible, onClose, onSubmit } = props;
+    const { visible, onClose, onSubmit, editData } = props;
+
+
     const [name, setName] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
     const [price, setPrice] = useState<string>('');
@@ -29,7 +32,24 @@ function ProductModal(props: ProductModalProps): JSX.Element {
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [image, setImage] = useState<File>(null);
-
+    useEffect(() => {
+        if (editData != null) {
+            setName(editData.title);
+            setDesc(editData.desc);
+            setPrice(editData.price);
+            setStock(editData.stock + '');
+            setCurrency(editData.currency);
+            //setImage(editData.img) Burda bi sikinti var
+        }
+        if (editData == null) {
+            setName('');
+            setDesc('');
+            setPrice('');
+            setStock('');
+            setCurrency('TL');
+            //setImage(editData.img) Burda bi sikinti var
+        }
+    }, [editData])
     function finalize(): void {
         setSubmitted(true);
         if (!name || !price || !stock) {
@@ -59,7 +79,34 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 alert(err)
             });
     }
+    let deleteButton;
+    let duplicateButton;
+    if (editData != null) {
 
+        deleteButton = <Button
+            onPress={() => console.log('delete')}
+            buttonStyle={styles.cancelButton}>
+            <SimpleText
+                textID='delete'
+                additionalStyle={styles.cancelText}
+            />
+            <MdClose size={16} color={APP_COLORS.gray} />
+        </Button>
+        duplicateButton = <Button
+            onPress={() => console.log('duplicate')}
+            buttonStyle={styles.cancelButton}>
+            <SimpleText
+                textID='duplicate'
+                additionalStyle={styles.cancelText}
+            />
+            <MdClose size={16} color={APP_COLORS.gray} />
+        </Button>
+    }
+    else {
+
+        deleteButton = null
+        duplicateButton = null
+    }
     return (
         <Dialog
             open={visible}
@@ -67,7 +114,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
             style={styles.container}
         >
             <HeaderText
-                textID='add-product'
+                textID={editData == null ? 'add-product' : 'edit-product'}
                 additionalStyle={{
                     alignSelf: 'center',
                     marginTop: 8,
@@ -168,6 +215,8 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     />
                     <MdClose size={16} color={APP_COLORS.gray} />
                 </Button>
+                {deleteButton}
+                {duplicateButton}
                 <Button
                     onPress={finalize}
                     buttonStyle={styles.finalizeButton}

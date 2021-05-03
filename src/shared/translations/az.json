@@ -63,6 +63,7 @@
 	"image": "Şəkil",
 	"upload-image": "Şəkil Yüklə",
 	"add-product": "Məhsul Yarat",
+	"edit-product":"Məhsulu redaktə edin",
 	"select-product": "Məhsul Seç",
 	"reset-password": "Şifrəni Yenilə",
 	"welcome": "Xoş gəlmisən,",
@@ -82,5 +83,7 @@
 	"save": "Yadda saxla",
 	"number-of-orders":"Sifariş sayı",
 	"abstract0": "Onlayn alış-veriş 2020-ci ildən bütün pərakəndə satışların 20%-dən çoxunu təşkil etdiyindən, elektron ticarət platformalarının sayı kəskin şəkildə artmaqdadır. Onlayn satıcılar üçün bu platformaların hamısını ayrı-ayrılıqda idarə etmək zaman və enerji itkisinə səbəb olur.",
-	"abstract1": "Bu layihədə, istifadəçilərin fərqli platformalardakı satıcı hesablarını  eyni vaxtda idarə etmələrini təmin edən və istifadəçilərə satış analizi və sifarişin idarə edilməsi kimi funksiyaları təmin edən EasySell adlı istifadəçi dostu, etibarlı və çox kanallı bir elektron ticarət platforması hazırladıq."
+	"abstract1": "Bu layihədə, istifadəçilərin fərqli platformalardakı satıcı hesablarını  eyni vaxtda idarə etmələrini təmin edən və istifadəçilərə satış analizi və sifarişin idarə edilməsi kimi funksiyaları təmin edən EasySell adlı istifadəçi dostu, etibarlı və çox kanallı bir elektron ticarət platforması hazırladıq.",
+	"delete":"Silin",
+	"duplicate":"Dublikat"
 }
