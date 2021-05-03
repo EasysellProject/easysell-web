@@ -3,7 +3,8 @@ export default {
         grayButton: '#E6E9E9',
         green: '#ABDFC9',
         darkGray: '#706969',
-        chooseFile:'#E1E1E1'
+        chooseFile: '#E1E1E1',
+        red: '#e84545'
     },
     HOVER: {
         green: '#DBF3F7',

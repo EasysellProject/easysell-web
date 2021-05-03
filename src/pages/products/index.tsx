@@ -79,7 +79,12 @@ function ProductsPage(props: ProductProps): JSX.Element {
     }
 
     function createProduct(newProduct: any): void {
-        setProducts([newProduct].concat(products));
+        if (productToEdit) {
+            fetchProducts();
+            setProducttoEdit(null);
+        } else {
+            setProducts([newProduct].concat(products));
+        }
         setNewProductModalVisible(false);
     }
 
@@ -124,6 +129,11 @@ function ProductsPage(props: ProductProps): JSX.Element {
                     onClose={() => { setNewProductModalVisible(false); setProducttoEdit(null); }}
                     onSubmit={createProduct}
                     editData={productToEdit}
+                    onDelete={() => {
+                        fetchProducts()
+                        setProducttoEdit(null)
+                        setNewProductModalVisible(false);
+                    }}
                 />
             </div>
         </DashboardLayout>

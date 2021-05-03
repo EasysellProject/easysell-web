@@ -39,6 +39,34 @@ class ProductService {
             throw err;
         }
     }
+
+    async updateProduct(details: any): Promise<Product> {
+        try {
+            let imgID = Helper.generateRandomID();
+            let metadata = {
+                contentType: 'image/*'
+            }
+            if (details.img && details.img instanceof File) {
+                await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).put(details.img, metadata);
+                details.img = await firebase.storage().ref().child(`users/${Helper.getUserID()}/products/${imgID}`).getDownloadURL();
+            }
+            let productsDoc = await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('products').doc(details._id).update(details);
+            let product = details;
+            return new Product(product);
+        } catch (err) {
+            alert(err)
+            throw err;
+        }
+    }
+
+    async deleteProduct(details: any): Promise<void> {
+        try {
+            await firebase.firestore().collection('users').doc(Helper.getUserID()).collection('products').doc(details._id).delete();
+        } catch (err) {
+            alert(err);
+            throw err
+        }
+    }
 }
 
 export default new ProductService();

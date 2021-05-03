@@ -61,8 +61,19 @@ export default {
         backgroundColor: APP_COLORS.BUTTONS.green,
         borderRadius: 12
     } as CSSProperties,
+    deleteButton: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 100,
+        backgroundColor: APP_COLORS.BUTTONS.red,
+        borderRadius: 12
+    } as CSSProperties,
     cancelText: {
         color: APP_COLORS.gray
+    } as CSSProperties,
+    deleteText: {
+        color: 'white'
     } as CSSProperties,
     finalizeText: {
         color: APP_COLORS.gray

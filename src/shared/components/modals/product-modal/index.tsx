@@ -12,18 +12,20 @@ import Picker from '../../picker';
 import Input from '../../input';
 import styles from './styles';
 import ProductService from '../../../services/product-service';
+import productService from '../../../services/product-service';
 
 interface ProductModalProps {
     visible: boolean;
     onClose: () => void;
     onSubmit: (product: any) => void;
+    onDelete?: () => void
     editData: any;
 }
 
 function ProductModal(props: ProductModalProps): JSX.Element {
-    const { visible, onClose, onSubmit, editData } = props;
+    const { visible, onClose, onSubmit, editData, onDelete } = props;
 
-
+    const [id, setID] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
     const [price, setPrice] = useState<string>('');
@@ -31,14 +33,18 @@ function ProductModal(props: ProductModalProps): JSX.Element {
     const [currency, setCurrency] = useState<'TL' | 'USD'>('TL');
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    const [image, setImage] = useState<File>(null);
+    const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
+    const [image, setImage] = useState<File | string>(null);
+
     useEffect(() => {
         if (editData != null) {
+            setID(editData._id)
             setName(editData.title);
             setDesc(editData.desc);
             setPrice(editData.price);
             setStock(editData.stock + '');
             setCurrency(editData.currency);
+            setImage(editData.img);
             //setImage(editData.img) Burda bi sikinti var
         }
         if (editData == null) {
@@ -56,6 +62,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
             return;
         }
         let product = {
+            _id: id,
             title: name,
             desc,
             price,
@@ -64,42 +71,69 @@ function ProductModal(props: ProductModalProps): JSX.Element {
             img: image
         };
         setLoading(true);
-        ProductService.createNewProduct(product)
-            .then((product) => {
-                setLoading(false);
-                setName('');
-                setDesc('')
-                setPrice('')
-                setStock('')
-                setCurrency('TL')
-                setSubmitted(false)
-                onSubmit(product);
-            })
-            .catch((err) => {
-                alert(err)
-            });
+        if (editData) {
+            ProductService.updateProduct(product)
+                .then(() => {
+                    setLoading(false);
+                    setName('');
+                    setDesc('')
+                    setPrice('')
+                    setStock('')
+                    setCurrency('TL')
+                    setSubmitted(false)
+                    onSubmit(product);
+                })
+        } else {
+            delete product._id
+            ProductService.createNewProduct(product)
+                .then((product) => {
+                    setLoading(false);
+                    setName('');
+                    setDesc('')
+                    setPrice('')
+                    setStock('')
+                    setCurrency('TL')
+                    setSubmitted(false)
+                    onSubmit(product);
+                })
+                .catch((err) => {
+                    alert(err)
+                });
+        }
     }
     let deleteButton;
     let duplicateButton;
     if (editData != null) {
 
         deleteButton = <Button
-            onPress={() => console.log('delete')}
-            buttonStyle={styles.cancelButton}>
+            onPress={() => {
+                setDeleteLoading(true);
+                productService.deleteProduct({ _id: id })
+                    .then(() => {
+                        setDeleteLoading(false);
+                        onDelete()
+                    })
+                    .catch((err) => {
+                        setDeleteLoading(false);
+                        alert(err)
+                    })
+            }}
+            loading={deleteLoading}
+            buttonStyle={styles.deleteButton} >
             <SimpleText
                 textID='delete'
-                additionalStyle={styles.cancelText}
+                additionalStyle={styles.deleteText}
             />
             <MdClose size={16} color={APP_COLORS.gray} />
-        </Button>
+        </Button >
         duplicateButton = <Button
             onPress={() => console.log('duplicate')}
-            buttonStyle={styles.cancelButton}>
+            buttonStyle={styles.finalizeButton}>
             <SimpleText
                 textID='duplicate'
-                additionalStyle={styles.cancelText}
+                additionalStyle={styles.finalizeText}
             />
-            <MdClose size={16} color={APP_COLORS.gray} />
+            <MdDone size={16} color={APP_COLORS.gray} />
         </Button>
     }
     else {
@@ -198,7 +232,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                 {
                     image && (
                         <img
-                            src={URL.createObjectURL(image)}
+                            src={typeof image == 'string' ? image : URL.createObjectURL(image)}
                             style={styles.image}
                         />
                     )
@@ -216,7 +250,7 @@ function ProductModal(props: ProductModalProps): JSX.Element {
                     <MdClose size={16} color={APP_COLORS.gray} />
                 </Button>
                 {deleteButton}
-                {duplicateButton}
+                {/* {duplicateButton} */}
                 <Button
                     onPress={finalize}
                     buttonStyle={styles.finalizeButton}
