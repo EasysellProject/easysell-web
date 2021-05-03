@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import Utils from '../../shared/utils';
+import logo from "../../assets/images/logo.png";
 
 const { Firebase } = Utils;
 
@@ -16,7 +17,17 @@ function Landing(): JSX.Element {
     }, [])
 
     return (
-        <div style={{ justifyContent: 'center', alignItems: 'center' }}>I am landing page</div>
+        <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img
+                src={logo}
+                alt="logo"
+                style={{
+                    width: 200,
+                    paddingTop: 10,
+                    paddingLeft: 15,
+                }}
+            />
+        </div>
     )
 }
 

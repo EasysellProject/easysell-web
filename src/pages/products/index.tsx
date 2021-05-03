@@ -78,7 +78,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
     }
 
     function createProduct(newProduct: any): void {
-        setProducts(products.concat([newProduct]));
+        setProducts([newProduct].concat(products));
         setNewProductModalVisible(false);
     }
 
@@ -98,12 +98,12 @@ function ProductsPage(props: ProductProps): JSX.Element {
                             <div style={styles.spinnerContainer}>
                                 <CircularProgress style={styles.spinner} />
                             </div>
-                        ) : products.length > 0?(
+                        ) : products.length > 0 ? (
                             <Table
                                 data={filteredProducts}
                                 headCells={headCells}
                                 renderItem={renderProduct} />
-                        ):(<EmptyList/>)
+                        ) : (<EmptyList />)
                     }
                 </div>
                 <ProductModal
