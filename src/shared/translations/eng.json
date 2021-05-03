@@ -80,5 +80,7 @@
 	"save-changes":"Save changes",
 	"api-key": "API key...",
 	"save": "Save",
-	"number-of-orders":"Number of orders"
+	"number-of-orders":"Number of orders",
+	"abstract0": "Online alışveriş günümüz dünyasında tüm perakende alışverişlerin %20'sinden fazlasını oluşturuyor. Bu nedenle e-ticaret platformlarının sayısı da günümüze gelene kadar önemli ölçüde arttı ve artmaya da devam edecek gibi gözüküyor. Ürünlerini internet üzerinden satan kişiler için tüm bu platformlardaki hesaplarını ayrı ayrı yönetmek kişilerin hem zamanlarından hem de enerjilerinden çalıyor.",
+	"abstract1": "Bu projede, kullanıcıların farklı platformlardaki satıcı hesaplarını aynı anda yönetmelerini sağlayan ve kullanıcılara satış analizi ve sipariş yönetimi gibi işlevler sağlayan EasySell adlı kullanıcı dostu ve güvenilir çok kanallı bir e-ticaret platformu geliştirdik."
 }

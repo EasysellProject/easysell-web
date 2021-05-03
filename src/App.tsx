@@ -17,6 +17,7 @@ import { User } from "./shared/models/user"
 import firebase from './shared/utils/firebase'
 import Profile from './pages/profile';
 import { languageActions } from '.';
+import About from './pages/about';
 
 const { Firebase } = Utils;
 
@@ -48,6 +49,7 @@ function App(props: AppProps) {
         {/* <Route path='/profile' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Profile />))} /> */}
         <Route path='/products' render={() => (Helper.getUserID() ? (<ProductsPage />) : (<Redirect to="/login" />))} />
         <Route path='/profile' render={() => (Helper.getUserID() ? (<Profile />) : (<Redirect to="/login" />))} />
+        <Route path='/about' render={() => (Helper.getUserID() ? (<About />) : (<Redirect to="/login" />))} />
         <Route path='/orders' render={() => (Helper.getUserID() ? (<OrdersPage />) : (<Redirect to="/login" />))} />
         <Route path='/dashboard' render={() => (Helper.getUserID() ? (<Dashboard />) : (<Redirect to="/login" />))} />
         <Route path='/login' render={() => (Helper.getUserID() ? (<Redirect to="/listings" />) : (<Login />))} />
