@@ -213,9 +213,9 @@ function ListingPage(props: ListingProps): JSX.Element {
                 removeListing={() => removeListing(listing)}
                 listing={listing}
                 index={listing.index}
-                // onMorePressed={(listing) => {
-                //     setTooltipOpened(listing);
-                // }
+            // onMorePressed={(listing) => {
+            //     setTooltipOpened(listing);
+            // }
             />
         )
     }
@@ -328,8 +328,8 @@ function ListingPage(props: ListingProps): JSX.Element {
                                     ListingService.createListing(listing)
                                         .then((listing: Listing) => {
                                             setCreateLoading(false);
-                                            setListings(listings.concat(listing));
-                                            setFilteredListings(listings.concat(listing));
+                                            setListings([listing].concat(listings));
+                                            setFilteredListings([listing].concat(listings));
                                             closeListingModal()
                                         })
                                         .catch(() => {
@@ -340,8 +340,8 @@ function ListingPage(props: ListingProps): JSX.Element {
                                     ListingService.createListing(listing)
                                         .then((listing: Listing) => {
                                             setCreateLoading(false);
-                                            setListings(listings.concat(listing));
-                                            setFilteredListings(listings.concat(listing));
+                                            setListings([listing].concat(listings));
+                                            setFilteredListings([listing].concat(listings));
                                             closeListingModal()
                                         })
                                         .catch(() => {

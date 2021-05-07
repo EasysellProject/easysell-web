@@ -31,6 +31,7 @@ function ProductsPage(props: ProductProps): JSX.Element {
     ];
 
     const [products, setProducts] = useState<Product[]>([]);
+    const [productToEdit, setProducttoEdit] = useState<Product>();
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [newProductModalVisible, setNewProductModalVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
@@ -78,15 +79,32 @@ function ProductsPage(props: ProductProps): JSX.Element {
     }
 
     function createProduct(newProduct: any): void {
-        setProducts(products.concat([newProduct]));
+        if (productToEdit) {
+            fetchProducts();
+            setProducttoEdit(null);
+        } else {
+            setProducts([newProduct].concat(products));
+        }
         setNewProductModalVisible(false);
     }
 
+    function editProduct(newProduct: any): void {
+        //setProducts(products.concat([newProduct]));
+        setNewProductModalVisible(false);
+    }
+
+
+
     function renderProduct(product): JSX.Element {
         return (
-            <ProductCard onPress={() => { }} product={product} index={product.index} />
+            <ProductCard onPress={() => {
+                setProducttoEdit(product);
+                setNewProductModalVisible(true);
+            }} product={product} index={product.index} />
         )
     }
+
+
 
     return (
         <DashboardLayout route='Product'>
@@ -98,18 +116,24 @@ function ProductsPage(props: ProductProps): JSX.Element {
                             <div style={styles.spinnerContainer}>
                                 <CircularProgress style={styles.spinner} />
                             </div>
-                        ) : products.length > 0?(
+                        ) : products.length > 0 ? (
                             <Table
                                 data={filteredProducts}
                                 headCells={headCells}
                                 renderItem={renderProduct} />
-                        ):(<EmptyList/>)
+                        ) : (<EmptyList />)
                     }
                 </div>
                 <ProductModal
                     visible={newProductModalVisible}
-                    onClose={() => setNewProductModalVisible(false)}
+                    onClose={() => { setNewProductModalVisible(false); setProducttoEdit(null); }}
                     onSubmit={createProduct}
+                    editData={productToEdit}
+                    onDelete={() => {
+                        fetchProducts()
+                        setProducttoEdit(null)
+                        setNewProductModalVisible(false);
+                    }}
                 />
             </div>
         </DashboardLayout>

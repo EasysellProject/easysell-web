@@ -63,6 +63,7 @@
 	"image": "Fotoğraf",
 	"upload-image": "Fotoğraf Yükle",
 	"add-product": "Ürün Ekle",
+	"edit-product":"Ürün Düzenle",
 	"reset-password":"Şifreni Sıfırla",
 	"select-product":"Ürün Seç",
 	"welcome":"Hoş geldin,",
@@ -82,5 +83,8 @@
 	"save": "Kaydet",
 	"number-of-orders":"Sipariş sayısı",
 	"abstract0": "Online alışveriş, 2020'deki tüm perakende alışverişlerin% 20'sinden fazlasını oluşturduğundan, e-ticaret platformlarının sayısı önemli ölçüde arttı. Çevrimiçi satıcılar için, tüm bu platformları ayrı ayrı yönetmek zaman ve enerji israfına neden olur.",
-	"abstract1": "Bu projede, kullanıcıların çevrimiçi satıcı hesaplarını farklı platformlardan aynı anda yönetmelerini sağlayan ve kullanıcılara satış analizi ve sipariş yönetimi gibi işlevler sağlayan kullanıcı dostu, güvenli ve güvenilir çok kanallı bir e-ticaret platformu olan EasySell geliştirdik."
+	"abstract1": "Bu projede, kullanıcıların çevrimiçi satıcı hesaplarını farklı platformlardan aynı anda yönetmelerini sağlayan ve kullanıcılara satış analizi ve sipariş yönetimi gibi işlevler sağlayan kullanıcı dostu, güvenli ve güvenilir çok kanallı bir e-ticaret platformu olan EasySell geliştirdik.",
+	"delete":"Sil",
+	"duplicate":"Kopya Oluştur"
+
 }

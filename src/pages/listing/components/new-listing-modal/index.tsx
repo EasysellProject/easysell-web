@@ -99,7 +99,7 @@ function NewListingModal(props: NewListingModalProps): JSX.Element {
                                     products.map((product, index) =>
                                         <ProductCard
                                             key={product._id}
-                                            index={index}
+                                            index={index + 1}
                                             product={product}
                                             onPress={(product: Product) => {
                                                 onSelectProduct(product)
